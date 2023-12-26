@@ -1,0 +1,21 @@
+{
+    "name": "BookMyLib",
+    "owner": "Order Of Pie",
+    "founder": "kidKrishkode",
+    "team": ["Krishnendu Mitra","Bhumika Mondal","Saptarshi Pramanik"],
+    "AboutSoftware":{
+        "version": "1.0.0",
+        "Description": "Online Library Management System",
+        "Language": ["Html","Css","JavaScript","Json","Bootstrap"],
+        "Framework": "Hex.Js",
+        "Model": "Recursive Agile"
+    },
+    "Socials": {
+        "facebook": "https://facebook.com/",
+        "youtube": "https://youtu.be/",
+        "github": "https://github.com/kidKrishkode/BookMyLib.github.io/",
+        "linkedin": "https://linkedin.in/",
+        "instagram": "https://instagram.com/"
+    },
+    "recoveryPath": "https://github.com/kidKrishkode/BookMyLib.github.io/"
+}

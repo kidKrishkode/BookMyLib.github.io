@@ -1,0 +1,11 @@
+{
+      "userid": null,
+      "password": null,
+      "name": null,
+      "position": null,
+      "email": null,
+      "year": [null,null],
+      "gender": null,
+      "color": null,
+      "bin": [null]
+}
