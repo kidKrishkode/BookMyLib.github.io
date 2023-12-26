@@ -1,4 +1,5 @@
 BookMyLib
+--
 The BookMyLib (online library management system) is conceived as a free and open-source project, primarily targeted for educational purposes. 
 Developed by a team of college students using the Hex JS framework, it embraces the Recursive Agile software model for efficient development. 
 Employing a local API for seamless navigation, the system incorporates a user-friendly interface with features such as user authentication, 
