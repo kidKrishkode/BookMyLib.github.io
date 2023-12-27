@@ -1,0 +1,20 @@
+{
+  "name": "BookMyLib",
+  "version": "1.0.0",
+  "description": "Online library management system",
+  "main": "index.html",
+  "scripts": {
+    "start": "nodemon hex.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12",
+    "auth-package-name": "^1.0.7",
+    "hex": "^1.0.0"
+  },
+  "devDependencies": {},
+  "author": "Krishnendu Mitra",
+  "license": "MIT"
+}
