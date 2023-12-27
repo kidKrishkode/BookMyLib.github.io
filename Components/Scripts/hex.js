@@ -2,7 +2,7 @@ let currentUser = 0;
 let loginError = 0;
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let Timeline = [0,0,0,0,0];
-let bookBin = 0, studentBin = 0, teacherBin = 0, adminBin = 0;
+let bookBin = [], studentBin = [], teacherBin = [], adminBin = [];
 function getCaptch(id){
     setTimeout(function onn(){
         var cap = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','/','@','&','!','#','*','?','%','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9');
@@ -279,4 +279,77 @@ function pageRoute(id){
 	}catch(e){
 		alert("Error 500!\nPage rout is not possible due to the following error. \n",e);
 	}
+}
+function validateSignUp(name,gender,email,position,year,color,password){
+    if(validateUserName(name)&&validateUserEmail(email)&&validateDepartment(position)){
+        if(libSchema!=undefined){
+            libSchema.name = name;
+            libSchema.gender = gender;
+            libSchema.email = email;
+            libSchema.position = position;
+            libSchema.year = year;
+            libSchema.color = color;
+            libSchema.password = password;
+            return pushLibrarianData(libSchema);
+        }else{
+            setTimeout(()=>{
+                setLibrarianSchema();
+                validateSignUp(name,gender,email,position,year,color,password);
+            },100);
+        }
+    }else{
+        console.log("Account details is not correct");
+        return false;
+    }
+}
+function pushLibrarianData(data){
+    try{
+        data.userid = idMaker(3);
+        adminBin.length += 1;
+        adminBin[adminBin.length-1] = data;
+        console.log(adminBin);
+        return true;
+    }catch(e){
+        console.log("New Account push not possible due to an error\n",e);
+        return false;
+    }
+}
+if(validateSignUp("krish","Male","demo@12gmail.in","HOD",[2021,2025],"#0c8ff0;","@mitra23")){
+    console.log("call");
+}else{
+    console.log("...");
+}
+function storeDataBase(key, arrayToStore){
+    try{
+        const arrayString = JSON.stringify(arrayToStore);
+        localStorage.setItem(key, arrayString);
+        return true;
+    }catch(error){
+        console.error('Error storing data in local storage:', error);
+        return false;
+    }
+}
+function fetchDataBase(){
+    try{
+        const retrievedArrayString = localStorage.getItem('BookMyLibInfo');
+        const retrievedArray = JSON.parse(retrievedArrayString);
+        adminBin = retrievedArray[0];
+        studentBin = retrievedArray[1];
+        teacherBin = retrievedArray[2];
+        bookBin = retrievedArray[3];
+        if(adminBin.length==0||adminBin==undefined){
+            console.log("Database is blank");
+            return false;
+        }else{
+            return true;
+        }
+    }catch(error){
+        console.log("Databse fetch is not possible due to \n",error);
+    }
+}
+// // Example usage:
+// let UserInfoPulse = ["User name", 5, {name: "John", age: 34}, 20, true];
+// storeDataBase('BookMyLibInfo', UserInfoPulse);
+function StartBackend(){
+    if(fetchDataBase()!=true){}
 }
