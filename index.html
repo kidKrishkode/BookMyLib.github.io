@@ -3,26 +3,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image"content="./fav-icon/banner.png" name="og:image">
+    <meta property="og:image"content="./fav-icon/logo-c.png" name="og:image">
     <meta content="BookMyLib, Online Library Management System provided by kidKrishkode. Free and open source to all for use this LMS prototype for your 
     school, college or university. Terms and condition read carefully first and then use this utility." lang="en-us" name="description">
     <meta content="BookMyLib, Order of Pie, Online, Library System, free, open source, html, css, MIT, kidKrishkode" lang="en-us" name="keywords">
     <title version="1.0">BookMyLib</title>
-    <link rel="icon" href="./fav-icon/logo.png">
+    <link rel="icon" href="./fav-icon/logo-o-c.png">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<!--script src="https://kit.fontawesome.com/a81368914c.js"></script-->
     <link rel="stylesheet" href="./Components/Styles/origin.css">
 </head>
 <style id="jsStyle"></style>
 <body id="root" onload="user();">
-    <!--Define user() in frontend's script file-->
-    <h1>Welcome to BookMyLib</h1>
-    <p>Under development</p>
+	<section id="loginPage">
+		<div class="container">
+			<div class="left-component">
+				<img src="./images/login-vector.png"/>
+				<div class="wave1"></div>
+				<div class="wave2"></div>
+				<div class="wave3"></div>
+			</div>
+			<div class="right-component">
+				<form>
+					<div class="circle"><i class="fa fa-user-circle-o"></i></div>
+					<h2 class="title">Welcome to BookMyLib</h2>
+           			<div class="input-div one">
+           		   		<div class="i">
+           		   			<i class="fa fa-user"></i>
+           		   		</div>
+           		   		<div class="div">
+           		   			<h5>UserId/Email</h5>
+           		   			<input type="text" class="input" id="loginEmail"/>
+           		   		</div>
+           			</div>
+           			<div class="input-div pass">
+           		   		<div class="i"> 
+           		    		<i class="fa fa-lock"></i>
+           		   		</div>
+           		   		<div class="div">
+           		    		<h5>Password</h5>
+           		    		<input type="password" class="input" id="loginPassword"/>
+            	   		</div>
+            		</div>
+					<div class="input-div captcha">
+						<div class="div">
+							<input type="captcha" class="captcha" readonly id="mainCaptcha"/>
+							<i class="fa fa-refresh"></i>
+						</div>
+			  		</div>
+					<div class="input-div">
+						<div class="i"> 
+							<i class="fa fa-key"></i>
+						</div>
+						<div class="div">
+						 	<h5>Captcha</h5>
+							<input type="text" class="input" id="loginCapthca"/>
+						</div>
+			  		</div>
+            		<input type="submit" class="btn" value="Login">
+            		<div class="flo"><span>New Account</span><span>Forgot Password?</span></div>
+            	</form>
+        	</div>
+    	</div>
+	</section>
+	<div id="loading">
+		<div class="head">BookMyLib</div>
+		<div class="3dot"><div id="c1"></div><div id="c2"></div><div id="c3"></div></div>
+		<h6>from</h6>
+        <h5>Order of Pie</h5>
+	</div>
 </body>
 <!--Script inject by backend side-->
 <script src="./Database/analysis.min.js"></script>
 <script src="./Components/Scripts/assets.js"></script>
 <script src="./Components/Scripts/hex.js"></script>
 <!--Script inject by frontend side-->
+<script src="./Components/Scripts/default.js"></script>
 </html>
