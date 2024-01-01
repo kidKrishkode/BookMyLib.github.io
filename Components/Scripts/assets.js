@@ -27,14 +27,14 @@ const bookTypes = [
   "Reference",
 ];
 const pages = [
-    "HomePage",
-    "StudentPage",
-    "TeacherPage",
-    "BookPage",
-    "AdminPage",
-    "NotificationPage",
-    "SettingsPage",
-    "DocsPage",
-    "BackupPage",
-    "HelpPage"
+  "HomePage",
+  "StudentPage",
+  "TeacherPage",
+  "BookPage",
+  "AdminPage",
+  "NotificationPage",
+  "SettingsPage",
+  "DocsPage",
+  "BackupPage",
+  "HelpPage"
 ];

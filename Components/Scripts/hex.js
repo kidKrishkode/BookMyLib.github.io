@@ -2,7 +2,8 @@ let currentUser = 0;
 let loginError = 0;
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let Timeline = [0,0,0,0,0];
-let bookBin = [], studentBin = [], teacherBin = [], adminBin = [];
+let bookBin = [], studentBin = [], teacherBin = [], adminBin = [], instBin = [];
+let voice=1;
 function getCaptch(id){
     setTimeout(function onn(){
         var cap = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','/','@','&','!','#','*','?','%','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9');
@@ -17,7 +18,7 @@ function getCaptch(id){
         }
         var code = a+b+c+d+e+f;
         document.getElementById(id).value = code;
-    },1000);
+    },500);
 }
 function checkCaptch(id1,id2){
     var string1 = removeSpaces(document.getElementById(id1).value);
@@ -34,9 +35,9 @@ function removeSpaces(string){
 function validUser(userid,password){
     let id = document.getElementById(userid).value;
     let pass = document.getElementById(password).value;
-    for(let j=0; j<librarians; j++){
-	    if(((id==librarians[j].userid) ||(id==librarians[j].social)) &&(pass==librarians[j].password)){
-		    currentUser = librarians[j];
+    for(let j=0; j<adminBin.length; j++){
+	    if(((id==adminBin[j].userid) ||(id==adminBin[j].email)) &&(pass==adminBin[j].password)){
+		    currentUser = adminBin[j];
 		    return true;
 	    }
     }
@@ -44,6 +45,7 @@ function validUser(userid,password){
 }
 function authentication(auth1, auth2){
     if(loginError > 3){
+        voiceOver("Sorry, you are try to log more then 3 times, so your try is up, try later");
         return "Timeout";
     }
     if(auth1 == true && auth2 == true && loginError <= 3){
@@ -54,8 +56,9 @@ function authentication(auth1, auth2){
     }
 }
 function Bypass(){ //not completed
-    loginError = 1;
-    authentication(true,true);
+   /* loginError = 1;
+    authentication(true,true);*/
+    voiceOver();
 }
 function getUserDp(){
     if(currentUser!=0){
@@ -144,7 +147,7 @@ function calendarMaker(day,month,year){
    	    list+='<div> </div>';
     }
     list+='</li>';
-    return `<ul>${list}</up>`;
+    return `<ul>${list}</ul>`;
 }
 function MonthLength(month,year){
 	let leap=0,duration;
@@ -200,7 +203,6 @@ function getPrevMonth(){
     let calendar = calendarMaker(result,Timeline[1],Timeline[2]);
     return calendar;
 }
-function user(){} //for frontend side call
 function validateUserName(input){
   const namePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*(?: [a-zA-Z]+)?$/;
   if(namePattern.test(input)){
@@ -271,53 +273,39 @@ function passwordMaker(){
 	return pass;
 }
 function pageRoute(id){
-	try{
-	    for(let j=0; j<pages.length; j++){
-		    document.getElementById(pages[j]).style.display = "none";
+	if(currentUser!=0&&loginError<3&&adminBin.length!=0){
+	    try{
+	        for(let j=0; j<pages.length; j++){
+		        document.getElementById(pages[j]).style.display = "none";
+	        }
+	       document.getElementById(id).style.display = "block";
+	    }catch(e){
+		    alert("Error 500!\nPage route is not possible due to the following error. \n",e);
 	    }
-	    document.getElementById(id).style.display = "block";
-	}catch(e){
-		alert("Error 500!\nPage rout is not possible due to the following error. \n",e);
+	}else{
+		voiceOver();
 	}
 }
-function validateSignUp(name,gender,email,position,year,color,password){
-    if(validateUserName(name)&&validateUserEmail(email)&&validateDepartment(position)){
-        if(libSchema!=undefined){
-            libSchema.name = name;
-            libSchema.gender = gender;
-            libSchema.email = email;
-            libSchema.position = position;
-            libSchema.year = year;
-            libSchema.color = color;
-            libSchema.password = password;
-            return pushLibrarianData(libSchema);
-        }else{
-            setTimeout(()=>{
-                setLibrarianSchema();
-                validateSignUp(name,gender,email,position,year,color,password);
-            },100);
-        }
+// if(validateStudentEntry("krish","Male","demo@12gmail.in","HOD",[2021,2025],"#0c8ff0;","@mitra23")==true){
+//     console.log("call");
+// }else{
+//     console.log("...");
+// }
+function pushData(){
+    temp = [adminBin,studentBin,teacherBin,bookBin,instBin];
+    return storeDataBase('BookMyLibInfo',temp);
+}
+function clearData(){
+    adminBin.length = 0;
+    studentBin.length = 0;
+    teacherBin.length = 0;
+    bookBin.length = 0;
+    instBin.length = 0;
+    if(pushData()){
+        voiceOver("Database is empty now.");
     }else{
-        console.log("Account details is not correct");
-        return false;
+        voiceOver("Not able to clear database.");
     }
-}
-function pushLibrarianData(data){
-    try{
-        data.userid = idMaker(3);
-        adminBin.length += 1;
-        adminBin[adminBin.length-1] = data;
-        console.log(adminBin);
-        return true;
-    }catch(e){
-        console.log("New Account push not possible due to an error\n",e);
-        return false;
-    }
-}
-if(validateSignUp("krish","Male","demo@12gmail.in","HOD",[2021,2025],"#0c8ff0;","@mitra23")){
-    console.log("call");
-}else{
-    console.log("...");
 }
 function storeDataBase(key, arrayToStore){
     try{
@@ -325,7 +313,11 @@ function storeDataBase(key, arrayToStore){
         localStorage.setItem(key, arrayString);
         return true;
     }catch(error){
-        console.error('Error storing data in local storage:', error);
+        console.error('Error to storing data in local storage:', error);
+        if(checkStorage()>=90){
+            voiceOver("Sorry, but your storage is full, storing operation is going to fail..");
+            console.log('Storage full...');
+        }
         return false;
     }
 }
@@ -333,23 +325,80 @@ function fetchDataBase(){
     try{
         const retrievedArrayString = localStorage.getItem('BookMyLibInfo');
         const retrievedArray = JSON.parse(retrievedArrayString);
+        if(retrievedArray==undefined||retrievedArray==null){
+           return true;
+        }
         adminBin = retrievedArray[0];
         studentBin = retrievedArray[1];
         teacherBin = retrievedArray[2];
         bookBin = retrievedArray[3];
-        if(adminBin.length==0||adminBin==undefined){
-            console.log("Database is blank");
-            return false;
-        }else{
-            return true;
-        }
+        instBin = retrievedArray[4];
+        return true;
     }catch(error){
         console.log("Databse fetch is not possible due to \n",error);
+        return false;
     }
 }
-// // Example usage:
-// let UserInfoPulse = ["User name", 5, {name: "John", age: 34}, 20, true];
-// storeDataBase('BookMyLibInfo', UserInfoPulse);
+function checkStorage(){
+    const totalSpace = 5*1024*1024;
+    let usedSpace = 0;
+    for(const key in localStorage){
+        if(localStorage.hasOwnProperty(key)){
+            usedSpace += localStorage.getItem(key).length;
+        }
+    }
+    const freeSpace = totalSpace - usedSpace;
+    const total = usedSpace + freeSpace;
+    const usedPercen = (usedSpace/total)*100;
+    const roundPercen = Math.round(usedPercen*100)/100;
+    return roundPercen; //5MB
+}
 function StartBackend(){
-    if(fetchDataBase()!=true){}
+    if(fetchDataBase()!=true){
+        voiceOver("Sorry to fetch data is not possible to your local database");
+    }else{
+        if(adminBin.length==0||adminBin==undefined){
+            voiceOver("Welcome new user, this is book my lib, an online library manegment system, and i am your host");
+        }else{
+            voiceOver("Welcome back user");
+        }
+    }
+    getLocalData(document.body.id);
+}
+// StartBackend();
+function voiceOver(message){
+    if(voice==1){
+        try{
+            const speech = new SpeechSynthesisUtterance();
+            if(message==''||message==undefined){
+                message = "This feature is not available in this version, please try another options";
+            }
+            speech.lang = "en";
+            speech.text = message;
+            window.speechSynthesis.speak(speech);
+        }catch(e){
+            alert(message);
+        }
+    }
+}
+function popEntry(n,target){
+	if(n==0){
+		return deleteBook(target);
+	}else if(n==1){
+		deleteStudent(target);
+	}else if(n==2){
+		deleteTeacher(target);
+	}else if(n==3){
+		deleteAdmin(target);
+	}else{
+		return false;
+	}
+}
+function deleteBook(target){
+	for(let j=0; j<BookBin.length; j++){
+		if(target==BookBin[j].name || target==BookBin[j].id){
+			return true;
+		}
+	}
+	return false;
 }
