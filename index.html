@@ -14,21 +14,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<!--script src="https://kit.fontawesome.com/a81368914c.js"></script-->
-    <link rel="stylesheet" href="./Components/Styles/origin.css">
+    <link rel="stylesheet" href="./Components/origin.css">
 </head>
 <style id="jsStyle"></style>
 <body id="root" onload="user();">
 	<section id="loginPage">
 		<div class="container">
 			<div class="left-component">
-				<img src="./images/login-vector.png"/>
+				<img src="./images/login-vector.png" id="sideImg"/>
 				<div class="wave1"></div>
 				<div class="wave2"></div>
 				<div class="wave3"></div>
+				<div class="wave4"></div>
+				<div class="wave5"></div>
 			</div>
+			<div class="wave6"></div>
+			<div class="wave7"></div>
 			<div class="right-component">
 				<form>
-					<div class="circle"><i class="fa fa-user-circle-o"></i></div>
+					<div class="circle"></div>
 					<h2 class="title">Welcome to BookMyLib</h2>
            			<div class="input-div one">
            		   		<div class="i">
@@ -48,10 +52,10 @@
            		    		<input type="password" class="input" id="loginPassword"/>
             	   		</div>
             		</div>
-					<div class="input-div captcha">
-						<div class="div">
-							<input type="captcha" class="captcha" readonly id="mainCaptcha"/>
-							<i class="fa fa-refresh"></i>
+					<div class="captcha">
+						<div class="flo">
+							<input type="captcha" id="mainCaptcha" readonly>
+							<div class="refresh-btn" onclick="getCaptch('mainCaptcha');"><i class="fa fa-refresh">Refresh</i></div>
 						</div>
 			  		</div>
 					<div class="input-div">
@@ -63,23 +67,179 @@
 							<input type="text" class="input" id="loginCapthca"/>
 						</div>
 			  		</div>
-            		<input type="submit" class="btn" value="Login">
-            		<div class="flo"><span>New Account</span><span>Forgot Password?</span></div>
+            		<input type="button" class="btn" value="Login" title="Log in to my deshboard"/>
+            		<div class="flo"><span onclick="signupOn();"title="Sign Up">New Account</span><span title="Remember my password"onclick="forgotOn();">Forgot Password?</span></div>
             	</form>
         	</div>
     	</div>
 	</section>
+	<section id="signupPage">
+		<div class="head"></div>
+		<h2 class="title">Sign Up in {{com.name}}</h2>
+		<div class="container">
+			<div class="component">
+				<div class="flo text-muted">Personal Details</div>
+				<div class="form-group">
+					<lable for="profile-name">Name</lable>
+                    <input type="name" class="form-control" id="profile-name" placeholder="Enter your name here" aria-describedby="nameHelp"style="text-transform: capitalize;"/>
+                    <small id="nameHelp" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
+				</div>
+				<div class="form-group">
+					<lable for="profile-gender">Gender</lable>
+                    <select class="form-control" id="profile-gender" aria-describedby="genderHelp">
+						<option>--SELECT AN OPTION--</option>
+						<option>Male</option>
+						<option>Female</option>
+						<option>Others</option>
+					</select>
+                    <small id="genderHelp" class="form-text text-muted">Select your gender from the options provided. This information will be used to personalize your experience, including images, commands, and other features on the platform. Your choice is important for tailoring our services to suit your preferences.</small>
+				</div>
+				<div class="flo text-muted">Professnal Details</div>
+				<div class="form-group">
+					<lable for="profile-email">Email</lable>
+                    <input type="email" class="form-control" id="profile-email" placeholder="Enter your email here" aria-describedby="emailHelp"/>
+                    <small id="emailHelp" class="form-text text-muted">Enter a valid email address following standard email grammar, This email will be crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, and other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+				</div>
+				<div class="form-group">
+					<lable for="profile-position">Position of Job</lable>
+                    <select class="form-control" id="profile-position" aria-describedby="positionHelp">
+						<option>--SELECT AN OPTION--</option>
+						<option>Assistent of Librarian</option>
+						<option>Assistent of Principle</option>
+						<option>Assistent of Professor</option>
+						<option>Din</option>
+						<option>HOD</option>
+						<option>Librarian</option>
+						<option>Principle</option>
+						<option>Professor</option>
+						<option>Super Visior</option>
+						<option>Teacher</option>
+						<option>Technical Support</option>
+					</select>
+                    <small id="positionHelp" class="form-text text-muted">Select your job position from the available options. Choosing the correct position is essential for ensuring a seamless experience while operating the system, especially in multi-user interfaces. Your selection will help tailor the features and functionalities according to your role.</small>
+				</div>
+				<div class="form-group">
+					<lable for="profile-year">Year of Work</lable>
+					<div class="flo">
+						<input type="date" class="form-control" id="profile-year-start" placeholder="dd-mm-yyyy" aria-describedby="yearHelp"/>
+						<input type="date" class="form-control" id="profile-year-end" placeholder="dd-mm-yyyy" aria-describedby="yearHelp"/>
+					</div>
+					<div class="flo"><span>Joining</span><span>Ending</span></div>
+                    <small id="yearHelp" class="form-text text-muted">Specify your work duration by entering both the date of joining and an approximate ending date. This information is vital for administrators to understand your tenure with precision, helping optimize the runtime of this web platform. Ensure the provided duration is a positive value and does not exceed 60 years.</small>
+				</div>
+				<div class="flo text-muted">Security Assets</div>
+				<div class="form-group">
+					<lable for="profile-password">Password</lable>
+                    <input type="password" class="form-control" id="profile-password" placeholder="Enter your own password here" aria-describedby="passwordHelp"/>
+                    <small id="passwordHelp" class="form-text text-muted">Enter a valid password otherwise choose system given, This password will be crucial for future communication, including login account, other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+				</div>
+				<div class="form-group">
+					<lable for="profile-cpassword">Confirm Password</lable>
+                    <input type="password" class="form-control" id="profile-cpassword" placeholder="Confirm the above password" aria-describedby="cpasswordHelp"/>
+                    <small id="cpasswordHelp" class="form-text text-muted">Enter a valid password otherwise choose system given, This password will be crucial for future communication, including login account, other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+				</div>
+				<div class="form-group">
+					<lable for="profile-color">Color</lable>
+                    <input type="color" class="form-control" id="profile-color" aria-describedby="colorHelp"/>
+                    <small id="colorHelp" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as a security asset and may be used to recover your account in case you forget your password. Please remember this color for future authentication and account recovery purposes.</small>
+				</div>
+				<div class="form-group">
+					<lable for="profile-agree">Terms and Conditions</lable>
+					<div class="flo checkbox">
+						<input type="checkbox" class="form-control" id="profile-agree" aria-describedby="agreeHelp" checked="true" disabled><span>Yes, I agree with all terms and conditions</span>
+					</div>
+                    <small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge that you have carefully read and understood our privacy terms and conditions. If you haven't done so already, please take a moment to review our <a href="#">Terms & Conditions</a> for a comprehensive understanding before proceeding. Your agreement is crucial for a smooth and secure experience on our platform.</small>
+				</div>
+				<div class="form-group">
+					<div class="flo">
+						<div class="btn btn-danger" title="Close the signup Page and go back to login page"onclick="signupOff();">CLOSE</div>
+						<div class="btn btn-success" title="Submit the above details"onclick="submitSignUP();">SUBMIT</div>
+					</div>
+				</div>
+           </div>
+		</div>
+	</section>
+	<section id="successLogin">
+		<div class="head">
+			<i class="fa fa-key"></i>
+		</div>
+		<h1>Success</h1>
+		<p style="text-align: center;">We receivied your new account request. <br>Congratulation it is done.</p>
+		<p>UserId/Email: <span id="submitId"></span><br>
+			Password: <span id="submitPassword"></span><br>
+			Color: <span id="submitColor"></span>
+		</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quis voluptatum delectus officia laborum cumque voluptas labore ducimus iure rem.</p>
+		<div class="flo">
+			<div><i class="fa fa-download"></i></div>
+			<div class="btn btn-success"onclick="blbg('successLogin',1);">Thank You</div>
+			<div><i class="fa fa-share"></i></div>
+		</div><br>
+	</section>
+	<section id="forgotPassword">
+		<div class="head"></div>
+		<h2 class="title">Forgot Password</h2>
+		<div class="container">
+			<div class="component">
+				<div class="form-group">
+					<lable for="forgot-name">Name</lable>
+					<input type="name" class="form-control" id="forgot-name" placeholder="Enter your name here" aria-describedby="nameHelp-f"style="text-transform: capitalize;"/>
+					<small id="nameHelp-f" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
+				</div>
+				<div class="form-group">
+					<lable for="forgot-gender">Gender</lable>
+					<select class="form-control" id="forgot-gender" aria-describedby="genderHelp-f">
+						<option>--SELECT AN OPTION--</option>
+						<option>Male</option>
+						<option>Female</option>
+						<option>Others</option>
+					</select>
+					<small id="genderHelp-f" class="form-text text-muted">Select your gender from the options provided. This information will be used to personalize your experience, including images, commands, and other features on the platform. Your choice is important for tailoring our services to suit your preferences.</small>
+				</div>
+				<div class="form-group">
+					<lable for="forgot-email">UserId/Email</lable>
+                    <input type="password" class="form-control" id="forgot-email" placeholder="Enter your userid or email here" aria-describedby="emailHelp-f"/>
+                    <small id="emailHelp-f" class="form-text text-muted">Enter a valid email address following standard email grammar, This email will be crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, and other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+				</div>
+				<div class="form-group">
+					<lable for="forgot-color">Color</lable>
+					<input type="color" class="form-control" id="forgot-color" aria-describedby="colorHelp-f"/>
+					<small id="colorHelp-f" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as a security asset and may be used to recover your account in case you forget your password. Please remember this color for future authentication and account recovery purposes.</small>
+				</div>
+				<div class="form-group">
+					<lable for="forgot-agree">Terms and Conditions</lable>
+					<div class="flo checkbox">
+						<input type="checkbox" class="form-control" id="forgot-agree" aria-describedby="agreeHelp-f" checked="true" disabled><span>Yes, I agree with all terms and conditions</span>
+					</div>
+					<small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge that you have carefully read and understood our privacy terms and conditions. If you haven't done so already, please take a moment to review our <a href="#">Terms & Conditions</a> for a comprehensive understanding before proceeding. Your agreement is crucial for a smooth and secure experience on our platform.</small>
+				</div>
+				<div class="form-group">
+					<div class="flo">
+						<div class="btn btn-danger" title="Close the signup Page and go back to login page"onclick="forgotOff();">CLOSE</div>
+						<div class="btn btn-success" title="Submit the above details"onclick="submitForgot();">SUBMIT</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<div id="loading">
 		<div class="head">BookMyLib</div>
-		<div class="3dot"><div id="c1"></div><div id="c2"></div><div id="c3"></div></div>
+		<div class="loader">
+             <div class="dot"></div>
+             <div class="dot"></div>
+             <div class="dot"></div>
+        </div>
 		<h6>from</h6>
         <h5>Order of Pie</h5>
 	</div>
+	<div id="blbg"></div>
 </body>
 <!--Script inject by backend side-->
 <script src="./Database/analysis.min.js"></script>
-<script src="./Components/Scripts/assets.js"></script>
-<script src="./Components/Scripts/hex.js"></script>
+<script src="./Components/assets.js"></script>
+<script src="./Components/hex.js"></script>
 <!--Script inject by frontend side-->
-<script src="./Components/Scripts/default.js"></script>
+<script src="./Components/default.js"></script>
+<script>
+</script>
 </html>
