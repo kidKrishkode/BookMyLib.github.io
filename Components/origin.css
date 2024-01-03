@@ -1,0 +1,491 @@
+:root{
+    --main1-cl: #0c8ff0;
+    --main2-cl: aqua;
+    --light-gry: #d9d9d9;
+    --white-cl: #fff;
+    --black-cl: #000;
+}
+body{
+	padding: 0;
+	margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.flo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#loginPage{
+	display: block;
+	background: var(--white-cl);
+}
+#loginPage .container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+    font-family: 'Poppins', sans-serif;
+}
+#loginPage .container .left-component{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+#loginPage .container .right-component{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+}
+#loginPage .container .left-component img{
+	width: 500px;
+    position: relative;
+    top: 10%;
+    left: -16%;
+    z-index: 99;
+}
+#loginPage .container .left-component .wave1{
+    width: 50%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    background: var(--main1-cl);
+    border-radius: 50%;
+}
+#loginPage .container .left-component .wave2{
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 20%;
+    left: -30%;
+    background: var(--main1-cl);
+}
+#loginPage .container .left-component .wave3{
+    width: 20%;
+    height: 60%;
+    position: absolute;
+    top: -1%;
+    left: 4%;
+    background: white;
+    border-radius: 50%;
+    transform: rotate(-65deg);
+}
+#loginPage .container .left-component .wave4{
+	width: 5%;
+	height: 12%;
+	background: var(--main1-cl);
+	border-radius: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#loginPage .container .left-component .wave5{
+	width: 10%;
+	height: 12%;
+	border-radius: 50%;
+	background: var(--white-cl);
+	position: absolute;
+	top: 0%;
+	right: -1%;
+	transform: rotate(40deg);
+}
+.wave6,.wave7{
+	display: none;
+}
+form{
+	width: 100%;
+}
+#loginPage .container .right-component .circle{
+    height: 100px;
+    width: 100px;
+    margin: 2px calc((100% - 100px)/2);
+    text-align: center;
+    font-size: 100px;
+    color: var(--main1-cl);
+	background-image: url('../fav-icon/logo-o-c.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#loginPage .container .right-component h2{
+	margin: 15px 0;
+	color: #333;
+	text-transform: uppercase;
+	font-size: 32px;
+}
+#loginPage .container .right-component .input-div{
+	position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid var(--light-gry);
+}
+#loginPage .container .right-component .input-div.one{
+	margin-top: 0;
+}
+.i{
+	color: var(--light-gry);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.i i{
+	transition: .3s;
+}
+#loginPage .container .right-component .input-div > div{
+    position: relative;
+	height: 45px;
+}
+#loginPage .container .right-component .input-div > div > h5{
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #999;
+	font-size: 18px;
+	transition: .3s;
+}
+#loginPage .container .right-component .input-div:before, .input-div:after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 0%;
+	height: 2px;
+	background-color: var(--main2-cl);
+	transition: .4s;
+}
+#loginPage .container .right-component .input-div:before{
+	right: 50%;
+}
+#loginPage .container .right-component .input-div:after{
+	left: 50%;
+}
+#loginPage .container .right-component .input-div.focus:before, .input-div.focus:after{
+	width: 50%;
+}
+#loginPage .container .right-component .input-div.focus > div > h5{
+	top: -5px;
+	font-size: 15px;
+}
+#loginPage .container .right-component .input-div.focus > .i > i{
+	color: var(--main2-cl);
+}
+#loginPage .container .right-component .input-div > div > input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+	font-family: 'poppins', sans-serif;
+}
+#loginPage .container .right-component .input-div.pass{
+	margin-bottom: 4px;
+}
+#loginPage .container .right-component .captcha{
+    border: none;
+    margin: 25px 0;
+    padding: 5px 0;
+}
+#loginPage .container .right-component .captcha .flo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+    height: 45px;
+}
+#loginPage .container .right-component .captcha .flo #mainCaptcha{
+    border: 2px solid var(--light-gry);
+    border-radius: 5px;
+    width: 75%;
+    background-image: url('../images/haze.png');
+    background-size: cover;
+    color: #262626!important;
+    font-size: 18px;
+    text-decoration: line-through;
+    letter-spacing: 15px;
+    font-family: fantasy;
+    text-align: center;
+	outline: none;
+    overflow: hidden;
+}
+#loginPage .container .right-component .captcha .flo .refresh-btn{
+	color: var(--main2-cl);
+	text-align: center;
+	width: 20%;
+}
+#loginPage .container .right-component span{
+	display: block;
+	text-align: right;
+	text-decoration: none;
+	color: #999;
+	font-size: 0.9rem;
+	transition: .3s;
+}
+#loginPage .container .right-component span:hover{
+	color: var(--main2-cl);
+    cursor: pointer;
+}
+#loginPage .container .right-component .btn{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background: linear-gradient(to right, var(--main1-cl), var(--main2-cl), var(--main1-cl));
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: var(--white-cl);
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+#loginPage .container .right-component .btn:hover{
+	background-position: right;
+}
+#loading{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	background: var(--white-cl);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: var(--light-gry);
+	position: fixed;
+	cursor: progress;
+}
+#loading .head{
+	margin-top: 10%;
+	font-size: 35px;
+	font-weight: bold;
+	font-family: sans-serif;
+	color: var(--main1-cl);
+}
+#loading h6{
+	margin-top: 30%;
+}
+#loading h5{
+	color: red;
+}
+.loader{
+  	display: flex;
+  	justify-content: space-around;
+  	margin: 10px calc((100% - 70px)/2);
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: var(--light-gry);
+    animation: blinkAnimation 3s linear infinite;
+}
+.dot:nth-child(1){
+    animation-delay: 0s;
+}
+.dot:nth-child(2){
+    animation-delay: 1s;
+}
+.dot:nth-child(3){
+    animation-delay: 2s;
+}
+@keyframes blinkAnimation{
+    0%, 100%{
+    	background-color: var(--light-gry);
+    }5%{
+        background-color: var(--main2-cl);
+    }
+}
+#blbg{
+	display: none;
+	background: #00000095;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	position: fixed;
+}
+#signupPage,#successLogin,#forgotPassword{
+	display: none;
+	width: 50%;
+	margin: 20px 25%;
+	background: var(--white-cl);
+	border-radius: 10px;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
+	border: 2px solid var(--light-gry);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+}
+#signupPage .head,#forgotPassword .head{
+	width: 100%;
+	height: 100px;
+	background-image: linear-gradient(54deg,rgba(12,141,240,0.9),rgba(0,255,255,0.9)), url('../images/Pen&ink.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	clip-path: polygon(100% 0%, 100% 77%, 50% 100%, 0% 75%, 0 0);
+	position: relative;
+}
+#signupPage .head:before,#forgotPassword .head:before{
+	content: " ";
+	position: absolute;
+	top: 0%;
+	bottom: 0%;
+	right: 0%;
+	left: 0%;
+	opacity: 0.4;
+	z-index: -1;
+	background: linear-gradient(to left, var(--black-cl) 0%, var(--white-cl) 0%, var(--black-cl) 100%);
+}
+#signupPage .title,#forgotPassword .title{
+	text-align: center;
+	font-weight: bold;
+	font-family: sans-serif;
+	color: #333;
+	margin: 4px 0px;
+}
+#signupPage .component,#forgotPassword .component{
+	width: 100%;
+	padding: 4px 2px;
+	height: 540px;
+	max-height: 540px;
+	overflow-y: scroll;
+}
+#signupPage .component .form-group,#forgotPassword .component .form-group{
+	width: 100%;
+	padding: 2px;
+}
+#signupPage .component .form-group lable,#forgotPassword .component .form-group lable{
+	font-size: 20px;
+	font-weight: bold;
+	font-family: 'Poppins', sans-serif;
+	color: #420040;
+}
+#signupPage .component .form-group input,#signupPage .component .form-group select,#forgotPassword .component .form-group input,#forgotPassword .component .form-group select{
+	width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	outline: none;
+}
+#signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small{
+	color: var(--light-gry);
+	margin-left: 5px;
+	text-align: justify;
+}
+#signupPage .component .form-group .checkbox input,#forgotPassword .component .form-group .checkbox input{
+	width: 20%;
+}
+#successLogin .head{
+	border-radius: 50%;
+	height:200px;
+	width:200px;
+	background: #e6efd9;
+	margin:0 auto;
+}
+#successLogin h1{
+	color: #88b04b;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+@media only screen and (max-width: 900px){
+	#loginPage .container{
+		grid-template-columns: 1fr;
+        width: 100%;
+	}
+	#loginPage .container .left-component{
+		display: none;
+	}
+	.wave6,.wave7{
+		display: block;
+	}
+	.wave6{
+		width: 20%;
+		height: 10%;
+		background: linear-gradient(to right, var(--main1-cl), var(--main2-cl), var(--main1-cl));
+		border-radius: 0px;
+		position: absolute;
+		top: 0;
+		left: 0%;
+		z-index: 99;
+	}
+	.wave7{
+		width: 22%;
+		height: 16%;
+		border-radius: 50%;
+		background: var(--white-cl);
+		position: absolute;
+		top: -1%;
+		left: 1.5%;
+		transform: rotate(40deg);
+		z-index: 99;
+		outline: none;
+	}
+	#loginPage .container .right-component{
+		justify-content: center;
+	}
+	#loginPage .container .right-component h2{
+	    margin: 10px 0;
+	    font-size: 26px;
+    }
+	#loginPage .container .right-component .captcha div{
+        width: 320px;
+    }
+	#loading .head{
+		margin-top: 50%;
+	}
+	.loader{
+		margin: 10px calc((100% - 100px)/2);
+  	}
+	.dot{
+		width: 20px;
+		height: 20px;
+	}
+	#loading h6{
+		margin-top: 98%;
+	}
+	#signupPage,#successLogin,#forgotPassword{
+		width: 90%;
+		margin: 20px 5%;
+	}
+	#signupPage .component,#forgotPassword .component{
+		height: 420px;
+		max-height: 420px;
+	}
+}
+@media only screen and (min-width: 900px) and (max-width: 1023px){
+  body{
+  	background: var(--black-cl);
+    display: none;
+  }
+}
