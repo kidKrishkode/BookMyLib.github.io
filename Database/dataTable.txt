@@ -7,7 +7,7 @@ StartBackend();
 getCaptcha(id);                     Get new captcha, 'id' is the diratory id where
                                     the captch is droped. No return.
 --------------------------------------------------------------------------------------
-checkCaptcha(id1,id2);              Check the user written captcha is correct or not
+checkCaptch(id1,id2);               Check the user written captcha is correct or not
                                     'id1' is where original captcha is show & 'id2'
                                     is where user write the captcha. Return true if
                                     captcha is match otherwise false.
