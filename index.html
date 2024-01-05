@@ -54,8 +54,8 @@
             		</div>
 					<div class="captcha">
 						<div class="flo">
-							<input type="captcha" id="mainCaptcha" readonly>
-							<div class="refresh-btn" onclick="getCaptch('mainCaptcha');"><i class="fa fa-refresh">Refresh</i></div>
+							<input type="captcha" id="mainCaptcha" readonly/>
+							<div class="btn refresh-btn" onclick="newCaptcha();"title="Refresh the captcha"><i class="fa fa-refresh"id="spiner"></i></div>
 						</div>
 			  		</div>
 					<div class="input-div">
@@ -67,8 +67,11 @@
 							<input type="text" class="input" id="loginCapthca"/>
 						</div>
 			  		</div>
-            		<input type="button" class="btn" value="Login" title="Log in to my deshboard"/>
-            		<div class="flo"><span onclick="signupOn();"title="Sign Up">New Account</span><span title="Remember my password"onclick="forgotOn();">Forgot Password?</span></div>
+            		<input type="button" class="btn" value="Login" title="Log in to my deshboard"onclick="login('loginEmail','loginPassword','mainCaptcha','loginCapthca');"/>
+            		<div class="flo">
+						<span onclick="signupOn();"title="Sign Up">New Account</span>
+						<span title="Remember my password"onclick="forgotOn();">Forgot Password?</span>
+					</div>
             	</form>
         	</div>
     	</div>
@@ -82,7 +85,8 @@
 				<div class="form-group">
 					<lable for="profile-name">Name</lable>
                     <input type="name" class="form-control" id="profile-name" placeholder="Enter your name here" aria-describedby="nameHelp"style="text-transform: capitalize;"/>
-                    <small id="nameHelp" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
+                    <small id="nameHelp" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar 
+						rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
 				</div>
 				<div class="form-group">
 					<lable for="profile-gender">Gender</lable>
@@ -92,13 +96,17 @@
 						<option>Female</option>
 						<option>Others</option>
 					</select>
-                    <small id="genderHelp" class="form-text text-muted">Select your gender from the options provided. This information will be used to personalize your experience, including images, commands, and other features on the platform. Your choice is important for tailoring our services to suit your preferences.</small>
+                    <small id="genderHelp" class="form-text text-muted">Select your gender from the options provided. This information will be used to 
+						personalize your experience, including images, commands, and other features on the platform. Your choice is important for 
+						tailoring our services to suit your preferences.</small>
 				</div>
 				<div class="flo text-muted">Professnal Details</div>
 				<div class="form-group">
 					<lable for="profile-email">Email</lable>
                     <input type="email" class="form-control" id="profile-email" placeholder="Enter your email here" aria-describedby="emailHelp"/>
-                    <small id="emailHelp" class="form-text text-muted">Enter a valid email address following standard email grammar, This email will be crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, and other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+                    <small id="emailHelp" class="form-text text-muted">Enter a valid email address following standard email grammar, This email will be 
+						crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, and other 
+						essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
 				</div>
 				<div class="form-group">
 					<lable for="profile-position">Position of Job</lable>
@@ -116,7 +124,9 @@
 						<option>Teacher</option>
 						<option>Technical Support</option>
 					</select>
-                    <small id="positionHelp" class="form-text text-muted">Select your job position from the available options. Choosing the correct position is essential for ensuring a seamless experience while operating the system, especially in multi-user interfaces. Your selection will help tailor the features and functionalities according to your role.</small>
+                    <small id="positionHelp" class="form-text text-muted">Select your job position from the available options. Choosing the correct 
+						position is essential for ensuring a seamless experience while operating the system, especially in multi-user interfaces. 
+						Your selection will help tailor the features and functionalities according to your role.</small>
 				</div>
 				<div class="form-group">
 					<lable for="profile-year">Year of Work</lable>
@@ -125,34 +135,46 @@
 						<input type="date" class="form-control" id="profile-year-end" placeholder="dd-mm-yyyy" aria-describedby="yearHelp"/>
 					</div>
 					<div class="flo"><span>Joining</span><span>Ending</span></div>
-                    <small id="yearHelp" class="form-text text-muted">Specify your work duration by entering both the date of joining and an approximate ending date. This information is vital for administrators to understand your tenure with precision, helping optimize the runtime of this web platform. Ensure the provided duration is a positive value and does not exceed 60 years.</small>
+                    <small id="yearHelp" class="form-text text-muted">Specify your work duration by entering both the date of joining and an approximate 
+						ending date. This information is vital for administrators to understand your tenure with precision, helping optimize the runtime 
+						of this web platform. Ensure the provided duration is a positive value and does not exceed 60 years.</small>
 				</div>
 				<div class="flo text-muted">Security Assets</div>
 				<div class="form-group">
 					<lable for="profile-password">Password</lable>
                     <input type="password" class="form-control" id="profile-password" placeholder="Enter your own password here" aria-describedby="passwordHelp"/>
-                    <small id="passwordHelp" class="form-text text-muted">Enter a valid password otherwise choose system given, This password will be crucial for future communication, including login account, other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+                    <small id="passwordHelp" class="form-text text-muted">Your password is generated by the system, ensuring its strength and security. If you 
+						prefer, you can create your own password, adhering to the password grammar requirements. Ensure it contains at least one uppercase 
+						letter, one lowercase letter, one number, and one special character. The total length must be under 16 characters for optimal 
+						security. Choose a password that strikes the right balance between complexity and memorability.</small>
 				</div>
 				<div class="form-group">
 					<lable for="profile-cpassword">Confirm Password</lable>
                     <input type="password" class="form-control" id="profile-cpassword" placeholder="Confirm the above password" aria-describedby="cpasswordHelp"/>
-                    <small id="cpasswordHelp" class="form-text text-muted">Enter a valid password otherwise choose system given, This password will be crucial for future communication, including login account, other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+                    <small id="cpasswordHelp" class="form-text text-muted">Re-enter your password for confirmation, Ensure it matches the password you've 
+						entered above. This step adds an extra layer of security to validate and confirm your chosen password. It's essential to input the 
+						same password to proceed further.</small>
 				</div>
 				<div class="form-group">
 					<lable for="profile-color">Color</lable>
                     <input type="color" class="form-control" id="profile-color" aria-describedby="colorHelp"/>
-                    <small id="colorHelp" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as a security asset and may be used to recover your account in case you forget your password. Please remember this color for future authentication and account recovery purposes.</small>
+                    <small id="colorHelp" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as a security 
+						asset and may be used to recover your account in case you forget your password. Please remember this color for future authentication 
+						and account recovery purposes.</small>
 				</div>
 				<div class="form-group">
 					<lable for="profile-agree">Terms and Conditions</lable>
 					<div class="flo checkbox">
 						<input type="checkbox" class="form-control" id="profile-agree" aria-describedby="agreeHelp" checked="true" disabled><span>Yes, I agree with all terms and conditions</span>
 					</div>
-                    <small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge that you have carefully read and understood our privacy terms and conditions. If you haven't done so already, please take a moment to review our <a href="#">Terms & Conditions</a> for a comprehensive understanding before proceeding. Your agreement is crucial for a smooth and secure experience on our platform.</small>
+                    <small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge that 
+						you have carefully read and understood our privacy terms and conditions. If you haven't done so already, please take a 
+						moment to review our <o onclick="blbg('signupPage',1);blbg('privacyPage',0);">Terms & Conditions</o> for a comprehensive understanding before proceeding. Your agreement is 
+						crucial for a smooth and secure experience on our platform.</small>
 				</div>
 				<div class="form-group">
 					<div class="flo">
-						<div class="btn btn-danger" title="Close the signup Page and go back to login page"onclick="signupOff();">CLOSE</div>
+						<div class="btn btn-danger" title="Close the signup Page and go back to login page"onclick="blbg('signupPage',1);">CLOSE</div>
 						<div class="btn btn-success" title="Submit the above details"onclick="submitSignUP();">SUBMIT</div>
 					</div>
 				</div>
@@ -161,15 +183,23 @@
 	</section>
 	<section id="successLogin">
 		<div class="head">
-			<i class="fa fa-key"></i>
+			✓
 		</div>
 		<h1>Success</h1>
-		<p style="text-align: center;">We receivied your new account request. <br>Congratulation it is done.</p>
+		<p style="text-align: center;">
+             Congratulations! Your sign-up was successful. <br> 
+             Your new account has been approved, and you now have access to 5 MB of space. Enjoy exploring and utilizing the features of our platform.
+        </p>
 		<p>UserId/Email: <span id="submitId"></span><br>
 			Password: <span id="submitPassword"></span><br>
 			Color: <span id="submitColor"></span>
 		</p>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quis voluptatum delectus officia laborum cumque voluptas labore ducimus iure rem.</p>
+		<p>
+			This greetings card containing your user ID and password for future reference. Please keep these credentials secure as they are essential 
+			for logging in and accessing various identification features on our platform. Never share your login details with others, log out after 
+			completing your tasks, and consider storing them in a safe place. For more details freely contact our help desk team via email 
+			{{com.email}}, and briefly explain your problems or douts for better solution.
+        </p>
 		<div class="flo">
 			<div><i class="fa fa-download"></i></div>
 			<div class="btn btn-success"onclick="blbg('successLogin',1);">Thank You</div>
@@ -184,7 +214,8 @@
 				<div class="form-group">
 					<lable for="forgot-name">Name</lable>
 					<input type="name" class="form-control" id="forgot-name" placeholder="Enter your name here" aria-describedby="nameHelp-f"style="text-transform: capitalize;"/>
-					<small id="nameHelp-f" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
+					<small id="nameHelp-f" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar 
+						rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-gender">Gender</lable>
@@ -194,29 +225,91 @@
 						<option>Female</option>
 						<option>Others</option>
 					</select>
-					<small id="genderHelp-f" class="form-text text-muted">Select your gender from the options provided. This information will be used to personalize your experience, including images, commands, and other features on the platform. Your choice is important for tailoring our services to suit your preferences.</small>
+					<small id="genderHelp-f" class="form-text text-muted">Select your gender from the options provided. This information will be 
+						used to personalize your experience, including images, commands, and other features on the platform. Your choice is 
+						important for tailoring our services to suit your preferences.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-email">UserId/Email</lable>
                     <input type="password" class="form-control" id="forgot-email" placeholder="Enter your userid or email here" aria-describedby="emailHelp-f"/>
-                    <small id="emailHelp-f" class="form-text text-muted">Enter a valid email address following standard email grammar, This email will be crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, and other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with our platform.</small>
+                    <small id="emailHelp-f" class="form-text text-muted">Enter a valid email address following standard email grammar, This 
+						email will be crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, 
+						and other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with 
+						our platform.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-color">Color</lable>
 					<input type="color" class="form-control" id="forgot-color" aria-describedby="colorHelp-f"/>
-					<small id="colorHelp-f" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as a security asset and may be used to recover your account in case you forget your password. Please remember this color for future authentication and account recovery purposes.</small>
+					<small id="colorHelp-f" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as 
+						a security asset and may be used to recover your account in case you forget your password. Please remember this color for 
+						future authentication and account recovery purposes.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-agree">Terms and Conditions</lable>
 					<div class="flo checkbox">
 						<input type="checkbox" class="form-control" id="forgot-agree" aria-describedby="agreeHelp-f" checked="true" disabled><span>Yes, I agree with all terms and conditions</span>
 					</div>
-					<small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge that you have carefully read and understood our privacy terms and conditions. If you haven't done so already, please take a moment to review our <a href="#">Terms & Conditions</a> for a comprehensive understanding before proceeding. Your agreement is crucial for a smooth and secure experience on our platform.</small>
+					<small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge 
+						that you have carefully read and understood our privacy terms and conditions. If you haven't done so already, please take 
+						a moment to review our <o onclick="blbg('forgotPassword',1);blbg('privacyPage',0);">Terms & Conditions</o> for a comprehensive understanding before proceeding. Your 
+						agreement is crucial for a smooth and secure experience on our platform.</small>
 				</div>
 				<div class="form-group">
 					<div class="flo">
-						<div class="btn btn-danger" title="Close the signup Page and go back to login page"onclick="forgotOff();">CLOSE</div>
+						<div class="btn btn-danger" title="Close the forgot Page and go back to login page"onclick="forgotOff();">CLOSE</div>
 						<div class="btn btn-success" title="Submit the above details"onclick="submitForgot();">SUBMIT</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="privacyPage">
+		<div class="head"></div>
+		<h2 class="title">Privacy Policy</h2>
+		<div class="container">
+			<div class="component">
+				<div class="form-group">
+					<p>
+						Last Updated: {{com.update}}<br>
+						Welcome to {{com.name}}. We are dedicated to protecting your privacy and providing you with a positive experience while 
+						using our website and services.<br>
+						1. Information We Collect:<br>
+						1.1. Personal Information:<br>
+						We may collect personally identifiable information, including but not limited to names, email addresses, contact details, 
+						and any other information voluntarily provided by users during their interaction with our website.<br>
+						1.2. Non-Personal Information:<br>
+						We may also collect non-personal information such as browser information, IP addresses, device information, and other 
+						analytics data to improve our services and user experience.<br>
+						2. How We Use Your Information:<br>
+						2.1. We use the collected information for the following purposes:<br>
+   						- To personalize and improve user experience.<br>
+   						- To send periodic emails and updates.<br>
+   						- To respond to inquiries and provide support.<br>
+						2.2. We do not sell, trade, or otherwise transfer your personally identifiable information to third parties without your 
+						consent, except as described in this Privacy Policy.<br>
+						3. Cookies and Tracking Technologies:<br>
+						3.1. We may use cookies and similar technologies to enhance your experience, track usage patterns, and gather demographic 
+						information about our user base.<br>
+						4. Third-Party Links:<br>
+						4.1. Our website may contain links to third-party websites. We are not responsible for the privacy practices or content 
+						of these websites.<br>
+						5. Security:<br>
+						5.1. We implement reasonable security measures to protect against unauthorized access, alteration, disclosure, or 
+						destruction of your personal information.<br>
+						6. Your Choices:<br>
+						6.1. You may opt-out of receiving promotional communications from us by following the instructions provided in those 
+						communications.<br>
+						7. Changes to this Privacy Policy:<br>
+						7.1. We reserve the right to update or modify this Privacy Policy at any time without prior notice. The date of the 
+						latest revision will be indicated at the top of this page.<br>
+						8. Contact Us:<br>
+						8.1. If you have any questions or concerns regarding this Privacy Policy, please contact us at [your email address].<br>
+						By using our website, you agree to the terms outlined in this Privacy Policy.
+					</p>
+					<div class="form-group">
+						<div class="flo">
+							<div class="btn btn-primary" title="Close the Privacy Page and go back"onclick="blbg('privacyPage',1);">OK, I UNDERSTAND IT</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -225,12 +318,14 @@
 	<div id="loading">
 		<div class="head">BookMyLib</div>
 		<div class="loader">
-             <div class="dot"></div>
-             <div class="dot"></div>
-             <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
-		<h6>from</h6>
-        <h5>Order of Pie</h5>
+		<footer>
+			<h6>from</h6>
+        	<h5>Order of Pie</h5>
+		</footer>
 	</div>
 	<div id="blbg"></div>
 </body>
