@@ -16,6 +16,11 @@ body{
     flex-direction: row;
     justify-content: space-around;
 }
+o{
+	text-decoration: none;
+	color: var(--main1-cl);
+	cursor: pointer;
+}
 #loginPage{
 	display: block;
 	background: var(--white-cl);
@@ -69,7 +74,7 @@ body{
     height: 60%;
     position: absolute;
     top: -1%;
-    left: 4%;
+    left: 3%;
     background: white;
     border-radius: 50%;
     transform: rotate(-65deg);
@@ -78,7 +83,7 @@ body{
 	width: 5%;
 	height: 12%;
 	background: var(--main1-cl);
-	border-radius: 10px;
+	border-radius: 0px;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -200,7 +205,7 @@ form{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 300px;
+    width: 100%;
     height: 45px;
 }
 #loginPage .container .right-component .captcha .flo #mainCaptcha{
@@ -219,9 +224,23 @@ form{
     overflow: hidden;
 }
 #loginPage .container .right-component .captcha .flo .refresh-btn{
-	color: var(--main2-cl);
+	color: var(--white-cl);
 	text-align: center;
 	width: 20%;
+	height: 45px;
+	border-radius: 5px;
+	font-size: 28px;
+	margin: 0px;
+}
+.animatedSpine{
+	animation: spine 1s linear;
+}
+@keyframes spine{
+	0%,100%{
+		transform: rotate(0deg);
+	}50%{
+		transform: rotate(360deg);
+	}
 }
 #loginPage .container .right-component span{
 	display: block;
@@ -276,11 +295,21 @@ form{
 	font-family: sans-serif;
 	color: var(--main1-cl);
 }
-#loading h6{
-	margin-top: 30%;
+#loading footer{
+	width: 100%;
+	position: absolute;
+	bottom: 2%;
+	left: 0;
+	text-align: center;
 }
-#loading h5{
+#loading footer h6{
+	margin-bottom: 4px;
+	font-size: 16px;
+}
+#loading footer h5{
 	color: red;
+	font-size: 20px;
+	margin: 2px 0px;
 }
 .loader{
   	display: flex;
@@ -322,7 +351,7 @@ form{
 	z-index: 99;
 	position: fixed;
 }
-#signupPage,#successLogin,#forgotPassword{
+#signupPage,#successLogin,#forgotPassword,#privacyPage{
 	display: none;
 	width: 50%;
 	margin: 20px 25%;
@@ -336,7 +365,7 @@ form{
 	left: 0px;
 	z-index: 100;
 }
-#signupPage .head,#forgotPassword .head{
+#signupPage .head,#forgotPassword .head,#privacyPage .head{
 	width: 100%;
 	height: 100px;
 	background-image: linear-gradient(54deg,rgba(12,141,240,0.9),rgba(0,255,255,0.9)), url('../images/Pen&ink.png');
@@ -356,21 +385,21 @@ form{
 	z-index: -1;
 	background: linear-gradient(to left, var(--black-cl) 0%, var(--white-cl) 0%, var(--black-cl) 100%);
 }
-#signupPage .title,#forgotPassword .title{
+#signupPage .title,#forgotPassword .title,#privacyPage .title{
 	text-align: center;
 	font-weight: bold;
 	font-family: sans-serif;
 	color: #333;
 	margin: 4px 0px;
 }
-#signupPage .component,#forgotPassword .component{
+#signupPage .component,#forgotPassword .component,#privacyPage .component{
 	width: 100%;
 	padding: 4px 2px;
 	height: 540px;
 	max-height: 540px;
 	overflow-y: scroll;
 }
-#signupPage .component .form-group,#forgotPassword .component .form-group{
+#signupPage .component .form-group,#forgotPassword .component .form-group,#privacyPage .component .form-group{
 	width: 100%;
 	padding: 2px;
 }
@@ -395,7 +424,7 @@ form{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 	outline: none;
 }
-#signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small{
+#signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small,#privacyPage .component .form-group small{
 	color: var(--light-gry);
 	margin-left: 5px;
 	text-align: justify;
@@ -474,8 +503,9 @@ form{
 	#loading h6{
 		margin-top: 98%;
 	}
-	#signupPage,#successLogin,#forgotPassword{
+	#signupPage,#successLogin,#forgotPassword,#privacyPage{
 		width: 90%;
+		height: calc(100% - 40px);
 		margin: 20px 5%;
 	}
 	#signupPage .component,#forgotPassword .component{
