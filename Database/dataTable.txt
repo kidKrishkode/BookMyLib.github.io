@@ -60,6 +60,8 @@ getLocalData(id);                   Get local details about company and develope
 {{com.github}}                      To write the github repository link.
 {{com.linkedin}}                    To write the linkedin account link.
 {{com.instagram}}                   To write the instagram page link.
+{{com.update}}                      To write the last version coming date.
+{{com.email}}                       To write the supporting email of the company.
 --------------------------------------------------------------------------------------
 validateUserName(input);            Check the user name is follow the naming grammer.
                                     this call happen in signup time as onkeyup call,
@@ -75,10 +77,21 @@ validateDepartment(input);          Check the user given department name is foll
                                     naming grammer or not, call as onkeyup, Return 
                                     true if it is follow, otherwise return false. 
 --------------------------------------------------------------------------------------
+validatePassword(password);         Check the user given password is follow the simple
+                                    password grammer or not. As same it call as 
+                                    onkeyup calls, 'password' is the direct user 
+                                    password. Return true if it is follow, otherwise
+                                    return false. 
+--------------------------------------------------------------------------------------
 checkPassword(id1,id2);             Check the user written password is correct or not
                                     'id1' is where original password is show & 'id2'
                                     is is user write confirm password. Return true if
                                     password is match otherwise false.
+--------------------------------------------------------------------------------------
+validateSelect(select);             Check the user selected option is correct or not,
+                                    'select' is which filed is use by user to choose
+                                    any option. It is return true if user not choose
+                                    default option and return false if it is.
 --------------------------------------------------------------------------------------
 idMaker(n,m);                       Make a valid system genareted id for book,student
                                     ,teacher,admin. 'n' is the type of id like- 0 for
