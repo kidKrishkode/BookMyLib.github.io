@@ -34,6 +34,7 @@ function user(){
         }, 500);
     }, 3000);
     getCaptch("mainCaptcha");
+	// try{getLocalData(document.body.id);}catch(e){console.error(e);}
 }
 function newCaptcha(){
 	getCaptch("mainCaptcha");
@@ -58,6 +59,7 @@ function blbg(id,value){
 	}
 }
 function submitSignUP(){
+	blbg('signupPage',1);
 	blbg('successLogin',0);
 }
 function forgotOn(){
@@ -82,5 +84,78 @@ function login(email,password,captchaIn,captchaOut){
 		if(loginError>3){
 			voiceOver("Sorry but you are loged more then one time so i am not trust you.");
 		}
+	}
+}
+function loginNameCheck(id){
+	if(document.getElementById(id).value!=''){
+		if(validateUserName(document.getElementById(id).value)){
+			document.getElementById(id).style.border='3px solid green';
+		}else{
+			document.getElementById(id).style.border='3px solid red';
+		}
+	}else{
+		document.getElementById(id).style.border='1px solid #ced4da';
+	}
+}
+function loginEmailCheck(id){
+	if(document.getElementById(id).value!=''){
+		if(validateUserEmail(document.getElementById(id).value)){
+			document.getElementById(id).style.border='3px solid green';
+		}else{
+			document.getElementById(id).style.border='3px solid red';
+		}
+	}else{
+		document.getElementById(id).style.border='1px solid #ced4da';
+	}
+}
+function loginPasswordCheck(id){
+	if(document.getElementById(id).value!=''){
+		if(validatePassword(document.getElementById(id).value)){
+			document.getElementById(id).style.border='3px solid green';
+		}else{
+			document.getElementById(id).style.border='3px solid red';
+		}
+	}else{
+		document.getElementById(id).style.border='1px solid #ced4da';
+	}
+}
+function loginCPasswordCheck(id1,id2){
+	if(document.getElementById(id1).value!=''&&document.getElementById(id2).value!=''){
+		if(checkPassword(id1,id2)){
+			document.getElementById(id2).style.border='3px solid green';
+		}else{
+			document.getElementById(id2).style.border='3px solid red';
+		}
+	}else{
+		document.getElementById(id2).style.border='1px solid #ced4da';
+	}
+}
+function loginSelectionCheck(id){
+	if(validateSelect(document.getElementById(id).value)){
+		document.getElementById(id).style.border='3px solid green';
+	}else{
+		document.getElementById(id).style.border='3px solid red';
+	}
+}
+function loginJoinCheck(id){
+	if(document.getElementById(id).value!=''){
+		if(validateDate(document.getElementById(id).value)){
+			document.getElementById(id).style.border='3px solid green';
+		}else{
+			document.getElementById(id).style.border='3px solid red';
+		}
+	}else{
+		document.getElementById(id).style.border='1px solid #ced4da';
+	}
+}
+function loginEndingCheck(id1,id2){
+	if(document.getElementById(id2).value!=''){
+		if(validateDate(document.getElementById(id2).value)&&validateDateEnding(document.getElementById(id1).value,document.getElementById(id2).value)){
+			document.getElementById(id2).style.border='3px solid green';
+		}else{
+			document.getElementById(id2).style.border='3px solid red';
+		}
+	}else{
+		document.getElementById(id2).style.border='1px solid #ced4da';
 	}
 }

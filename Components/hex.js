@@ -228,6 +228,58 @@ function validateDepartment(input){
 function checkPassword(id1,id2){
 	return checkCaptch(id1,id2);
 }
+function validatePassword(input){
+    const requirements = [
+		{regex: /.{8,}/, index: 0},
+		{regex: /[0-9]/, index: 1},
+		{regex: /[a-z]/, index: 2},
+		{regex: /[^A-Za-z0-9]/, index: 3},
+		{regex: /[A-Z]/, index: 4}
+	];
+	let requirementItem=0;
+	requirements.forEach((item)=>{
+		let isValid = item.regex.test(input);
+		if(isValid){
+			requirementItem++;	
+		}
+	});
+    if(requirementItem>=requirements.length){
+        if(input.length >= 8 && input.length <= 16){
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+function validateSelect(input){
+    if(input!='--SELECT AN OPTION--'){
+        return true;
+    }else{
+        return false;
+    }
+}
+function validateDate(date){
+    let tuple = [];
+    tuple[0] = (date[0]+date[1]+date[2]+date[3])/1;
+    tuple[1] = (date[5]+date[6])/1;
+    tuple[2] = (date[8]+date[9])/1;
+    //year-> 1974 - 2074 (2024+-50)
+    if(tuple[0]<=(((new Date).getFullYear())+60)&&(tuple[0]>=((new Date).getFullYear())-60)){
+        return true;
+    }else{
+        return false;
+    }
+}
+function validateDateEnding(date1,date2){
+    let tuple = [];
+    tuple[0] = (date1[0]+date1[1]+date1[2]+date1[3])/1;
+    tuple[1] = (date2[0]+date2[1]+date2[2]+date2[3])/1;
+    if(tuple[1]<=tuple[0]+60&&tuple[1]>tuple[0]){
+        return true;
+    }else{
+        return false;
+    }
+}
 function idMaker(n,m){
 	if(n==0){
 		return bookid(m);

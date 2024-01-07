@@ -364,6 +364,7 @@ form{
 	top: 0px;
 	left: 0px;
 	z-index: 100;
+	overflow: hidden;
 }
 #signupPage .head,#forgotPassword .head,#privacyPage .head{
 	width: 100%;
@@ -391,6 +392,7 @@ form{
 	font-family: sans-serif;
 	color: #333;
 	margin: 4px 0px;
+	/* height: auto; */
 }
 #signupPage .component,#forgotPassword .component,#privacyPage .component{
 	width: 100%;
@@ -417,20 +419,23 @@ form{
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: var(--white-cl);
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 	outline: none;
 }
-#signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small,#privacyPage .component .form-group small{
+#signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small,#privacyPage .component .form-group p{
 	color: var(--light-gry);
 	margin-left: 5px;
 	text-align: justify;
 }
 #signupPage .component .form-group .checkbox input,#forgotPassword .component .form-group .checkbox input{
 	width: 20%;
+}
+#privacyPage .component .form-group p,#successLogin .component p{
+	color: var(--black-cl);
 }
 #successLogin .head{
 	border-radius: 50%;
@@ -439,6 +444,14 @@ form{
 	background: #e6efd9;
 	margin:0 auto;
 }
+#successLogin .head i{
+	position: relative;
+	top: 15%;
+	left: 25%;
+	font-size: 100px;
+	font-weight: bold;
+	color: #88b04b;
+}
 #successLogin h1{
 	color: #88b04b;
 	font-family: sans-serif;
@@ -446,6 +459,17 @@ form{
 	font-size: 40px;
 	margin-bottom: 10px;
 	text-align: center;
+}
+#successLogin .component{
+	padding: 4px 2px;
+	height: 60%;
+	max-height: 60%;
+	overflow-y: scroll;
+}
+#successLogin .component .flo .fa{
+	color: #88b04b;
+	margin-top: 12px;
+	cursor: pointer;
 }
 @media only screen and (max-width: 900px){
 	#loginPage .container{
@@ -508,9 +532,12 @@ form{
 		height: calc(100% - 40px);
 		margin: 20px 5%;
 	}
-	#signupPage .component,#forgotPassword .component{
-		height: 420px;
-		max-height: 420px;
+	#signupPage .title,#forgotPassword .title,#privacyPage .title{
+		font-size: 28px;
+	}
+	#signupPage .component,#forgotPassword .component,#privacyPage .component{
+		height: 440px;
+		max-height: 440px;
 	}
 }
 @media only screen and (min-width: 900px) and (max-width: 1023px){
