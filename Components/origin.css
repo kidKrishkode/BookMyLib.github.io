@@ -532,12 +532,15 @@ form{
 		height: calc(100% - 40px);
 		margin: 20px 5%;
 	}
+	#signupPage .head,#forgotPassword .head,#privacyPage .head{
+		height: 15%;
+	}
 	#signupPage .title,#forgotPassword .title,#privacyPage .title{
 		font-size: 28px;
 	}
 	#signupPage .component,#forgotPassword .component,#privacyPage .component{
-		height: 440px;
-		max-height: 440px;
+		height: 75%;/*440px*/
+		max-height: 75%;/*440px*/
 	}
 }
 @media only screen and (min-width: 900px) and (max-width: 1023px){

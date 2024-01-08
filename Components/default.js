@@ -58,10 +58,6 @@ function blbg(id,value){
 		document.getElementById(id).style.display="none";
 	}
 }
-function submitSignUP(){
-	blbg('signupPage',1);
-	blbg('successLogin',0);
-}
 function forgotOn(){
 	blbg('forgotPassword',0);
 }
@@ -89,9 +85,9 @@ function login(email,password,captchaIn,captchaOut){
 function loginNameCheck(id){
 	if(document.getElementById(id).value!=''){
 		if(validateUserName(document.getElementById(id).value)){
-			document.getElementById(id).style.border='3px solid green';
+			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
-			document.getElementById(id).style.border='3px solid red';
+			document.getElementById(id).style.border='3px solid #dc3545';
 		}
 	}else{
 		document.getElementById(id).style.border='1px solid #ced4da';
@@ -100,9 +96,9 @@ function loginNameCheck(id){
 function loginEmailCheck(id){
 	if(document.getElementById(id).value!=''){
 		if(validateUserEmail(document.getElementById(id).value)){
-			document.getElementById(id).style.border='3px solid green';
+			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
-			document.getElementById(id).style.border='3px solid red';
+			document.getElementById(id).style.border='3px solid #dc3545';
 		}
 	}else{
 		document.getElementById(id).style.border='1px solid #ced4da';
@@ -111,9 +107,9 @@ function loginEmailCheck(id){
 function loginPasswordCheck(id){
 	if(document.getElementById(id).value!=''){
 		if(validatePassword(document.getElementById(id).value)){
-			document.getElementById(id).style.border='3px solid green';
+			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
-			document.getElementById(id).style.border='3px solid red';
+			document.getElementById(id).style.border='3px solid #dc3545';
 		}
 	}else{
 		document.getElementById(id).style.border='1px solid #ced4da';
@@ -122,9 +118,9 @@ function loginPasswordCheck(id){
 function loginCPasswordCheck(id1,id2){
 	if(document.getElementById(id1).value!=''&&document.getElementById(id2).value!=''){
 		if(checkPassword(id1,id2)){
-			document.getElementById(id2).style.border='3px solid green';
+			document.getElementById(id2).style.border='3px solid #28a745';
 		}else{
-			document.getElementById(id2).style.border='3px solid red';
+			document.getElementById(id2).style.border='3px solid #dc3545';
 		}
 	}else{
 		document.getElementById(id2).style.border='1px solid #ced4da';
@@ -132,17 +128,17 @@ function loginCPasswordCheck(id1,id2){
 }
 function loginSelectionCheck(id){
 	if(validateSelect(document.getElementById(id).value)){
-		document.getElementById(id).style.border='3px solid green';
+		document.getElementById(id).style.border='3px solid #28a745';
 	}else{
-		document.getElementById(id).style.border='3px solid red';
+		document.getElementById(id).style.border='3px solid #dc3545';
 	}
 }
 function loginJoinCheck(id){
 	if(document.getElementById(id).value!=''){
 		if(validateDate(document.getElementById(id).value)){
-			document.getElementById(id).style.border='3px solid green';
+			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
-			document.getElementById(id).style.border='3px solid red';
+			document.getElementById(id).style.border='3px solid #dc3545';
 		}
 	}else{
 		document.getElementById(id).style.border='1px solid #ced4da';
@@ -151,11 +147,44 @@ function loginJoinCheck(id){
 function loginEndingCheck(id1,id2){
 	if(document.getElementById(id2).value!=''){
 		if(validateDate(document.getElementById(id2).value)&&validateDateEnding(document.getElementById(id1).value,document.getElementById(id2).value)){
-			document.getElementById(id2).style.border='3px solid green';
+			document.getElementById(id2).style.border='3px solid #28a745';
 		}else{
-			document.getElementById(id2).style.border='3px solid red';
+			document.getElementById(id2).style.border='3px solid #dc3545';
 		}
 	}else{
 		document.getElementById(id2).style.border='1px solid #ced4da';
+	}
+}
+function loginColorCheck(id){
+	if(document.getElementById(id).value!=''){
+		document.getElementById(id).style.border='3px solid #28a745';
+	}else{
+		document.getElementById(id).style.border='3px solid #dc3545';
+	}
+}
+function submitSignUP(name,gender,email,position,start,end,pass,cpass,color){
+	if(
+		validateUserName(document.getElementById(name).value) &&
+		validateSelect(document.getElementById(gender).value) &&
+		validateUserEmail(document.getElementById(email).value) &&
+		validateSelect(document.getElementById(position).value) &&
+		validateDate(document.getElementById(start).value) &&
+		validateDateEnding(document.getElementById(start).value,document.getElementById(end).value) &&
+		validatePassword(document.getElementById(pass).value) &&
+		checkPassword(pass,cpass)
+	){
+		blbg('signupPage',1);
+		blbg('successLogin',0);
+	}else{
+		loginNameCheck(name);
+		loginSelectionCheck(gender);
+		loginEmailCheck(email);
+		loginSelectionCheck(position);
+		loginJoinCheck(start);
+		loginEndingCheck(start,end);
+		loginPasswordCheck(pass);
+		loginCPasswordCheck(pass,cpass);
+		loginColorCheck(color);
+		voiceOver("Sorry, but your filed data in signup form is not correct, please check once.");
 	}
 }
