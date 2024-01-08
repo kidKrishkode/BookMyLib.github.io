@@ -157,7 +157,7 @@
 				</div>
 				<div class="form-group">
 					<lable for="profile-color">Color</lable>
-                    <input type="color" class="form-control" id="profile-color" aria-describedby="colorHelp"/>
+                    <input type="color" class="form-control" id="profile-color" aria-describedby="colorHelp" onchange="loginColorCheck('profile-color');"/>
                     <small id="colorHelp" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as a security 
 						asset and may be used to recover your account in case you forget your password. Please remember this color for future authentication 
 						and account recovery purposes.</small>
@@ -175,7 +175,7 @@
 				<div class="form-group">
 					<div class="flo">
 						<div class="btn btn-danger" title="Close the signup Page and go back to login page"onclick="blbg('signupPage',1);">CLOSE</div>
-						<div class="btn btn-success" title="Submit the above details"onclick="submitSignUP();">SUBMIT</div>
+						<div class="btn btn-success" title="Submit the above details"onclick="submitSignUP('profile-name','profile-gender','profile-email','profile-position','profile-year-start','profile-year-end','profile-password','profile-cpassword','profile-color');">SUBMIT</div>
 					</div>
 				</div>
            </div>
@@ -217,8 +217,7 @@
 				<div class="form-group">
 					<lable for="forgot-name">Name</lable>
 					<input type="name" class="form-control" id="forgot-name" placeholder="Enter your name here" aria-describedby="nameHelp-f"style="text-transform: capitalize;"/>
-					<small id="nameHelp-f" class="form-text text-muted">Please enter your full name (capitalized format) adhering to English grammar 
-						rules. Your name will be displayed on the web, Ensure that your name is between 3 to 20 characters long.</small>
+					<small id="nameHelp-f" class="form-text text-muted">Please enter the full name associated with your account. The name you provide here should match the one you entered during the account creation process, ensuring accuracy in this field helps us validate your identity and proceed with the necessary steps to recover your password.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-gender">Gender</lable>
@@ -228,24 +227,17 @@
 						<option>Female</option>
 						<option>Others</option>
 					</select>
-					<small id="genderHelp-f" class="form-text text-muted">Select your gender from the options provided. This information will be 
-						used to personalize your experience, including images, commands, and other features on the platform. Your choice is 
-						important for tailoring our services to suit your preferences.</small>
+					<small id="genderHelp-f" class="form-text text-muted">Select the gender associated with your account. This information, previously provided during the sign-up process, serves as a crucial identifier, ensuring the accuracy of your gender selection is important for enhancing the security measures in the password recovery process. Kindly choose the gender that corresponds to the details you provided during your account registration.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-email">UserId/Email</lable>
                     <input type="password" class="form-control" id="forgot-email" placeholder="Enter your userid or email here" aria-describedby="emailHelp-f"/>
-                    <small id="emailHelp-f" class="form-text text-muted">Enter a valid email address following standard email grammar, This 
-						email will be crucial for future communication, including receiving OTPs, notifications about web updates, progress reports, 
-						and other essential features. Please ensure the accuracy of your provided email address to stay informed and engaged with 
-						our platform.</small>
+                    <small id="emailHelp-f" class="form-text text-muted">Enter the unique User ID associated with your account. This User ID was generated and provided to you during the initial account creation process. Please ensure the accuracy of the User ID entered, as it is essential for initiating the password recovery process and accessing your account securely.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-color">Color</lable>
 					<input type="color" class="form-control" id="forgot-color" aria-describedby="colorHelp-f"/>
-					<small id="colorHelp-f" class="form-text text-muted">Choose your favorite color using the color picker. This color serves as 
-						a security asset and may be used to recover your account in case you forget your password. Please remember this color for 
-						future authentication and account recovery purposes.</small>
+					<small id="colorHelp-f" class="form-text text-muted">Choose the color associated with your account. This color, selected during the sign-up process, serves as an additional layer of security for account verification. Please select the same color you chose when creating your account, ensuring accuracy in this field helps us validate your identity and proceed with the necessary steps for password recovery.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-agree">Terms and Conditions</lable>
