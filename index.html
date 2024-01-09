@@ -203,7 +203,7 @@
 			   details freely contact our help desk team via email {{com.email}}, and briefly explain your problems or douts for better solution.
 		   </p>
 		   <div class="flo">
-			   <div title="Download this card in txt file for future use." onclick="voiceOver();"><i class="fa fa-download"></i></div>
+			   <div title="Download this card in txt file for future use." onclick="download('successLogin','{{com.name}} account card','txt');"><i class="fa fa-download"></i></div>
 			   <div class="btn btn-success" title="Thank You for making my account." onclick="blbg('successLogin',1);">Thank You</div>
 			   <div title="Share this card into my email for future use." onclick="voiceOver();"><i class="fa fa-share"></i></div>
 		   </div><br>
@@ -265,42 +265,54 @@
 			<div class="component">
 				<div class="form-group">
 					<p>
-						Last Updated: {{com.update}}<br>
+						<h5>Last Updated: {{com.update}}</h5>
 						Welcome to {{com.name}}. We are dedicated to protecting your privacy and providing you with a positive experience while 
-						using our website and services.<br>
-						1. Information We Collect:<br>
-						1.1. Personal Information:<br>
+						using our website and services. This privacy notice will inform you as to how we look after your personal data when you 
+						visit our website(regardless of where you visit it from) and tell you about your privacy rights and how the law protects 
+						you, only and only when you maintain the given Terms points in that condition.<br>
+						<h5>Information We Collect:</h5>
+						<h6>Personal Information:</h6>
 						We may collect personally identifiable information, including but not limited to names, email addresses, contact details, 
 						and any other information voluntarily provided by users during their interaction with our website.<br>
-						1.2. Non-Personal Information:<br>
+						<h6>Non-Personal Information:</h6>
 						We may also collect non-personal information such as browser information, IP addresses, device information, and other 
 						analytics data to improve our services and user experience.<br>
-						2. How We Use Your Information:<br>
-						2.1. We use the collected information for the following purposes:<br>
+						<h5>How We Use Your Information:</h5>
+						<h6>We use the collected information for the following purposes:</h6>
    						- To personalize and improve user experience.<br>
    						- To send periodic emails and updates.<br>
    						- To respond to inquiries and provide support.<br>
-						2.2. We do not sell, trade, or otherwise transfer your personally identifiable information to third parties without your 
+						<h6>We do not sell, trade,</h6> 
+						or otherwise transfer your personally identifiable information to third parties without your 
 						consent, except as described in this Privacy Policy.<br>
-						3. Cookies and Tracking Technologies:<br>
-						3.1. We may use cookies and similar technologies to enhance your experience, track usage patterns, and gather demographic 
+						<h5>Cookies and Tracking Technologies:</h5>
+						We may use cookies and similar technologies to enhance your experience, track usage patterns, and gather demographic 
 						information about our user base.<br>
-						4. Third-Party Links:<br>
-						4.1. Our website may contain links to third-party websites. We are not responsible for the privacy practices or content 
+						<h5>Third-Party Links:</h5>
+						Our website may contain links to third-party websites. We are not responsible for the privacy practices or content 
 						of these websites.<br>
-						5. Security:<br>
-						5.1. We implement reasonable security measures to protect against unauthorized access, alteration, disclosure, or 
+						<h5>Security:</h5>
+						We implement reasonable security measures to protect against unauthorized access, alteration, disclosure, or 
 						destruction of your personal information.<br>
-						6. Your Choices:<br>
-						6.1. You may opt-out of receiving promotional communications from us by following the instructions provided in those 
+						<h5>Your Choices:</h5>
+						You may opt-out of receiving promotional communications from us by following the instructions provided in those 
 						communications.<br>
-						7. Changes to this Privacy Policy:<br>
-						7.1. We reserve the right to update or modify this Privacy Policy at any time without prior notice. The date of the 
+						<h5>Advertising:</h5>
+						We may use your Search, Contact, Technical, Usage and Profile Data to form a view on what we think you may want 
+						or need, or what may be of interest to you. This is how we decide which products, advertisement and offers may 
+						be relevant for you(we call this marketing). You will receive marketing communications from us if you have requested 
+						advertisement from us or purchased services from us or if you provided us with your details or registered for a 
+						promotion and, in each case, you have opted in for receiving that marketing.<br>
+						<h5>Refund or Settlement:</h5>
+						{{com.name}} has not consented to refund or settlement with any user for any reason. Thats way if any user want to 
+						refund then accroding to this law {{com.name}} not give any money back to him/her.
+						<h5>Changes to this Privacy Policy:</h5>
+						We reserve the right to update or modify this Privacy Policy at any time without prior notice. The date of the 
 						latest revision will be indicated at the top of this page.<br>
-						8. Contact Us:<br>
-						8.1. If you have any questions or concerns regarding this Privacy Policy, please contact us at [your email address].<br>
+						<h5>Contact Us:</h5>
+						If you have any questions or concerns regarding this Privacy Policy, please contact us at {{com.email}}.
 						By using our website, you agree to the terms outlined in this Privacy Policy.
-					</p>
+					</p><br>
 					<div class="form-group">
 						<div class="flo">
 							<div class="btn btn-primary" title="Close the Privacy Page and go back"onclick="blbg('privacyPage',1);">OK, I UNDERSTAND IT</div>
