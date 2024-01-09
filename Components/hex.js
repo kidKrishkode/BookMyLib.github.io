@@ -2,8 +2,9 @@ let currentUser = 0;
 let loginError = 0;
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let Timeline = [0,0,0,0,0];
-let bookBin = [], studentBin = [], teacherBin = [], adminBin = [], instBin = [];
+let bookBin = [], studentBin = [], teacherBin = [], adminBin = [], instBin = [], settingBin = [];
 let voice=1;
+let theme=1;
 function getCaptch(id){
     setTimeout(function onn(){
         var cap = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','/','@','&','!','#','*','?','%','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9');
@@ -263,7 +264,6 @@ function validateDate(date){
     tuple[0] = (date[0]+date[1]+date[2]+date[3])/1;
     tuple[1] = (date[5]+date[6])/1;
     tuple[2] = (date[8]+date[9])/1;
-    //year-> 1974 - 2074 (2024+-50)
     if(tuple[0]<=(((new Date).getFullYear())+60)&&(tuple[0]>=((new Date).getFullYear())-60)){
         return true;
     }else{
@@ -275,6 +275,9 @@ function validateDateEnding(date1,date2){
     tuple[0] = (date1[0]+date1[1]+date1[2]+date1[3])/1;
     tuple[1] = (date2[0]+date2[1]+date2[2]+date2[3])/1;
     if(tuple[1]<=tuple[0]+60&&tuple[1]>tuple[0]){
+        if((tuple[1]==tuple[0]+1)&&(((date2[5]+date2[6])/1)<((date1[5]+date1[6])/1))){
+        	return false;
+        }
         return true;
     }else{
         return false;
@@ -344,7 +347,7 @@ function pageRoute(id){
 //     console.log("...");
 // }
 function pushData(){
-    temp = [adminBin,studentBin,teacherBin,bookBin,instBin];
+    temp = [adminBin,studentBin,teacherBin,bookBin,instBin,settingBin];
     return storeDataBase('BookMyLibInfo',temp);
 }
 function clearData(){
@@ -385,6 +388,7 @@ function fetchDataBase(){
         teacherBin = retrievedArray[2];
         bookBin = retrievedArray[3];
         instBin = retrievedArray[4];
+        settingBin = retrievedArray[5];
         return true;
     }catch(error){
         console.log("Databse fetch is not possible due to \n",error);
@@ -431,6 +435,37 @@ function voiceOver(message){
         }catch(e){
             alert(message);
         }
+    }
+}
+function download(id,name,exe){
+	if(id==''||name==''){
+		return false;
+	}try{
+        const textToDownload = document.getElementById(id).textContent;
+        const fileName = `${name}.${exe}`;
+        const blob = new Blob([textToDownload], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        return true;
+    }catch(e){
+    	voiceOver("Sorry download is not possible in this device");
+        return false;
+    }
+}
+function setTheme(){
+	try{
+        if(settingBin.length!=0){
+            theme = settingBin.theme;
+        }
+        for(let j=0; j<colorLib[theme].collist.length; j++){
+		    document.documentElement.style.setProperty(colorLib[theme].collist[j][0], colorLib[theme].collist[j][1]);
+        }
+        return true;
+	}catch(e){
+        voiceOver();
+        return false;
     }
 }
 function popEntry(n,target){

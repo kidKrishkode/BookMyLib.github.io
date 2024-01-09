@@ -185,6 +185,14 @@ function submitSignUP(name,gender,email,position,start,end,pass,cpass,color){
 		loginPasswordCheck(pass);
 		loginCPasswordCheck(pass,cpass);
 		loginColorCheck(color);
-		voiceOver("Sorry, but your filed data in signup form is not correct, please check once.");
+		redFiled([name,gender,email,position,start,end,pass,cpass,color]);
+		voiceOver("Sorry, but your filed data in signup form is not completed, please check once.");
+	}
+}
+function redFiled(list){
+	for(let i=0; i<list.length; i++){
+		if(document.getElementById(list[i]).value==''||document.getElementById(list[i]).value==undefined){
+			document.getElementById(list[i]).style.border='3px solid #dc3545';
+		}
 	}
 }

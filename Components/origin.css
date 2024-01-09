@@ -4,6 +4,7 @@
     --light-gry: #d9d9d9;
     --white-cl: #fff;
     --black-cl: #000;
+	--head-vio: #420040;
 }
 body{
 	padding: 0;
@@ -75,7 +76,7 @@ o{
     position: absolute;
     top: -1%;
     left: 3%;
-    background: white;
+    background: var(--white-cl);
     border-radius: 50%;
     transform: rotate(-65deg);
 }
@@ -354,6 +355,7 @@ form{
 #signupPage,#successLogin,#forgotPassword,#privacyPage{
 	display: none;
 	width: 50%;
+	height: calc(100% - 40px);
 	margin: 20px 25%;
 	background: var(--white-cl);
 	border-radius: 10px;
@@ -409,7 +411,7 @@ form{
 	font-size: 20px;
 	font-weight: bold;
 	font-family: 'Poppins', sans-serif;
-	color: #420040;
+	color: var(--head-vio);
 }
 #signupPage .component .form-group input,#signupPage .component .form-group select,#forgotPassword .component .form-group input,#forgotPassword .component .form-group select{
 	width: 100%;
@@ -426,6 +428,9 @@ form{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 	outline: none;
 }
+#signupPage .component .form-group input::placeholder{
+	text-transform: capitalize;
+}
 #signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small,#privacyPage .component .form-group p{
 	color: var(--light-gry);
 	margin-left: 5px;
@@ -436,6 +441,16 @@ form{
 }
 #privacyPage .component .form-group p,#successLogin .component p{
 	color: var(--black-cl);
+}
+#privacyPage .component .form-group p,#successLogin .component p h5{
+	font-size: 16px;
+	font-weight: bolder;
+	margin: 2px 0px;
+}
+#privacyPage .component .form-group p,#successLogin .component p h6{
+	font-size: 14px;
+	font-weight: bolder;
+	margin: 2px 0px;
 }
 #successLogin .head{
 	border-radius: 50%;

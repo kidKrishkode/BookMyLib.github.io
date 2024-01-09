@@ -38,3 +38,31 @@ const pages = [
   "BackupPage",
   "HelpPage"
 ];
+const colorLib = [
+  {
+    id: 0,
+    theme: "Dark",
+    collist: [
+      ['--bg-color', '#000000ec'],
+      ['--main1-cl', '#0c8ff0'],
+      ['--main2-cl', 'aqua'],
+      ['--light-gry', '#d9d9d9'],
+      ['--white-cl', '#000'],
+      ['--black-cl', '#fff'],
+      ['--head-vio', '#db00d4']
+    ]
+  },
+  {
+    id: 1,
+    theme: "Light",
+    collist: [
+      ['--bg-color', '#fff'],
+      ['--main1-cl', '#0c8ff0'],
+      ['--main2-cl', 'aqua'],
+      ['--light-gry', '#d9d9d9'],
+      ['--white-cl', '#fff'],
+      ['--black-cl', '#000'],
+      ['--head-vio', '#420040']
+    ]
+  }
+];
