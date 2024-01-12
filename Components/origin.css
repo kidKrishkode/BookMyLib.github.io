@@ -352,7 +352,7 @@ form{
 	z-index: 99;
 	position: fixed;
 }
-#signupPage,#successLogin,#forgotPassword,#privacyPage{
+#signupPage,#successSignUp,#forgotPassword,#privacyPage,#licensePage{
 	display: none;
 	width: 50%;
 	height: calc(100% - 40px);
@@ -368,27 +368,33 @@ form{
 	z-index: 100;
 	overflow: hidden;
 }
-#signupPage .head,#forgotPassword .head,#privacyPage .head{
+#signupPage .head,#forgotPassword .head,#privacyPage .head,#licensePage .head{
 	width: 100%;
 	height: 100px;
-	background-image: linear-gradient(54deg,rgba(12,141,240,0.9),rgba(0,255,255,0.9)), url('../images/Pen&ink.png');
+	background-image: linear-gradient(54deg,rgba(12,141,240,0.8),rgba(0,255,255,0.8)), url('../images/Pen&ink.png');
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	clip-path: polygon(100% 0%, 100% 77%, 50% 100%, 0% 75%, 0 0);
 	position: relative;
 }
-#signupPage .head:before,#forgotPassword .head:before{
+#signupPage .head:before,#forgotPassword .head:before,#privacyPage .head:before,#licensePage .head:before{
 	content: " ";
 	position: absolute;
 	top: 0%;
 	bottom: 0%;
 	right: 0%;
 	left: 0%;
-	opacity: 0.4;
+	opacity: 0.2;
 	z-index: -1;
 	background: linear-gradient(to left, var(--black-cl) 0%, var(--white-cl) 0%, var(--black-cl) 100%);
 }
-#signupPage .title,#forgotPassword .title,#privacyPage .title{
+#privacyPage .head{
+	background-image: linear-gradient(54deg,rgba(12,141,240,0.8),rgba(0,255,255,0.8)), url('../images/hand-shack.png');
+}
+#licensePage .head{
+	background-image: linear-gradient(54deg,rgba(12,141,240,0.8),rgba(0,255,255,0.8)), url('../images/libra.png');
+}
+#signupPage .title,#forgotPassword .title,#privacyPage .title,#licensePage .title{
 	text-align: center;
 	font-weight: bold;
 	font-family: sans-serif;
@@ -396,14 +402,14 @@ form{
 	margin: 4px 0px;
 	/* height: auto; */
 }
-#signupPage .component,#forgotPassword .component,#privacyPage .component{
+#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component{
 	width: 100%;
 	padding: 4px 2px;
 	height: 540px;
 	max-height: 540px;
 	overflow-y: scroll;
 }
-#signupPage .component .form-group,#forgotPassword .component .form-group,#privacyPage .component .form-group{
+#signupPage .component .form-group,#forgotPassword .component .form-group,#privacyPage .component .form-group,#licensePage .component .form-group{
 	width: 100%;
 	padding: 2px;
 }
@@ -431,7 +437,7 @@ form{
 #signupPage .component .form-group input::placeholder{
 	text-transform: capitalize;
 }
-#signupPage .component .form-group small,#successLogin p,#forgotPassword .component .form-group small,#privacyPage .component .form-group p{
+#signupPage .component .form-group small,#successSignUp p,#forgotPassword .component .form-group small,#privacyPage .component .form-group p,#licensePage .component .form-group p{
 	color: var(--light-gry);
 	margin-left: 5px;
 	text-align: justify;
@@ -439,27 +445,33 @@ form{
 #signupPage .component .form-group .checkbox input,#forgotPassword .component .form-group .checkbox input{
 	width: 20%;
 }
-#privacyPage .component .form-group p,#successLogin .component p{
-	color: var(--black-cl);
+#privacyPage .component .form-group p,#privacyPage .component .form-group ul,#successSignUp .component p,#licensePage .component .form-group p{
+	color: #6c757d;
 }
-#privacyPage .component .form-group p,#successLogin .component p h5{
+#privacyPage .component .form-group p .fa{
+	color: var(--main1-cl);
+	cursor: pointer;
+}
+#privacyPage .component h5{
+	font-size: 18px;
+	font-weight: bolder;
+	margin: 2px 0px;
+	color: var(--main1-cl);
+}
+#privacyPage .component h6{
 	font-size: 16px;
 	font-weight: bolder;
 	margin: 2px 0px;
+	color: var(--black-cl);
 }
-#privacyPage .component .form-group p,#successLogin .component p h6{
-	font-size: 14px;
-	font-weight: bolder;
-	margin: 2px 0px;
-}
-#successLogin .head{
+#successSignUp .head{
 	border-radius: 50%;
 	height:200px;
 	width:200px;
 	background: #e6efd9;
 	margin:0 auto;
 }
-#successLogin .head i{
+#successSignUp .head i{
 	position: relative;
 	top: 15%;
 	left: 25%;
@@ -467,7 +479,7 @@ form{
 	font-weight: bold;
 	color: #88b04b;
 }
-#successLogin h1{
+#successSignUp h1{
 	color: #88b04b;
 	font-family: sans-serif;
 	font-weight: bold;
@@ -475,13 +487,13 @@ form{
 	margin-bottom: 10px;
 	text-align: center;
 }
-#successLogin .component{
+#successSignUp .component{
 	padding: 4px 2px;
 	height: 60%;
 	max-height: 60%;
 	overflow-y: scroll;
 }
-#successLogin .component .flo .fa{
+#successSignUp .component .flo .fa{
 	color: #88b04b;
 	margin-top: 12px;
 	cursor: pointer;
@@ -509,12 +521,12 @@ form{
 	}
 	.wave7{
 		width: 22%;
-		height: 16%;
+		height: 20%;
 		border-radius: 50%;
 		background: var(--white-cl);
 		position: absolute;
-		top: -1%;
-		left: 1.5%;
+		top: -3%;
+		left: 2.5%;
 		transform: rotate(40deg);
 		z-index: 99;
 		outline: none;
@@ -542,20 +554,20 @@ form{
 	#loading h6{
 		margin-top: 98%;
 	}
-	#signupPage,#successLogin,#forgotPassword,#privacyPage{
+	#signupPage,#successSignUp,#forgotPassword,#privacyPage,#licensePage{
 		width: 90%;
 		height: calc(100% - 40px);
 		margin: 20px 5%;
 	}
-	#signupPage .head,#forgotPassword .head,#privacyPage .head{
+	#signupPage .head,#forgotPassword .head,#privacyPage .head,#licensePage .head{
 		height: 15%;
 	}
-	#signupPage .title,#forgotPassword .title,#privacyPage .title{
+	#signupPage .title,#forgotPassword .title,#privacyPage .title,#licensePage .title{
 		font-size: 28px;
 	}
-	#signupPage .component,#forgotPassword .component,#privacyPage .component{
-		height: 75%;/*440px*/
-		max-height: 75%;/*440px*/
+	#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component{
+		height: 75%;
+		max-height: 75%;
 	}
 }
 @media only screen and (min-width: 900px) and (max-width: 1023px){

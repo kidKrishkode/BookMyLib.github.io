@@ -283,6 +283,18 @@ function validateDateEnding(date1,date2){
         return false;
     }
 }
+function validateUserId(input){
+    if(adminBin.length!=0){
+        for(let i=0; i<adminBin.length; i++){
+            if(adminBin[i].userid==input){
+                return true;
+            }
+        }
+        return false;
+    }else{
+        return false;
+    }
+}
 function idMaker(n,m){
 	if(n==0){
 		return bookid(m);
@@ -326,6 +338,20 @@ function passwordMaker(){
 	pass += ((new Date).getFullYear())-2000;
 	pass += adminBin.length<10?'0'+adminBin.length:adminBin.length;
 	return pass;
+}
+function avaterMaker(gender){
+    try{
+        let avater = Math.floor(Math.random()*avaterLib.length);
+        if(gender=="Male"&&avater%2!=0){
+            return avaterMaker(gender);
+        }else if(gender=="Female"&&avater%2==0){
+            return avaterMaker(gender);
+        }else{
+            return avaterLib[avater].src;
+        }
+    }catch(e){
+        voiceOver("Sorry, user dp not found!");
+    }
 }
 function pageRoute(id){
 	if(currentUser!=0&&loginError<3&&adminBin.length!=0){
@@ -454,7 +480,7 @@ function download(id,name,exe){
         return false;
     }
 }
-function setTheme(){
+function getTheme(){
 	try{
         if(settingBin.length!=0){
             theme = settingBin.theme;
@@ -467,6 +493,14 @@ function setTheme(){
         voiceOver();
         return false;
     }
+}
+function toggleTheme(){
+    if(theme==0){
+        theme=1;
+    }else{
+        theme=0;
+    }
+    return true;
 }
 function popEntry(n,target){
 	if(n==0){
@@ -482,8 +516,8 @@ function popEntry(n,target){
 	}
 }
 function deleteBook(target){
-	for(let j=0; j<BookBin.length; j++){
-		if(target==BookBin[j].name || target==BookBin[j].id){
+	for(let j=0; j<bookBin.length; j++){
+		if(target==bookBin[j].name || target==bookBin[j].id){
 			return true;
 		}
 	}

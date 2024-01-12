@@ -66,3 +66,37 @@ const colorLib = [
     ]
   }
 ];
+const avaterLib = [
+	{
+		id: 0,
+		src: "./images/avater-1.png"
+	},
+  {
+		id: 1,
+		src: "./images/avater-2.png"
+	},
+  {
+		id: 2,
+		src: "./images/avater-3.png"
+	},
+  {
+		id: 3,
+		src: "./images/avater-4.png"
+	},
+  {
+		id: 4,
+		src: "./images/avater-5.png"
+	},
+  {
+		id: 5,
+		src: "./images/avater-6.png"
+	},
+  {
+		id: 6,
+		src: "./images/avater-7.png"
+	},
+  {
+		id: 7,
+		src: "./images/avater-8.png"
+	}
+];

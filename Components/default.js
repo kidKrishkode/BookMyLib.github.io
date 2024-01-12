@@ -15,18 +15,21 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 function user(){
+	interval = setInterval(()=>{
+		document.getElementById('sideImg').onload = function(){
+			document.getElementById("loading").style.display = "none";
+			document.getElementById("loginPage").style.display = "block";
+			clearInterval(interval);
+			interval = 0;
+		};
+	},2000);
 	setTimeout(()=>{
-		document.getElementById("loading").style.display = "none";
-		document.getElementById("loginPage").style.display = "block";
-	},3000);
-	// interval = setInterval(()=>{
-	// 	document.getElementById('sideImg').onload = function(){
-	// 		document.getElementById("loading").style.display = "none";
-	// 		document.getElementById("loginPage").style.display = "block";
-	// 		clearInterval(interval);
-	// 	};
-	// 	console.log('1');
-	// },3000);
+		if(interval!=0){
+			document.getElementById("loading").style.display = "none";
+			document.getElementById("loginPage").style.display = "block";
+			clearInterval(interval);
+		}
+	},4000);
 	setTimeout(() => {
         document.querySelector('.loader').classList.add('restart-animation');
         setTimeout(() => {
@@ -34,7 +37,11 @@ function user(){
         }, 500);
     }, 3000);
     getCaptch("mainCaptcha");
-	// try{getLocalData(document.body.id);}catch(e){console.error(e);}
+	document.getElementById("privacyData").innerHTML = legalCall("Privacy Policy");
+	document.getElementById("licenseData").innerHTML = legalCall("License");
+	if(window.location.protocol!="file:"||window.location.hostname!=""){
+		StartBackend();
+	}
 }
 function newCaptcha(){
 	getCaptch("mainCaptcha");
@@ -64,22 +71,27 @@ function forgotOn(){
 function forgotOff(){
 	blbg('forgotPassword',1);
 }
-function submitForgot(){
-	// blbg('privacyPage',0);
-}
 function login(email,password,captchaIn,captchaOut){
-	if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
-		voiceOver("Your details is right, but i am not intersted to give access to your login");
+	if(adminBin.length!=0){
+		if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
+			if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
+				voiceOver("Your details is right, but i am not intersted to give access to your login");
+			}else{
+				if(!validUser(email,password)){
+					voiceOver("Your given userid and password is not vaild!,please write the correct one");
+				}
+				if(!checkCaptch(captchaIn,captchaOut)){
+					voiceOver("Your given captcha is wrong, write this correctly.");
+				}
+				if(loginError>3){
+					voiceOver("Sorry but you are loged more then one time so i am not trust you.");
+				}
+			}
+		}else{
+			voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
+		}
 	}else{
-		if(!validUser(email,password)){
-			voiceOver("Your given userid and password is not vaild!,please write the correct one");
-		}
-		if(!checkCaptch(captchaIn,captchaOut)){
-			voiceOver("Your given captcha is wrong, write this correctly.");
-		}
-		if(loginError>3){
-			voiceOver("Sorry but you are loged more then one time so i am not trust you.");
-		}
+		voiceOver("Please make your account first!,then login");
 	}
 }
 function loginNameCheck(id){
@@ -114,6 +126,7 @@ function loginPasswordCheck(id){
 	}else{
 		document.getElementById(id).style.border='1px solid #ced4da';
 	}
+	document.getElementById(id).type = "password";
 }
 function loginCPasswordCheck(id1,id2){
 	if(document.getElementById(id1).value!=''&&document.getElementById(id2).value!=''){
@@ -173,8 +186,31 @@ function submitSignUP(name,gender,email,position,start,end,pass,cpass,color){
 		validatePassword(document.getElementById(pass).value) &&
 		checkPassword(pass,cpass)
 	){
-		blbg('signupPage',1);
-		blbg('successLogin',0);
+		document.getElementById('submitId').textContent = idMaker(3);
+		document.getElementById('submitPassword').textContent = document.getElementById(cpass).value;
+		document.getElementById('submitColor').textContent = document.getElementById(color).value;
+		try{
+			/*validateAdminEntry(
+				document.getElementById(name).value,
+				document.getElementById(gender).value,
+				document.getElementById(email).value,
+				document.getElementById(position).value,
+				[document.getElementById(start).value,document.getElementById(end).value],
+				document.getElementById(color).value,
+				document.getElementById(pass).value
+			);*/
+			setTimeout(()=>{
+				if(adminBin.length==0){
+					voiceOver("Sorry, your account making is not possible,for unwanted data");
+				}else{
+					blbg('signupPage',1);
+					blbg('successSignUp',0);
+				}
+			},500);
+		}catch(e){
+			voiceOver("An error occure to make your account, sorry");
+			console.error(e);
+		}
 	}else{
 		loginNameCheck(name);
 		loginSelectionCheck(gender);
@@ -195,4 +231,41 @@ function redFiled(list){
 			document.getElementById(list[i]).style.border='3px solid #dc3545';
 		}
 	}
+}
+function userIdEmailCheck(id){
+	if(document.getElementById(id).value!=''){
+		if(validateUserEmail(document.getElementById(id).value)||validateUserId(document.getElementById(id).value)){
+			document.getElementById(id).style.border='3px solid #28a745';
+		}else{
+			document.getElementById(id).style.border='3px solid #dc3545';
+		}
+	}else{
+		document.getElementById(id).style.border='1px solid #ced4da';
+	}
+}
+function submitForgot(name,gender,email,color){
+	if(adminBin.length!=0){
+		if(	
+			validateUserName(document.getElementById(name).value) &&
+			validateSelect(document.getElementById(gender).value) &&
+			(validateUserEmail(document.getElementById(email).value)||validateUserId(document.getElementById(email).value))
+		){
+			for(let i=0; i<adminBin.length; i++){
+				if((adminBin[i].name==name)&&(adminBin[i].gender==gender)&&((adminBin[i].userid==email)||(adminBin[i].email==email))&&(adminBin[i].color==color)){
+					voiceOver("I found your account, congratulation");
+					return true;
+				}
+				voiceOver("Sorry, i am not found your account");
+			}
+		}else{
+			redFiled([name,gender,email,color]);
+			voiceOver("Sorry, but your filed data in forgot form is not completed, please check once.");
+		}
+	}else{
+		voiceOver("Sorry at first make your account then use this feature, if required.");
+	}
+}
+function defaultPassword(id){
+	document.getElementById(id).value = passwordMaker();
+	document.getElementById(id).type = "text";
 }
