@@ -148,6 +148,29 @@ voiceOver(message);                 To get a system genareted voice commentry vi
                                     to speck. If 'message' is not given or inligial
                                     string then speak a defult string automaticaly.
 --------------------------------------------------------------------------------------
+voice == 1;                         Sound or voice is on.
+voice == 0;                         Sound or voice is off.
+--------------------------------------------------------------------------------------
 checkStorage();                     To check the storage limit of new storing, Return
                                     used space percentage and total space is 100%.
+--------------------------------------------------------------------------------------
+getTheme();                         To get stored theme colors into display if stored
+                                    theme is present. otherwise display default theme
+                                    and return true, if any error occure then return
+                                    false.
+--------------------------------------------------------------------------------------
+theme == 1;                         Light theme.
+theme == 0;                         Dark theme.
+--------------------------------------------------------------------------------------
+toggleTheme();                      Toggle the current theme colors only, change light
+                                    theme to dark or dark to light theme. Not display.
+                                    Return true if possible otherwise return false.
+--------------------------------------------------------------------------------------
+download(id,name,exe);              Make a download system which is auto download a 
+                                    file (txt file) in the device, 'id' is the id of 
+                                    the html element which inner text want to download
+                                    'name' is the in which name want to download, 'exe'
+                                    is the extension of the file (try to use '.txt').
+                                    Return true if download possible otherwise return
+                                    false, file type text/plain.
 --------------------------------------------------------------------------------------
