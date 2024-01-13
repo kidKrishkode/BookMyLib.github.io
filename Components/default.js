@@ -15,7 +15,6 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 function user(){
-	newCaptcha();
 	interval = setInterval(()=>{
 		document.getElementById('sideImg').onload = function(){
 			document.getElementById("loading").style.display = "none";
@@ -30,6 +29,7 @@ function user(){
 			document.getElementById("loginPage").style.display = "block";
 			clearInterval(interval);
 		}
+		getCaptch("mainCaptcha");
 	},4000);
 	setTimeout(() => {
         document.querySelector('.loader').classList.add('restart-animation');
@@ -41,9 +41,6 @@ function user(){
 	document.getElementById("licenseData").innerHTML = legalCall("License");
 	if(window.location.protocol!="file:"||window.location.hostname!=""||window.location.protocol=="https:"){
 		StartBackend();
-		if(document.getElementById("mainCaptcha").value==""){
-			newCaptcha();
-		}
 	}
 }
 function newCaptcha(){
