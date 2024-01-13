@@ -36,11 +36,14 @@ function user(){
             document.querySelector('.loader').classList.remove('restart-animation');
         }, 500);
     }, 3000);
-    getCaptch("mainCaptcha");
+    newCaptcha();
 	document.getElementById("privacyData").innerHTML = legalCall("Privacy Policy");
 	document.getElementById("licenseData").innerHTML = legalCall("License");
-	if(window.location.protocol!="file:"||window.location.hostname!=""){
+	if(window.location.protocol!="file:"||window.location.hostname!=""||window.location.protocol=="https:"){
 		StartBackend();
+		if(document.getElementById("mainCaptcha").value==""){
+			newCaptcha();
+		}
 	}
 }
 function newCaptcha(){
