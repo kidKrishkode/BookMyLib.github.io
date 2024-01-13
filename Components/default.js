@@ -15,6 +15,7 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 function user(){
+	newCaptcha();
 	interval = setInterval(()=>{
 		document.getElementById('sideImg').onload = function(){
 			document.getElementById("loading").style.display = "none";
@@ -36,7 +37,6 @@ function user(){
             document.querySelector('.loader').classList.remove('restart-animation');
         }, 500);
     }, 3000);
-    newCaptcha();
 	document.getElementById("privacyData").innerHTML = legalCall("Privacy Policy");
 	document.getElementById("licenseData").innerHTML = legalCall("License");
 	if(window.location.protocol!="file:"||window.location.hostname!=""||window.location.protocol=="https:"){
