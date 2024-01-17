@@ -162,7 +162,7 @@ getTheme();                         To get stored theme colors into display if s
 theme == 1;                         Light theme.
 theme == 0;                         Dark theme.
 --------------------------------------------------------------------------------------
-toggleTheme();                      Toggle the current theme colors only, change light
+toggleTheme(id);                    Toggle the current theme colors only, change light
                                     theme to dark or dark to light theme. Not display.
                                     Return true if possible otherwise return false.
 --------------------------------------------------------------------------------------
