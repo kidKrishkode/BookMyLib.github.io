@@ -27,16 +27,66 @@ const bookTypes = [
   "Reference",
 ];
 const pages = [
-  "HomePage",
-  "StudentPage",
-  "TeacherPage",
-  "BookPage",
-  "AdminPage",
-  "NotificationPage",
-  "SettingsPage",
-  "DocsPage",
-  "BackupPage",
-  "HelpPage"
+  {
+    id: 1,
+    area: "HomePage",
+    button: "homeBtn"
+  },
+  {
+    id: 2,
+    area: "ProfilePage",
+    button: "profileBtn"
+  },
+  {
+    id: 3,
+    area: "BookPage",
+    button: "bookBtn"
+  },
+  {
+    id: 4,
+    area: "StudentPage",
+    button: "studentBtn"
+  },
+  {
+    id: 5,
+    area: "TeacherPage",
+    button: "teacherBtn"
+  },
+  {
+    id: 6,
+    area: "AdminPage",
+    button: "adminBtn"
+  },
+  {
+    id: 7,
+    area: "IncomePage",
+    button: "incomeBtn"
+  },
+  {
+    id: 8,
+    area: "SettingPage",
+    button: "settingBtn"
+  },
+  {
+    id: 9,
+    area: "ReportPage",
+    button: "reportBtn"
+  },
+  {
+    id: 10,
+    area: "AboutPage",
+    button: "aboutBtn"
+  },
+  {
+    id: 11,
+    area: "BackupPage",
+    button: "backupBtn"
+  },
+  {
+    id: 12,
+    area: "NotificationPage",
+    button: "notificationsBtn"
+  },
 ];
 const colorLib = [
   {
@@ -49,7 +99,8 @@ const colorLib = [
       ['--light-gry', '#d9d9d9'],
       ['--white-cl', '#000'],
       ['--black-cl', '#fff'],
-      ['--head-vio', '#db00d4']
+      ['--head-vio', '#db00d4'],
+      ['--ground-cl', '#151519']
     ]
   },
   {
@@ -62,7 +113,8 @@ const colorLib = [
       ['--light-gry', '#d9d9d9'],
       ['--white-cl', '#fff'],
       ['--black-cl', '#000'],
-      ['--head-vio', '#420040']
+      ['--head-vio', '#420040'],
+      ['--ground-cl', '#f6f6f6']
     ]
   }
 ];

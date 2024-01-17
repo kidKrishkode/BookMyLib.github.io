@@ -5,6 +5,7 @@
     --white-cl: #fff;
     --black-cl: #000;
 	--head-vio: #420040;
+	--ground-cl: #f6f6f6;
 }
 body{
 	padding: 0;
@@ -16,6 +17,11 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+.flw{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 o{
 	text-decoration: none;
@@ -498,6 +504,308 @@ form{
 	margin-top: 12px;
 	cursor: pointer;
 }
+main{
+	display: none;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: var(--ground-cl);
+}
+main nav{
+	background: linear-gradient(90deg,  #5ab8ffea, #0c8ff0);
+	flex-wrap: nowrap!important;
+}
+main nav .head{
+	font-size: 1.25rem;
+	padding: 0px;
+	margin: 0px;
+}
+main nav .tell{
+	font-size: 1.0rem;
+	padding: 0%;
+	margin: 0%;
+	color: var(--light-gry);
+}
+main nav .navbar-brand{
+	width: 70%;
+}
+main nav .navbar-buttons{
+	width: 30%;
+}
+main nav .navbar-buttons .navbar-icons{
+	width: 60%;
+	font-size: 18px;
+	color: #fff;
+}
+main nav .navbar-buttons .navbar-icons i{
+	margin: auto 0px;
+	cursor: pointer;
+}
+main nav .navbar-buttons .navbar-profile #navBtn{
+	display: none;
+}
+main nav .navbar-buttons .navbar-profile{
+	width: 20%;
+}
+main nav .navbar-buttons .navbar-profile img{
+	position: relative;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 2px solid var(--white-cl);
+	cursor: pointer;
+}
+main .ground{
+	width: 100%;
+	padding: 0px;
+	margin: 0%;
+}
+main .ground .sidenav{
+	width: 20%;
+	height: 100vh;
+	background: var(--white-cl);
+	padding-right: 4px;
+	font-family: sans-serif;
+}
+main .ground .field{
+	width: 90%;
+	height: 100vh;
+	max-height: 100vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+main .ground .sidenav .navEvent{
+	color: var(--head-vio);
+	padding: 5px;
+	font-size: 14px;
+	font-weight: bolder;
+}
+main .ground .sidenav .navEvent span{
+	color: gray;
+	cursor: pointer;
+}
+main .ground .sidenav h5{
+	color: var(--main1-cl);
+	text-transform: uppercase;
+	padding: 14px 2px 2px 5px;
+	font-size: 15px;
+	font-weight: bold;
+}
+main .ground .sidenav .sidenav-item{
+	width: 95%;
+	color: var(--black-cl);
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 0px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+main .ground .sidenav .sidenav-item:hover{
+	background: var(--main2-cl)!important;
+	cursor: pointer;
+}
+main .ground .sidenav .sidenav-item i{
+	width: 20%;
+	text-align: center;
+	margin: auto 0px;
+}
+main .ground .sidenav .sidenav-item span{
+	width: 80%;
+	text-transform: capitalize;
+}
+#HomePage,#ProfilePage{
+	display: none;
+}
+#CalenderPage{
+	display: none;
+	position: absolute;
+    top: 6%;
+    right: 16%;
+    z-index: 99;
+    background: var(--white-cl);
+    border: 1px solid var(--light-gry);
+    border-radius: 5px;
+    width: 350px;
+	padding: 4px;
+	box-shadow: 0px 0px 10px 2px var(--black-cl);
+	transition: ease-in-out;
+}
+#CalenderPage .flw{
+	border-bottom: 1px solid var(--light-gry);
+	color: var(--head-vio);
+}
+#CalenderPage .flw h4{
+	font-size: 18px;
+	font-weight: bold;
+	color: var(--main1-cl);
+}
+#CalenderPage .flw i{
+	margin: auto auto;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+}
+#CalenderPage .flw #calenderHead{
+	width: 60%;
+	text-align: center;
+}
+#CalenderPage #calenderBody ul,#CalenderPage .calenderRow ul{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+#CalenderPage #calenderBody ul li,#CalenderPage .calenderRow ul li{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	font-size: 14px;
+	color: var(--black-cl);
+}
+#CalenderPage #calenderBody ul li div,#CalenderPage .calenderRow ul li div{
+	width: 48px;
+	text-align: center;
+	border: 1px solid var(--white-cl);
+	border-radius: 4px;
+	color: var(--black-cl);
+	background: var(--ground-cl);
+	font-family: Consolas, 'Courier New', monospace;
+}
+#CalenderPage #calenderBody ul li div:hover{
+	cursor: pointer;
+	background: var(--main2-cl);
+}
+#CalenderPage #calenderBody ul .today{
+	background: var(--main1-cl);
+	color: var(--white-cl);
+}
+.field .main-contant-info{
+	width: 100%;
+	padding: 10px 0px;
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.field .main-contant-info .card-holder{
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.field .main-contant-info .card-holder .card-body{
+	width: 45%!important;
+	background: var(--white-cl);
+	border-radius: 10px;
+	padding: 0px;
+	margin: 0px 5%;
+	box-shadow: 8px 8px 15px #bbb;
+}
+.field .main-contant-info .card-holder .card-body .card-body-upper{
+	height: 75%;
+}
+.field .main-contant-info .card-holder .card-body .card-body-upper .card-body-upper-left{
+	width: 70%;
+	padding-left: 15px;
+}
+.field .main-contant-info .card-holder .card-body .card-body-upper .card-body-upper-left h2{
+	margin: 10px 0px 0px 0px;
+	padding: 0px;
+	font-family: 'Special Elite', sans-serif;
+}
+.field .main-contant-info .card-holder .card-body .card-body-upper .card-body-upper-left p{
+	margin: 0px;
+	font-weight: bold;
+	color: var(--head-vio)
+}
+.field .main-contant-info .card-holder .card-body .card-body-upper .card-body-upper-right{
+	width: 30%;
+	text-align: center;
+	font-size: 25px;
+	padding: 0px;
+}
+.field .main-contant-info .card-holder .card-body .card-body-upper i{
+	margin: 40% 0px;
+}
+.field .main-contant-info .card-holder .card-body .card-body-lower{
+	height: 25%;
+	background: var(--light-gry);
+	padding: 3px 5px;
+	font-size: 12px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	color: #fff;
+}
+.field .main-contant-info .card-holder .card-body .card-body-lower i{
+	margin: auto 0px;
+}
+.field .profile-content{
+	background: var(--white-cl);
+	border-radius: 10px;
+	margin: 20px auto 50px auto;
+	box-shadow: 8px 8px 15px #bbb;
+	padding: 15px;
+}
+.field .profile-content .rec-h{
+	display: flex;
+	flex-direction: column;
+	float: left;
+	margin-bottom: 8px;
+}
+.field .profile-content .rec-h h3, .postCreat .pro-table div h3{
+    color: var(--head-vio);
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+	margin-bottom: 0px;
+}
+.field .profile-content .rec-btn{
+    float: right;
+}
+.field .profile-content .rec-btn button{
+    margin-bottom: 4px;
+}
+.field .profile-content .profile-form{
+    width: 100%;
+    height: auto;
+    color: var(--black-cl);
+    display: flex;
+    flex-direction: row-reverse;
+}
+.field .profile-content .profile-form .left{
+    width: 40%;
+    text-align: center;
+	padding: 20px;
+}
+.field .profile-content .profile-form .left img{
+    width: 60%;
+	height: 230px;
+    border-radius: 50%;
+    margin: 10px 20%;
+    background-color: var(--light-gry);
+    border: 3px solid var(--main1-cl);
+    cursor: pointer;
+}
+.field .profile-content .profile-form .right{
+    width: 60%;
+}
+.field .profile-content .profile-form .right .form-group{
+    width: 80%;
+    margin: 0px 5px;
+}
+.field .profile-content .profile-form .right .form-group textarea{
+    max-height: 120px;
+	min-height: 120px;
+    height: 120px;
+}
+.field .profile-content .profile-form .right .form-group small{
+    text-align: justify;
+}
+.field .profile-content .hiddenProfile{
+	display: none;
+}
 @media only screen and (max-width: 900px){
 	#loginPage .container{
 		grid-template-columns: 1fr;
@@ -568,6 +876,98 @@ form{
 	#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component{
 		height: 75%;
 		max-height: 75%;
+	}
+	main nav .head, main nav .tell{
+		display: none;
+	}
+	main nav .navbar-brand{
+		width: 35%;
+	}
+	main nav .navbar-buttons{
+		width: 65%;
+	}
+	main nav .navbar-buttons .navbar-icons{
+		width: 70%;
+		font-size: 16px;
+	}
+	main nav .navbar-buttons .navbar-profile{
+		width: 30%;
+	}
+	main nav .navbar-buttons .navbar-profile #navBtn{
+		display: block;
+		font-size: 16px;
+		color: #fff;
+		margin: auto 0px;
+	}
+	main .ground .sidenav{
+		display: none;
+		width: 60%;
+		height: 100vh;
+		position: absolute;
+		left: 0;
+		z-index: 99;
+		transition: ease-in-out;
+	}
+	main .ground .sidenav h5{
+		padding: 8px 2px 2px 4px;
+		font-size: 14px;
+	}
+	main .ground .sidenav .sidenav-item{
+		font-size: 12px;
+		padding: 6px 0px;
+	}
+	main .ground .field{
+		width: 100%;
+	}
+	#CalenderPage{
+		position: absolute;
+		top: 7%;
+		right: 20%;
+		width: 250px;
+	}
+	#CalenderPage .flw h4{
+		font-size: 16px;
+	}
+	#CalenderPage .flw i{
+		font-size: 14px;
+	}
+	#CalenderPage #calenderBody ul li,#CalenderPage .calenderRow ul li{
+		font-size: 12px;
+	}
+	#CalenderPage #calenderBody ul li div,#CalenderPage .calenderRow ul li div{
+		width: 34px;
+	}
+	.field .main-contant-info{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+	.field .main-contant-info .card-holder{
+		width: 100%;
+		margin: 10px 0px;
+	}
+	.field .profile-content{
+		width: 90%;
+		margin: 20px 5% 50px 5%;
+	}
+	.field .profile-content .profile-form{
+		display: flex;
+		flex-direction: column;
+	}
+	.field .profile-content .profile-form .left{
+		width: 100%;
+	}
+	.field .profile-content .profile-form .left img{
+		width: 70%;
+		height: 190px;
+		margin: 10px 15%;
+	}
+	.field .profile-content .profile-form .right{
+		width: 100%;
+	}
+	.field .profile-content .profile-form .right .form-group{
+		width: 95%;
+		margin: 0px 2.5px;
 	}
 }
 @media only screen and (min-width: 900px) and (max-width: 1023px){

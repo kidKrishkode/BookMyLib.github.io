@@ -1,4 +1,7 @@
 let interval;
+let nav = 0;
+let currentCalen = 0;
+let currentProfileVision = 0;
 const inputs = document.querySelectorAll(".input");
 function addcl(){
 	let parent = this.parentNode.parentNode;
@@ -72,27 +75,28 @@ function forgotOff(){
 	blbg('forgotPassword',1);
 }
 function login(email,password,captchaIn,captchaOut){
-	if(adminBin.length!=0){
-		if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
-			if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
-				voiceOver("Your details is right, but i am not intersted to give access to your login");
-			}else{
-				if(!validUser(email,password)){
-					voiceOver("Your given userid and password is not vaild!,please write the correct one");
-				}
-				if(!checkCaptch(captchaIn,captchaOut)){
-					voiceOver("Your given captcha is wrong, write this correctly.");
-				}
-				if(loginError>3){
-					voiceOver("Sorry but you are loged more then one time so i am not trust you.");
-				}
-			}
-		}else{
-			voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
-		}
-	}else{
-		voiceOver("Please make your account first!,then login");
-	}
+	enterToMain(captchaIn);
+	// if(adminBin.length!=0){
+	// 	if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
+	// 		if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
+	// 			voiceOver("Your details is right, but i am not intersted to give access to your login");
+	// 		}else{
+	// 			if(!validUser(email,password)){
+	// 				voiceOver("Your given userid and password is not vaild!,please write the correct one");
+	// 			}
+	// 			if(!checkCaptch(captchaIn,captchaOut)){
+	// 				voiceOver("Your given captcha is wrong, write this correctly.");
+	// 			}
+	// 			if(loginError>3){
+	// 				voiceOver("Sorry but you are loged more then one time so i am not trust you.");
+	// 			}
+	// 		}
+	// 	}else{
+	// 		voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
+	// 	}
+	// }else{
+	// 	voiceOver("Please make your account first!,then login");
+	// }
 }
 function loginNameCheck(id){
 	if(document.getElementById(id).value!=''){
@@ -268,4 +272,154 @@ function submitForgot(name,gender,email,color){
 function defaultPassword(id){
 	document.getElementById(id).value = passwordMaker();
 	document.getElementById(id).type = "text";
+}
+function enterToMain(data){
+	document.getElementById("loginPage").style.display = "none";
+	document.getElementById("loading").style.display = "block";
+	document.getElementById("eventId").innerText = document.getElementById(data).value;
+	document.getElementById("navUserDp").src=getUserDp();
+	interval = setInterval(()=>{
+		document.getElementById('navUserDp').onload = function(){
+			document.getElementById("loading").style.display = "none";
+			document.getElementById("main").style.display = "block";
+			clearInterval(interval);
+			interval = 0;
+		};
+	},1000);
+	setTimeout(()=>{
+		if(interval!=0){
+			document.getElementById("loading").style.display = "none";
+			document.getElementById("main").style.display = "block";
+			clearInterval(interval);
+		}
+		pageRoute('homeBtn');
+	},2000);
+}
+function navToggle(){
+	let x = window.matchMedia("(max-width: 900px)");
+	if(x.matches){
+		setTimeout(()=>{
+			if(nav==0){
+				document.querySelector(".sidenav").style.display = "block";
+				unwantedCalenOff();
+				nav=1;
+			}else{
+				document.querySelector(".sidenav").style.display = "none";
+				nav=0
+			}
+		},500);
+	}
+}
+function ChangeTheme(id){
+	if(toggleTheme(id)){
+		if(!getTheme()){
+			voiceOver("Theme change not possible");
+		}
+	}
+}
+function toggleCalender(){
+	if(currentCalen==0){
+		document.getElementById("CalenderPage").style.display = "block";
+		document.getElementById("calenderBody").innerHTML = getCalender();
+		document.getElementById("calenderHead").innerText = getCalenderTime();
+		unwantedNavOff()
+		currentCalen=1;
+	}else{
+		document.getElementById("CalenderPage").style.display = "none";
+		currentCalen=0;
+	}
+}
+function previousMonth(){
+	temp = getPrevMonth();
+	if(temp!=null){
+		document.getElementById("calenderBody").innerHTML = temp;
+		document.getElementById("calenderHead").innerText = getCalenderTime();
+	}else{
+		document.getElementById("calenderBody").innerHTML = "&times; No reponse come for this defected request!";
+		voiceOver("Sorry, Calender not support this request!");
+	}
+	unwantedNavOff();
+}
+function NextMonth(){
+	temp = getNextMonth();
+	if(temp!=null){
+		document.getElementById("calenderBody").innerHTML = temp;
+		document.getElementById("calenderHead").innerText = getCalenderTime();
+	}else{
+		document.getElementById("calenderBody").innerHTML = "&times; No reponse come for this defected request!";
+		voiceOver("Sorry, Calender not support this request!");
+	}
+	unwantedNavOff();
+}
+function unwantedNavOff(){
+	if(nav==1){
+		navToggle();
+	}
+}
+function unwantedCalenOff(){
+	if(currentCalen==1){
+		toggleCalender();
+	}
+}
+function viewPrivateProfile(id){
+	if(currentUser!=0&&crossProfileCheck()){
+		togglePrivateProfile(id);
+	}else{
+		voiceOver("Sorry, But your given details is not matched");
+	}
+}
+function crossProfileCheck(){
+	return true;
+}
+function togglePrivateProfile(id){
+	if(currentProfileVision==0){
+		document.getElementById(id).className = "btn btn-danger reset";
+		document.getElementById(id).innerHTML = "<i class='fa fa-times'></i> Close Private Profile";
+		document.getElementById(id).title = "Close private profile";
+		document.querySelector(".hiddenProfile").style.display = "block";
+		currentProfileVision=1;
+	}else{
+		document.getElementById(id).className = "btn btn-success reset";
+		document.getElementById(id).innerHTML = "<i class='fa fa-eye'></i> View Private Profile";
+		document.getElementById(id).title = "Preview private profile";
+		document.querySelector(".hiddenProfile").style.display = "none";
+		currentProfileVision=0;
+	}
+}
+function profileSetUp(){
+	if(currentUser!=0&&instBin.length!=0){
+		temp = [
+			'prev-profile-img',
+			'prev-profile-name',
+			'prev-profile-gender',
+			'prev-profile-email',
+			'prev-profile-position',
+			'prev-profile-year-start',
+			'prev-profile-year-end',
+			'prev-profile-roll',
+			'prev-profile-password',
+			'prev-profile-userId',
+			'prev-profile-color',
+			'prev-profile-inst',
+			'prev-profile-branch',
+		];
+		document.getElementById(temp[0]).src=currentUser.dp;
+		document.getElementById(temp[1]).value=currentUser.name;
+		document.getElementById(temp[2]).value=currentUser.gender;
+		document.getElementById(temp[3]).value=currentUser.email;
+		document.getElementById(temp[4]).value=currentUser.position;
+		document.getElementById(temp[5]).value=currentUser.year[0];
+		document.getElementById(temp[6]).value=currentUser.year[1];
+		document.getElementById(temp[7]).value=currentUser.position;
+		document.getElementById(temp[8]).value=currentUser.password;
+		document.getElementById(temp[9]).value=currentUser.userid;
+		document.getElementById(temp[10]).value=currentUser.color;
+		document.getElementById(temp[11]).value=instBin[0].name;
+		document.getElementById(temp[12]).value=instBin[0].brunch;
+	}else{
+		voiceOver("Sorry, your details not founded");
+	}
+}
+function editProfile(){
+	voiceOver();
 }

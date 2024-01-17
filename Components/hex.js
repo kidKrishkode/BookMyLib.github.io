@@ -1,4 +1,5 @@
 let currentUser = 0;
+let currentPage = 0;
 let loginError = 0;
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let Timeline = [0,0,0,0,0];
@@ -56,16 +57,35 @@ function authentication(auth1, auth2){
         return false;
     }
 }
-function Bypass(){ //not completed
-   /* loginError = 1;
-    authentication(true,true);*/
-    voiceOver();
+function Bypass(){
+    loginError = 1;
+    adminBin = [{
+        "userid": "",
+        "password": "",
+        "dp": "./images/avater-3.png",
+        "name": "",
+        "position": "",
+        "email": "",
+        "year": ["",""],
+        "gender": "",
+        "color": "",
+        "bin": []
+    }];
+    currentUser = adminBin[0];
+    instBin = [{
+        "name": "",
+        "brunch": "",
+        "address": "",
+        "email": "",
+        "year": ""
+    }];
+    voiceOver("System bypass successful!");
 }
 function getUserDp(){
     if(currentUser!=0){
         return currentUser.dp;
     }else{
-        return './images/default.png';
+        return './images/avater-3.png';
     }
 }
 function getCalender(){
@@ -354,24 +374,32 @@ function avaterMaker(gender){
     }
 }
 function pageRoute(id){
-	if(currentUser!=0&&loginError<3&&adminBin.length!=0){
+	// if(currentUser!=0&&loginError<3&&adminBin.length!=0){
 	    try{
 	        for(let j=0; j<pages.length; j++){
-		        document.getElementById(pages[j]).style.display = "none";
+                if(id!=pages[j].button){
+                    if(currentPage.button!=id&&currentPage!=0){
+                        document.getElementById(pages[j].area).innerHTML = document.querySelector(".field").innerHTML;
+                    }
+                    if(j<10){
+                        document.getElementById(pages[j].button).style.backgroundColor = "var(--white-cl)";
+                    }
+                }else{
+                    document.querySelector(".field").innerHTML = document.getElementById(pages[j].area).innerHTML;
+                    if(j<10){
+                        document.getElementById(pages[j].button).style.backgroundColor = "var(--light-gry)";
+                    }
+                    currentPage = {area: pages[j].area,button: pages[j].button};
+                }
 	        }
-	       document.getElementById(id).style.display = "block";
+            navToggle();
 	    }catch(e){
-		    alert("Error 500!\nPage route is not possible due to the following error. \n",e);
+		    console.error("Error 500!\nPage route is not possible due to the following error. \n",e);
 	    }
-	}else{
-		voiceOver();
-	}
+	// }else{
+	// 	voiceOver();
+	// }
 }
-// if(validateStudentEntry("krish","Male","demo@12gmail.in","HOD",[2021,2025],"#0c8ff0;","@mitra23")==true){
-//     console.log("call");
-// }else{
-//     console.log("...");
-// }
 function pushData(){
     temp = [adminBin,studentBin,teacherBin,bookBin,instBin,settingBin];
     return storeDataBase('BookMyLibInfo',temp);
@@ -447,7 +475,6 @@ function StartBackend(){
     }
     getLocalData(document.body.id);
 }
-// StartBackend();
 function voiceOver(message){
     if(voice==1){
         try{
@@ -494,11 +521,15 @@ function getTheme(){
         return false;
     }
 }
-function toggleTheme(){
+function toggleTheme(id){
     if(theme==0){
         theme=1;
+        document.getElementById(id).className = "fa fa-moon-o";
+        document.getElementById(id).title = "Change into dark theme";
     }else{
         theme=0;
+        document.getElementById(id).className = "fa fa-sun-o";
+        document.getElementById(id).title = "Change into light theme";
     }
     return true;
 }
