@@ -7,6 +7,8 @@
     <meta content="BookMyLib, Online Library Management System provided by kidKrishkode. Free and open source to all for use this LMS prototype for your 
     school, college or university. Terms and condition read carefully first and then use this utility." lang="en-us" name="description">
     <meta content="BookMyLib, Order of Pie, Online, Library System, free, open source, html, css, MIT, kidKrishkode" lang="en-us" name="keywords">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="author" contant="Krishnendu Mitra">
     <title version="1.0">BookMyLib</title>
     <link rel="icon" href="./fav-icon/logo-o-c.png">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
@@ -288,6 +290,289 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
+	<main id="main">
+		<nav class="navbar navbar-dark">
+			<div class="navbar-brand">
+				<img src="./fav-icon/logo-o-c.png" width="30" height="30" class="d-inline-block align-top" alt="logog">
+				<span class="head">{{com.name}}</span><span class="tell"> ({{com.description}})</span>
+			</div>
+			<div class="navbar-buttons flw">
+				<div class="navbar-icons flo">
+					<i class="fa fa-calendar" title="My calender" id="calenderBtn" onclick="toggleCalender();"></i>
+					<i class="fa fa-folder-open-o" title="Backup data" id="backupBtn"></i>
+					<i class="fa fa-bell-o" title="Notification" id="notificationsBtn"></i>
+					<i class="fa fa-moon-o" title="Theme changer" id="themeBtn" onclick="ChangeTheme('themeBtn');"></i>
+				</div>
+				<div class="navbar-profile flo">
+					<i class="fa fa-navicon" title="SidNav controler" id="navBtn" onclick="navToggle();"></i>
+					<img src="./images/avater-3.png" alt="dp" id="navUserDp" title="View profile" onclick="pageRoute('profileBtn')"/>
+				</div>
+			</div>
+		</nav>
+		<div class="ground flw">
+			<section class="sidenav">
+				<div class="navEvent">
+					Event Id: <span id="eventId"></span>
+				</div>
+				<h5>Pages</h5>
+				<div class="sidenav-item flo" id="homeBtn" title="Home page" onclick="pageRoute('homeBtn')">
+					<i class="fa fa-tv"></i>
+					<span>Home</span>
+				</div>
+				<div class="sidenav-item flo" id="profileBtn" title="Profile page" onclick="pageRoute('profileBtn');profileSetUp();">
+					<i class="fa fa-user-o"></i>
+					<span>Profile</span>
+				</div>
+				<h5>Assets</h5>
+				<div class="sidenav-item flo" id="bookBtn" title="Track Books status" onclick="pageRoute('bookBtn')">
+					<i class="fa fa-book"></i>
+					<span>Books</span>
+				</div>
+				<h5>Users</h5>
+				<div class="sidenav-item flo" id="studentBtn" title="Track Students status" onclick="pageRoute('studentBtn')">
+					<i class="fa fa-graduation-cap"></i>
+					<span>Students</span>
+				</div>
+				<div class="sidenav-item flo" id="teacherBtn" title="Track Teachers status" onclick="pageRoute('teacherBtn')">
+					<i class="fa fa-group"></i>
+					<span>Teachers</span>
+				</div>
+				<div class="sidenav-item flo" id="adminBtn" title="Track Admins status" onclick="pageRoute('adminBtn')">
+					<i class="fa fa-user-circle"></i>
+					<span>Admins / Technical stuff</span>
+				</div>
+				<h5>Income</h5>
+				<div class="sidenav-item flo" id="incomeBtn" title="Track Due fees and Payment" onclick="pageRoute('incomeBtn')">
+					<i class="fa fa-money"></i>
+					<span>Payment / Fees</span>
+				</div>
+				<h5>Customize</h5>
+				<div class="sidenav-item flo" id="settingBtn" title="Customize your work station" onclick="pageRoute('settingBtn')">
+					<i class="fa fa-gear"></i>
+					<span>Settings</span>
+				</div>
+				<div class="sidenav-item flo" id="reportBtn" title="Conect to us, email us" onclick="pageRoute('reportBtn')">
+					<i class="fa fa-envelope"></i>
+					<span>Report / FeedBack</span>
+				</div>
+				<h5>Others</h5>
+				<div class="sidenav-item flo" id="aboutBtn" title="Learn about us" onclick="pageRoute('aboutBtn')">
+					<i class="fa fa-compass"></i>
+					<span>About {{com.name}}</span>
+				</div>
+				<div class="sidenav-item flo" id="logoutBtn" title="Bye bye, see you soon">
+					<i class="fa fa-sign-out"></i>
+					<span>Log Out</span>
+				</div>
+			</section>
+			<section class="field">
+				&times; Internet die, No data found!
+			</section>
+		</div>
+	</main>
+	<section id="HomePage">
+		<div class="main-contant-info">
+			<div class="card-holder">
+				<div class="card-body">
+					<div class="card-body-upper flo">
+						<div class="card-body-upper-left">
+							<h2 class="cus-num cus-h" style="color: goldenrod;" id="value1">00</h2>
+							<p>Income</p>
+						</div>
+						<div class="card-body-upper-right" style="color: goldenrod;">
+							<i class="fa fa-rupee"></i>
+						</div>
+					</div>
+					<div class="card-body-lower flw" style="background: goldenrod;">
+						<span>Lorem ipsum dolor sit.</span>
+						<i class="fa fa-check-circle-o"></i>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="card-body-upper flo">
+						<div class="card-body-upper-left">
+							<h2 class="cus-num cus-h" style="color: green" id="value1">00</h2>
+							<p>Use</p>
+						</div>
+						<div class="card-body-upper-right" style="color: green">
+							<i class="fa fa-flask"></i>
+						</div>
+					</div>
+					<div class="card-body-lower flw" style="background: green;">
+						<span>Lorem ipsum dolor sit.</span>
+						<i class="fa fa-check-circle-o"></i>
+					</div>
+				</div>
+			</div>
+			<div class="card-holder">
+				<div class="card-body">
+					<div class="card-body-upper flo">
+						<div class="card-body-upper-left">
+							<h2 class="cus-num cus-h" style="color: red" id="value1">00</h2>
+							<p>Storage</p>
+						</div>
+						<div class="card-body-upper-right" style="color: red">
+							<i class="fa fa-database"></i>
+						</div>
+					</div>
+					<div class="card-body-lower flw" style="background: red;">
+						<span>Lorem ipsum dolor sit.</span>
+						<i class="fa fa-times-circle-o"></i>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="card-body-upper flo">
+						<div class="card-body-upper-left">
+							<h2 class="cus-num cus-h" style="color: blue" id="value1">00</h2>
+							<p>Access</p>
+						</div>
+						<div class="card-body-upper-right" style="color: blue">
+							<i class="fa fa-universal-access"></i>
+						</div>
+					</div>
+					<div class="card-body-lower flw" style="background: blue;">
+						<span>Lorem ipsum dolor sit.</span>
+						<i class="fa fa-check-circle-o"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="ProfilePage">
+		<div class="profile-content container">
+			<div class="pro-table">
+				<div class="recent-table" style="margin-bottom: 20px;">
+					<div class="rec-h">
+						<h3>{{com.name}} Profile (Preview)</h3>
+						<small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, dolore?</small>
+				  	</div>
+				  	<div class="rec-btn">
+						<button class="btn btn-primary reset" onclick="editProfile();" title="Edit profile information"><i class="fa fa-edit"></i> Edit My Profile</button>
+						<button class="btn btn-success reset" onclick="viewPrivateProfile('privateProfileBtn');" id="privateProfileBtn" title="Preview private profile"><i class="fa fa-eye"></i> View Private Profile</button>
+				  	</div>
+				  	<form class="profile-form">
+						<div class="left">
+					  		<img src="./images/avater-1.png" alt="loading.." id="prev-profile-img" aria-describedby="profileHelp">
+					  		<label for="profile-img">Profile Picture</label>
+					  		<small id="profileHelp" class="form-text text-muted">Your Dp may appear around {{com.name}} where you contributed</small>
+						</div>
+						<div class="right">
+					  		<div class="form-group">
+								<lable for="profile-name">Name</lable>
+								<input type="name" class="form-control" id="prev-profile-name" value="loading" aria-describedby="nameHelp" readonly="true"/>
+								<small id="nameHelp" class="form-text text-muted">Your name may appear around {{com.name}} where you contributed or are mentioned</small>
+					  		</div><br>
+							  <div class="form-group">
+								<lable for="profile-gender">Gender</lable>
+								<input type="text" class="form-control" id="prev-profile-gender" value="loading" aria-describedby="genderHelp" readonly="true"/>
+								<small id="genderHelp" class="form-text text-muted">Your gender may appear around {{com.name}} where you contributed or are mentioned</small>
+							</div><br>
+					  		<div class="form-group">
+								<lable for="profile-email">Email</lable>
+								<input type="email" class="form-control" id="prev-profile-email" value="loading" aria-describedby="emailHelp" readonly="true"/>
+								<small id="emailHelp" class="form-text text-muted">This email may appear with you profile and help viewers to conect with you</small>
+					  		</div><br>
+							<div class="form-group">
+								<lable for="profile-position">Job Position</lable>
+								<input type="text" class="form-control" id="prev-profile-position" value="loading" aria-describedby="positionHelp" readonly="true"/>
+								<small id="positionHelp" class="form-text text-muted">Your Job position may appear around {{com.name}} where you contributed or are mentioned</small>
+							</div><br>
+							<div class="form-group">
+								<lable for="profile-year">Year of Work</lable>
+								<input type="text" class="form-control" id="prev-profile-year-start" value="loading" aria-describedby="yearHelp" readonly="true"/>
+								<span>Joining</span>
+								<input type="text" class="form-control" id="prev-profile-year-end" value="loading" aria-describedby="yearHelp" readonly="true"/>
+								<span>Ending</span>
+								<small id="yearHelp" class="form-text text-muted">Specify your work duration by entering both the date of joining and an approximate 
+									ending date. This information is vital for administrators to understand your tenure with precision, helping optimize the runtime 
+									of this web platform. Ensure the provided duration is a positive value and does not exceed 1 to 60 years.</small>
+							</div><br>
+							<div class="form-group">
+								<lable for="profile-roll">Roll/Post</lable>
+								<input type="text" class="form-control" id="prev-profile-roll" value="loading" aria-describedby="rollHelp" readonly="true"/>
+								<small id="rollHelp" class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, eligendi molestiae.</small>
+							</div><br>
+							<label>Contribution &amp; Activity</label>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled" aria-describedby="contributeHelp1" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled" class="from-check-label">Include products on my profile</lable>
+									<small id="contributeHelp1" class="form-text text-muted">Your all products and Contribution overview will show in your profile</small><br>
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled1" aria-describedby="contributeHelp2" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled1" class="from-check-label">Others mention me</lable>
+									<small id="contributeHelp2" class="form-text text-muted">Any one on {{com.name}} can @mention your profile</small>
+								</div><br>
+							<div class="hiddenProfile">
+								<div class="form-group">
+									<lable for="profile-password">Password</lable>
+                    				<input type="text" class="form-control" id="prev-profile-password" value="loading" aria-describedby="passwordHelp" readonly="true"/>
+                    				<small id="passwordHelp" class="form-text text-muted">Your password is generated by the system, ensuring its strength and security. </small>
+								</div><br>
+								<div class="form-group">
+									<lable for="profile-userId">User Id</lable>
+                    				<input type="text" class="form-control" id="prev-profile-userId" value="loading" aria-describedby="userIdHelp" readonly="true"/>
+                    				<small id="userIdHelp" class="form-text text-muted">Your userId is generated by the system, ensuring its strength and security. </small>
+								</div><br>
+								<div class="form-group">
+									<lable for="profile-color">Color</lable>
+                    				<input type="text" class="form-control" id="prev-profile-color" value="loading" aria-describedby="colorHelp" readonly="true"/>
+                    				<small id="colorHelp" class="form-text text-muted">Your color is generated by the system, ensuring its strength and security. </small>
+								</div><br>
+								<label>Profile settings</label>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled2" aria-describedby="profilePublickHelp1" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled2" class="from-check-label">Make my profile publick</lable>
+									<small id="profilePublickHelp1" class="form-text text-muted">Disabling this will hide your profile arround {{com.name}} and where you mentioned in {{com.name}}</small><br>
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled3" aria-describedby="profilePublickHelp2" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled3" class="from-check-label">Show joining time</lable>
+									<small id="profilePublickHelp2" class="form-text text-muted">Your joining time appear as IST format in your profile</small><br>
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled4" aria-describedby="profilePublickHelp3" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled4" class="from-check-label">Include account type</lable>
+									<small id="profilePublickHelp3" class="form-text text-muted">Your account type mentioned in your profile</small>
+								</div><br>
+								<label>Danger settings</label>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled5" aria-describedby="dangerHelp" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled5" class="from-check-label">Don't show security key</lable>
+									<small id="dangerHelp" class="form-text text-muted">Your userid, password, shirt size, alergy status will never show in your profile</small>
+								</div><br>
+							</div>
+							<div class="form-group">
+								<lable for="profile-inst">Institution</lable>
+								<input type="text" class="form-control" id="prev-profile-inst" value="loading" aria-describedby="instHelp" readonly="true"/>
+								<small id="instHelp" class="form-text text-muted">Your joining Institution appear in your profile only</small>
+							</div><br>
+							<div class="form-group">
+								<lable for="profile-branch">Branch</lable>
+								<input type="text" class="form-control" id="prev-profile-branch" value="loading" aria-describedby="branchHelp" readonly="true"/>
+								<small id="branchHelp" class="form-text text-muted">Your profile appear with default {{com.name}}'s Branch</small>
+							</div><br>
+					  		<small class="form-text text-muted">All of the fields on this page are muted and importent but some of them can be updated at any time, and
+								by filling them out, this all the information provided by you and directly manipulated your public profile. Please see our 
+								<o onclick="blbg('privacyPage',0);">Privacy statement</o> to learn more about how we use this information.
+					  		</small><br>
+					  		<button class="btn btn-success" title="Edit your publick profile" onclick="editProfile();" type="reset">Update profile</button>
+						</div>
+				  	</form>
+				</div>
+			</div>
+		</div><br>
+	</section>
+	<section id="CalenderPage">
+		<div class="flw">
+			<h4>My Calender</h4><span><i class="fa fa-info-circle" title="This calender feature, powerd by {{com.founder}}"></i></span>
+		</div>
+		<div class="flw">
+			<i class="fa fa-caret-left" onclick="previousMonth();" title="Go to Previous Month"></i>
+			<span id="calenderHead"></span>
+			<i class="fa fa-caret-right" onclick="NextMonth();" title="Go to Next Month"></i>
+		</div>
+		<div class="calenderRow">
+			<ul><li><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></li></ul>
+		</div>
+		<div id="calenderBody">
+			&times; Internet die, No data found!
 		</div>
 	</section>
 	<div id="loading">
