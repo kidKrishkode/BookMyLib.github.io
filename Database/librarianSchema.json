@@ -8,5 +8,6 @@
       "year": [null,null],
       "gender": null,
       "color": null,
+      "roll": null,
       "bin": [null]
 }

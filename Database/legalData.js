@@ -154,6 +154,19 @@ const legalData = [
         disclaimed by {{com.name}}. We appreciate the cooperation and vigilance of our user community in helping us maintain the 
         integrity and lawful use of our platform.
         </p>
+        <h5>Be aware of Fake:</h5>
+        <p>Be aware of fake systems claiming to be associated with our web platform. As a free and open-source system, some users 
+        may attempt to create their versions using our provided source code. It's important to exercise caution because we cannot 
+        guarantee the authenticity or security of systems modified by third parties. We are not responsible for any issues arising 
+        from the use of unofficial or custom versions of our platform.<br>
+        If users choose to utilize alternative products and encounter problems, it is considered outside our purview. Users should 
+        be cautious when transitioning between our official web platform and any modified systems, as we are not accountable for 
+        potential vulnerabilities or data security breaches that may occur.<br>
+        While we encourage users to explore and modify our source code for educational and personal purposes, we emphasize responsible 
+        use. Users should refrain from creating versions with malicious intent or engaging in activities that may compromise the security 
+        and integrity of our community. It is crucial to ensure that any modifications made using our source code align with ethical and 
+        legal standards.
+        </p>
         <h5>Changes to this Privacy Policy:</h5>
         <p>At {{com.name}}, we are committed to maintaining transparency and ensuring that our users are informed about any changes 
         to our Privacy Policy. As part of our ongoing commitment to privacy and security, we reserve the right to update or modify 
@@ -258,6 +271,50 @@ const legalData = [
         our web design is displayed as intended. We have restricted the desktop vision on mobile devices to prevent any potential 
         vulnerabilities. Users are encouraged to adhere to these recommendations, and it's important to note that {{com.name}} 
         cannot be held responsible for any deviations from these guidelines.
+        </p>
+        <h6>Speaker Active:</h6>
+        <p>Enabling speakers is essential for an optimal user experience on our platform. We assume that users have their device 
+        speakers turned on to receive voice messages and interact with our voice assistant effectively. Many operations within our 
+        system involve voice communication, and having speakers on allows users to receive important information seamlessly.<br>
+        Users who choose not to enable speakers may miss out on voice messages, impacting their understanding of system alerts and 
+        voice-assisted functionalities. While we attempt to send alternative alerts for cases where speakers are off, it may not 
+        cover all scenarios, emphasizing the importance of having speakers on.<br>
+        It's important to note that users are not required to turn on their microphone, as our system does not capture or utilize 
+        user voice or voice commands. This ensures user privacy and security, as no voice data is made public.<br>
+        Users should exercise caution when using modified or fake versions of our platform that request permissions for voice, camera, 
+        or other sensitive features. Unauthorized access to such permissions may pose a security risk, and users are advised to 
+        prioritize their safety and use only legal and trustworthy versions of the platform.        
+        </p>
+        <h6>Local Storage:</h6>
+        <p>Granting permission for local storage is crucial for a seamless experience on our platform. We utilize local storage and 
+        indexed DB to enhance user interactions and provide personalized services. We assume that users allow us access to local 
+        storage and disk space as required by indexed DB operations.<br>
+        If a user chooses not to grant this permission, we respect their decision, although it may impact the functionality of 
+        certain database-related operations. It is the user's responsibility to allow these permissions for optimal use of our 
+        platform features.<br>
+        For users concerned about disk space, we provide an initial small storage limit. As users engage with the platform, they 
+        have the option to increase their storage limit. The process for increasing storage is user-friendly, allowing users to 
+        request and implement larger storage sizes internally within the software.<br>
+        It's important to note that currently, user data is stored internally on their device. Any future updates enabling data 
+        storage on external platforms, such as Google Drive(or any other), will only occur with user consent. We prioritize user 
+        control over their data and ensure transparency about where and how their information is stored.
+        </p>
+        <h6>Backup:</h6>
+        <p>In compliance with our terms and conditions, we highlight the importance of data backup to ensure users have control 
+        over their information and can safeguard it against unforeseen circumstances. Here are the key points:</p>
+        <ul>
+          <li>We store user data locally on their device, emphasizing the necessity for regular backups.</li>
+          <li>Our software provides a utility feature allowing users to generate a text/JSON file as a backup of their data.</li>
+          <li>This feature facilitates sharing data with another trusted device or recovering data from a backup file.</li>
+          <li>Users can easily back up their data, enabling them to store it in a secure location or transfer it to another 
+          device.</li>
+          <li>If a user attempts to restore data from a corrupt backup file, restoration won't be possible, and we disclaim 
+          responsibility for such instances.</li>
+          <li>While users have the flexibility to develop their software using our source code, we use local and indexed DB concepts 
+          for free project development.</li>
+        </ul>
+        <p>We encourage users to leverage this backup feature, enhancing their control over data management and promoting a secure 
+        and efficient user experience.
         </p>
         <h5>Assumption:</h5>
         <p>At {{com.name}}, certain assumptions are made to facilitate a smoother user experience and to establish a transparent 
