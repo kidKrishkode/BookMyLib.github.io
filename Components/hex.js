@@ -60,24 +60,25 @@ function authentication(auth1, auth2){
 function Bypass(){
     loginError = 1;
     adminBin = [{
-        "userid": "",
-        "password": "",
+        "userid": "BK-2408-01",
+        "password": "@Mitra2003",
         "dp": "./images/avater-3.png",
-        "name": "",
-        "position": "",
-        "email": "",
-        "year": ["",""],
-        "gender": "",
-        "color": "",
+        "name": "Krish",
+        "position": "HOD",
+        "email": "krish@gmail.in",
+        "year": ["2012-02-05","2402-09-05"],
+        "gender": "Male",
+        "color": "#0c8ff0",
+        "roll": "Super Admin",
         "bin": []
     }];
     currentUser = adminBin[0];
     instBin = [{
-        "name": "",
-        "brunch": "",
-        "address": "",
-        "email": "",
-        "year": ""
+        "name": "PKDV",
+        "brunch": "Krishnapur",
+        "address": "404 no road",
+        "email": "pkdv@yahoo.com",
+        "year": "2019"
     }];
     voiceOver("System bypass successful!");
 }

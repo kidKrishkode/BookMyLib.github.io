@@ -574,6 +574,9 @@ main .ground .field{
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
+main .ground .sidenavFade{
+	display: none;
+}
 main .ground .sidenav .navEvent{
 	color: var(--head-vio);
 	padding: 5px;
@@ -806,6 +809,25 @@ main .ground .sidenav .sidenav-item span{
 .field .profile-content .hiddenProfile{
 	display: none;
 }
+#authenticateModal #recipient-captcha-in{
+    border-radius: 5px;
+    background-image: url('../images/haze.png');
+    background-size: cover;
+    color: #262626!important;
+    font-size: 16px;
+    text-decoration: line-through;
+    letter-spacing: 15px;
+    font-family: fantasy;
+    text-align: center;
+	outline: none;
+    overflow: hidden;
+}
+#authenticateModal .flo{
+	height: 40px;
+}
+#authenticateModal .modal-dialog {
+    margin: 3.75rem auto;
+}
 @media only screen and (max-width: 900px){
 	#loginPage .container{
 		grid-template-columns: 1fr;
@@ -899,6 +921,14 @@ main .ground .sidenav .sidenav-item span{
 		color: #fff;
 		margin: auto 0px;
 	}
+	main .ground .sidenavFade{
+		width: 44%;
+		height: 100vh;
+		background: transparent;
+		position: absolute;
+		right: 0;
+		z-index: 99;
+	}
 	main .ground .sidenav{
 		display: none;
 		width: 60%;
@@ -968,6 +998,10 @@ main .ground .sidenav .sidenav-item span{
 	.field .profile-content .profile-form .right .form-group{
 		width: 95%;
 		margin: 0px 2.5px;
+	}
+	#authenticateModal #recipient-captcha-in{
+		font-size: 14px;
+		letter-spacing: 12px;
 	}
 }
 @media only screen and (min-width: 900px) and (max-width: 1023px){

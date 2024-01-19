@@ -25,7 +25,7 @@ function user(){
 			clearInterval(interval);
 			interval = 0;
 		};
-	},2000);
+	},1500);
 	setTimeout(()=>{
 		if(interval!=0){
 			document.getElementById("loading").style.display = "none";
@@ -33,7 +33,7 @@ function user(){
 			clearInterval(interval);
 		}
 		getCaptch("mainCaptcha");
-	},4000);
+	},3000);
 	setTimeout(() => {
         document.querySelector('.loader').classList.add('restart-animation');
         setTimeout(() => {
@@ -45,10 +45,11 @@ function user(){
 	if(window.location.protocol!="file:"||window.location.hostname!=""||window.location.protocol=="https:"){
 		StartBackend();
 	}
+	Bypass();
 }
-function newCaptcha(){
-	getCaptch("mainCaptcha");
-	let spin = document.getElementById('spiner');
+function newCaptcha(id1,id2){
+	getCaptch(id1);
+	let spin = document.getElementById(id2);
 	if(!spin.classList.contains('animatedSpine')){
 		spin.classList.add('animatedSpine');
 		spin.addEventListener('animationend',()=>{
@@ -301,10 +302,12 @@ function navToggle(){
 		setTimeout(()=>{
 			if(nav==0){
 				document.querySelector(".sidenav").style.display = "block";
+				document.querySelector(".sidenavFade").style.display = "block";
 				unwantedCalenOff();
 				nav=1;
 			}else{
 				document.querySelector(".sidenav").style.display = "none";
+				document.querySelector(".sidenavFade").style.display = "none";
 				nav=0
 			}
 		},500);
@@ -362,19 +365,37 @@ function unwantedCalenOff(){
 	}
 }
 function viewPrivateProfile(id){
-	if(currentUser!=0&&crossProfileCheck()){
+	unwantedCalenOff();
+	unwantedNavOff();
+	authRecheck(0,`varlidateViewPrivateProfile('${id}')`);
+}
+function varlidateViewPrivateProfile(id){
+	if(crossProfileCheck()&&currentUser!=0){
+		voiceOver("Request accepted, Private profile is open!");
+		authRecheck(1);
 		togglePrivateProfile(id);
 	}else{
 		voiceOver("Sorry, But your given details is not matched");
 	}
 }
 function crossProfileCheck(){
-	return true;
+	if(
+		document.getElementById('recipient-pass').value == currentUser.password &&
+		document.getElementById('recipient-captcha-in').value == document.getElementById('recipient-captcha-out').value
+	){
+		document.getElementById('recipient-pass').style.border = "2px solid #28a745";
+		document.getElementById('recipient-captcha-out').style.border = "2px solid #28a745";
+		return true;
+	}else{
+		document.getElementById('recipient-pass').style.border = "2px solid #dc3545";
+		document.getElementById('recipient-captcha-out').style.border = "2px solid #dc3545";
+		return false;
+	}
 }
 function togglePrivateProfile(id){
 	if(currentProfileVision==0){
 		document.getElementById(id).className = "btn btn-danger reset";
-		document.getElementById(id).innerHTML = "<i class='fa fa-times'></i> Close Private Profile";
+		document.getElementById(id).innerHTML = "<i class='fa fa-eye-slash'></i> Close Private Profile";
 		document.getElementById(id).title = "Close private profile";
 		document.querySelector(".hiddenProfile").style.display = "block";
 		currentProfileVision=1;
@@ -389,37 +410,118 @@ function togglePrivateProfile(id){
 function profileSetUp(){
 	if(currentUser!=0&&instBin.length!=0){
 		temp = [
+			'prev-profile-userId',
+			'prev-profile-password',
 			'prev-profile-img',
 			'prev-profile-name',
-			'prev-profile-gender',
-			'prev-profile-email',
 			'prev-profile-position',
-			'prev-profile-year-start',
-			'prev-profile-year-end',
+			'prev-profile-email',
+			['prev-profile-year-start','prev-profile-year-end'],
+			'prev-profile-gender',
+			'prev-profile-color',//0 to 8, 1 to 9
 			'prev-profile-roll',
-			'prev-profile-password',
-			'prev-profile-userId',
-			'prev-profile-color',
 			'prev-profile-inst',
 			'prev-profile-branch',
 		];
-		document.getElementById(temp[0]).src=currentUser.dp;
-		document.getElementById(temp[1]).value=currentUser.name;
-		document.getElementById(temp[2]).value=currentUser.gender;
-		document.getElementById(temp[3]).value=currentUser.email;
-		document.getElementById(temp[4]).value=currentUser.position;
-		document.getElementById(temp[5]).value=currentUser.year[0];
-		document.getElementById(temp[6]).value=currentUser.year[1];
-		document.getElementById(temp[7]).value=currentUser.position;
-		document.getElementById(temp[8]).value=currentUser.password;
-		document.getElementById(temp[9]).value=currentUser.userid;
-		document.getElementById(temp[10]).value=currentUser.color;
-		document.getElementById(temp[11]).value=instBin[0].name;
-		document.getElementById(temp[12]).value=instBin[0].brunch;
+		let j=0;
+		for(const value of Object.values(currentUser)){
+			if(j==2){
+				document.getElementById(temp[j]).src = value;
+			}else if(j==6){
+				document.getElementById(temp[6][0]).value = value[0];
+				document.getElementById(temp[6][1]).value = value[1];
+			}else if(j==10){
+				//History 
+			}else{
+				document.getElementById(temp[j]).value = value;
+			}
+			// document.getElementById(temp[j]).style.border = "1px solid #ced4da";
+			j++;
+		}
+		document.getElementById(temp[10]).value=instBin[0].name;
+		document.getElementById(temp[11]).value=instBin[0].brunch;
 	}else{
 		voiceOver("Sorry, your details not founded");
 	}
 }
 function editProfile(){
-	voiceOver();
+	unwantedCalenOff();
+	unwantedNavOff();
+	if(currentProfileVision==1){
+		varlidateEditProfile();
+	}else{
+		authRecheck(0,'varlidateEditProfile()');
+	}
+}
+function varlidateEditProfile(){
+	if(crossProfileCheck()&&currentUser!=0){
+		voiceOver("Request accepted, Edit mode is on now!");
+		authRecheck(1);
+		togglePrivateProfile('privateProfileBtn');
+		toggleProfileMode(0);
+		document.querySelector(".rec-btn").innerHTML = 
+		`<button class="btn btn-success reset" onclick="voiceOver();" title="Save the profile information" id="editProfileBtn" data-toggle="modal" data-target="#authenticateModal" data-whatever="@"><i class="fa fa-smile-o"></i> Save Change</button>
+		<button class="btn btn-danger reset" onclick="discardProfileChange();" id="privateProfileBtn" title="Cancel all changes"><i class="fa fa-times"></i> Discard Changes</button>`;
+	}else{
+		voiceOver("Sorry, But your given details is not matched");
+	}
+}
+function toggleProfileMode(data){
+	temp = [
+		'prev-profile-password',
+		'prev-profile-name',
+		'prev-profile-position',
+		'prev-profile-email',
+		'prev-profile-year-start',
+		'prev-profile-year-end',
+		'prev-profile-gender',
+		'prev-profile-color',
+		'prev-profile-inst',
+		'prev-profile-branch',
+	];
+	if(data==0){
+		for(let i=0; i<temp.length; i++){
+			if(i>=[temp.length-2]&&currentUser.roll=='Super Admin'){
+				document.getElementById(temp[i]).readOnly=false;
+			}else{
+				document.getElementById(temp[i]).readOnly=false;
+			}
+		}
+		document.getElementById(temp[2]).disabled=false;
+		document.getElementById(temp[6]).disabled=false;
+	}else{
+		for(let i=0; i<temp.length; i++){
+			document.getElementById(temp[i]).readOnly=true;
+		}
+		document.getElementById(temp[2]).disabled=true;
+		document.getElementById(temp[6]).disabled=true;
+	}
+}
+function discardProfileChange(){
+	toggleProfileMode(1);
+	profileSetUp();
+	document.querySelector(".rec-btn").innerHTML = 
+	`<button class="btn btn-primary reset" onclick="editProfile();" title="Edit profile information" id="editProfileBtn" data-toggle="modal" data-target="#authenticateModal" data-whatever="@"><i class="fa fa-edit"></i> Edit My Profile</button>
+	<button class="btn btn-success reset" onclick="viewPrivateProfile('privateProfileBtn');" id="privateProfileBtn" title="Preview private profile"><i class="fa fa-eye"></i> View Private Profile</button>`;
+	togglePrivateProfile('privateProfileBtn');
+	voiceOver("Apologies accepted, cancel change");
+}
+function authRecheck(data,fun){
+	if(data==0){
+		document.querySelector(".modal").style.display = "block";
+		document.querySelector(".modal-dialog").style.display = "block";
+		document.querySelector(".modal-content").style.display = "block";
+		document.getElementById("authenticateModal").style.opacity = "1";
+		newCaptcha('recipient-captcha-in','newSpiner');
+		document.getElementById("model-btn").innerHTML=`<button type="button" class="btn btn-success" title="Submit the above details" onclick=${fun}>Submit</button>`;
+	}else{
+		document.querySelector(".modal").style.display = "none";
+		document.querySelector(".modal-dialog").style.display = "none";
+		document.querySelector(".modal-content").style.display = "none";
+		document.getElementById("authenticateModal").style.opacity = "0";
+		document.getElementById('recipient-pass').value = "";
+		document.getElementById('recipient-captcha-out').value = "";
+		document.getElementById('recipient-pass').style.border = " 1px solid #ced4da";
+		document.getElementById('recipient-captcha-out').style.border = " 1px solid #ced4da";
+	}
 }
