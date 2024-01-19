@@ -57,7 +57,7 @@
 					<div class="captcha">
 						<div class="flo">
 							<input type="captcha" id="mainCaptcha" readonly/>
-							<div class="btn refresh-btn" onclick="newCaptcha();"title="Refresh the captcha"><i class="fa fa-refresh"id="spiner"></i></div>
+							<div class="btn refresh-btn" onclick="newCaptcha('mainCaptcha','spiner');"title="Refresh the captcha"><i class="fa fa-refresh"id="spiner"></i></div>
 						</div>
 			  		</div>
 					<div class="input-div">
@@ -367,6 +367,7 @@
 					<span>Log Out</span>
 				</div>
 			</section>
+			<div class="sidenavFade"></div>
 			<section class="field">
 				&times; Internet die, No data found!
 			</section>
@@ -449,7 +450,7 @@
 						<small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, dolore?</small>
 				  	</div>
 				  	<div class="rec-btn">
-						<button class="btn btn-primary reset" onclick="editProfile();" title="Edit profile information"><i class="fa fa-edit"></i> Edit My Profile</button>
+						<button class="btn btn-primary reset" onclick="editProfile();" title="Edit profile information" id="editProfileBtn" data-toggle="modal" data-target="#authenticateModal" data-whatever="@"><i class="fa fa-edit"></i> Edit My Profile</button>
 						<button class="btn btn-success reset" onclick="viewPrivateProfile('privateProfileBtn');" id="privateProfileBtn" title="Preview private profile"><i class="fa fa-eye"></i> View Private Profile</button>
 				  	</div>
 				  	<form class="profile-form">
@@ -461,29 +462,45 @@
 						<div class="right">
 					  		<div class="form-group">
 								<lable for="profile-name">Name</lable>
-								<input type="name" class="form-control" id="prev-profile-name" value="loading" aria-describedby="nameHelp" readonly="true"/>
+								<input type="name" class="form-control" id="prev-profile-name" value="loading" aria-describedby="nameHelp" readonly="true" onkeyup="loginNameCheck('prev-profile-name');"/>
 								<small id="nameHelp" class="form-text text-muted">Your name may appear around {{com.name}} where you contributed or are mentioned</small>
 					  		</div><br>
 							  <div class="form-group">
 								<lable for="profile-gender">Gender</lable>
-								<input type="text" class="form-control" id="prev-profile-gender" value="loading" aria-describedby="genderHelp" readonly="true"/>
+								<select class="form-control" id="prev-profile-gender" aria-describedby="genderHelp" disabled onchange="loginSelectionCheck('prev-profile-gender');">
+									<option>Male</option>
+									<option>Female</option>
+									<option>Others</option>
+								</select>
 								<small id="genderHelp" class="form-text text-muted">Your gender may appear around {{com.name}} where you contributed or are mentioned</small>
 							</div><br>
 					  		<div class="form-group">
 								<lable for="profile-email">Email</lable>
-								<input type="email" class="form-control" id="prev-profile-email" value="loading" aria-describedby="emailHelp" readonly="true"/>
+								<input type="email" class="form-control" id="prev-profile-email" value="loading" aria-describedby="emailHelp" readonly="true" onkeyup="userIdEmailCheck('prev-profile-email');"/>
 								<small id="emailHelp" class="form-text text-muted">This email may appear with you profile and help viewers to conect with you</small>
 					  		</div><br>
 							<div class="form-group">
 								<lable for="profile-position">Job Position</lable>
-								<input type="text" class="form-control" id="prev-profile-position" value="loading" aria-describedby="positionHelp" readonly="true"/>
+								<select class="form-control" id="prev-profile-position" aria-describedby="positionHelp" disabled onchange="loginSelectionCheck('prev-profile-position');">
+									<option>Assistent of Librarian</option>
+									<option>Assistent of Principle</option>
+									<option>Assistent of Professor</option>
+									<option>Din</option>
+									<option>HOD</option>
+									<option>Librarian</option>
+									<option>Principle</option>
+									<option>Professor</option>
+									<option>Super Visior</option>
+									<option>Teacher</option>
+									<option>Technical Support</option>
+								</select>
 								<small id="positionHelp" class="form-text text-muted">Your Job position may appear around {{com.name}} where you contributed or are mentioned</small>
 							</div><br>
 							<div class="form-group">
 								<lable for="profile-year">Year of Work</lable>
-								<input type="text" class="form-control" id="prev-profile-year-start" value="loading" aria-describedby="yearHelp" readonly="true"/>
+								<input type="date" class="form-control" id="prev-profile-year-start" value="1947-08-15" aria-describedby="yearHelp" readonly="true" onchange="loginJoinCheck('prev-profile-year-start');"/>
 								<span>Joining</span>
-								<input type="text" class="form-control" id="prev-profile-year-end" value="loading" aria-describedby="yearHelp" readonly="true"/>
+								<input type="date" class="form-control" id="prev-profile-year-end" value="1947-08-15" aria-describedby="yearHelp" readonly="true" onchange="loginEndingCheck('prev-profile-year-start','prev-profile-year-end');"/>
 								<span>Ending</span>
 								<small id="yearHelp" class="form-text text-muted">Specify your work duration by entering both the date of joining and an approximate 
 									ending date. This information is vital for administrators to understand your tenure with precision, helping optimize the runtime 
@@ -516,7 +533,7 @@
 								</div><br>
 								<div class="form-group">
 									<lable for="profile-color">Color</lable>
-                    				<input type="text" class="form-control" id="prev-profile-color" value="loading" aria-describedby="colorHelp" readonly="true"/>
+                    				<input type="color" class="form-control" id="prev-profile-color" value="#000000" aria-describedby="colorHelp" readonly="true"/>
                     				<small id="colorHelp" class="form-text text-muted">Your color is generated by the system, ensuring its strength and security. </small>
 								</div><br>
 								<label>Profile settings</label>
@@ -552,13 +569,47 @@
 								by filling them out, this all the information provided by you and directly manipulated your public profile. Please see our 
 								<o onclick="blbg('privacyPage',0);">Privacy statement</o> to learn more about how we use this information.
 					  		</small><br>
-					  		<button class="btn btn-success" title="Edit your publick profile" onclick="editProfile();" type="reset">Update profile</button>
+					  		<div class="btn btn-success" title="Download my profile in text file" onclick="download('ProfilePage','{{com.name}} my profile','txt');"><i class="fa fa-download"></i> Download My Profile</div>
 						</div>
 				  	</form>
 				</div>
 			</div>
 		</div><br>
 	</section>
+	<div class="modal fade" id="authenticateModal" tabindex="-1" role="dialog" aria-labelledby="authenticateModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="authenticateModalLabel">User Authentication</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="authRecheck(1);">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <form>
+				<div class="form-group">
+				  <label for="message-text" class="col-form-label">Password:</label>
+				  <input type="password" class="form-control" id="recipient-pass" placeholder="Please Enter Your Password"/>
+				</div>
+				<label for="recipient-name" class="col-form-label">Captcha:</label>
+				<div class="flo">
+					<div class="form-group">
+						<input type="text" class="form-control" id="recipient-captcha-in" readonly/>
+					</div>
+					<div class="btn btn-primary" onclick="newCaptcha('recipient-captcha-in','newSpiner');" title="Refresh the captcha"><i class="fa fa-refresh"id="newSpiner"></i></div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="recipient-captcha-out" placeholder="Please Enter the Captcha"/>
+					</div>
+				</div>
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="authRecheck(1);" title="Close this model">Close</button>
+			  <span id="model-btn"><button type="button" class="btn btn-success" title="Submit the above details" onclick="crossProfileCheck();">Submit</button></span>
+			</div>
+		  </div>
+		</div>
+	</div>
 	<section id="CalenderPage">
 		<div class="flw">
 			<h4>My Calender</h4><span><i class="fa fa-info-circle" title="This calender feature, powerd by {{com.founder}}"></i></span>
@@ -599,3 +650,37 @@
 <script>
 </script>
 </html>
+<!--
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticateModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticateModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticateModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<div class="modal fade" id="authenticateModal" tabindex="-1" role="dialog" aria-labelledby="authenticateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="authenticateModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
