@@ -358,7 +358,7 @@ form{
 	z-index: 99;
 	position: fixed;
 }
-#signupPage,#successSignUp,#forgotPassword,#privacyPage,#licensePage{
+#signupPage,#successSignUp,#forgotPassword,#privacyPage,#licensePage,#dpSelectPage{
 	display: none;
 	width: 50%;
 	height: calc(100% - 40px);
@@ -374,7 +374,7 @@ form{
 	z-index: 100;
 	overflow: hidden;
 }
-#signupPage .head,#forgotPassword .head,#privacyPage .head,#licensePage .head{
+#signupPage .head,#forgotPassword .head,#privacyPage .head,#licensePage .head,#dpSelectPage .head{
 	width: 100%;
 	height: 100px;
 	background-image: linear-gradient(54deg,rgba(12,141,240,0.8),rgba(0,255,255,0.8)), url('../images/Pen&ink.png');
@@ -383,7 +383,7 @@ form{
 	clip-path: polygon(100% 0%, 100% 77%, 50% 100%, 0% 75%, 0 0);
 	position: relative;
 }
-#signupPage .head:before,#forgotPassword .head:before,#privacyPage .head:before,#licensePage .head:before{
+#signupPage .head:before,#forgotPassword .head:before,#privacyPage .head:before,#licensePage .head:before,#dpSelectPage .head:before{
 	content: " ";
 	position: absolute;
 	top: 0%;
@@ -400,7 +400,7 @@ form{
 #licensePage .head{
 	background-image: linear-gradient(54deg,rgba(12,141,240,0.8),rgba(0,255,255,0.8)), url('../images/libra.png');
 }
-#signupPage .title,#forgotPassword .title,#privacyPage .title,#licensePage .title{
+#signupPage .title,#forgotPassword .title,#privacyPage .title,#licensePage .title,#dpSelectPage .title{
 	text-align: center;
 	font-weight: bold;
 	font-family: sans-serif;
@@ -408,24 +408,24 @@ form{
 	margin: 4px 0px;
 	/* height: auto; */
 }
-#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component{
+#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component,#dpSelectPage .component{
 	width: 100%;
 	padding: 4px 2px;
 	height: 540px;
 	max-height: 540px;
 	overflow-y: scroll;
 }
-#signupPage .component .form-group,#forgotPassword .component .form-group,#privacyPage .component .form-group,#licensePage .component .form-group{
+#signupPage .component .form-group,#forgotPassword .component .form-group,#privacyPage .component .form-group,#licensePage .component .form-group,#dpSelectPage .component .form-group{
 	width: 100%;
 	padding: 2px;
 }
-#signupPage .component .form-group lable,#forgotPassword .component .form-group lable{
+#signupPage .component .form-group lable,#forgotPassword .component .form-group lable,#dpSelectPage .component .form-group lable{
 	font-size: 20px;
 	font-weight: bold;
 	font-family: 'Poppins', sans-serif;
 	color: var(--head-vio);
 }
-#signupPage .component .form-group input,#signupPage .component .form-group select,#forgotPassword .component .form-group input,#forgotPassword .component .form-group select{
+#signupPage .component .form-group input,#signupPage .component .form-group select,#forgotPassword .component .form-group input,#forgotPassword .component .form-group select,#dpSelectPage .component .form-group input{
 	width: 100%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
@@ -443,7 +443,7 @@ form{
 #signupPage .component .form-group input::placeholder{
 	text-transform: capitalize;
 }
-#signupPage .component .form-group small,#successSignUp p,#forgotPassword .component .form-group small,#privacyPage .component .form-group p,#licensePage .component .form-group p{
+#signupPage .component .form-group small,#successSignUp p,#forgotPassword .component .form-group small,#privacyPage .component .form-group p,#licensePage .component .form-group p,#dpSelectPage .component .form-group p,#dpSelectPage .component .form-group small{
 	color: var(--light-gry);
 	margin-left: 5px;
 	text-align: justify;
@@ -615,6 +615,13 @@ main .ground .sidenav .sidenav-item i{
 main .ground .sidenav .sidenav-item span{
 	width: 80%;
 	text-transform: capitalize;
+}
+main .ground .sidenav .sidenav-item .dropdown-menu{
+    position: absolute;
+    top: -500%;
+    left: 180;
+    z-index: 1000;
+    display: none;
 }
 #HomePage,#ProfilePage{
 	display: none;
@@ -825,8 +832,33 @@ main .ground .sidenav .sidenav-item span{
 #authenticateModal .flo{
 	height: 40px;
 }
-#authenticateModal .modal-dialog {
+#authenticateModal .modal-dialog{
     margin: 3.75rem auto;
+}
+#dpSelectPage .container .component .form-group .image-flx{
+	width: 100%;
+	display: table;
+}
+#dpSelectPage .container .component .form-group .image-flx img{
+	position: relative;
+	width: calc(100% / 5);
+	border: 2px solid var(--light-gry);
+}
+#dpSelectPage .container .component .form-group .image-flx img:hover,#dpSelectPage .container .component .form-group .image-flx input:hover{
+	border: 2px solid yellow;
+	box-shadow: 0px 0px 10px 2px orange;
+	cursor: pointer;
+}
+#dpSelectPage .container .component .form-group .image-flx input{
+	width: calc(100% / 5);
+	height: 140px;
+	margin: 0;
+	z-index: 98;
+	position: relative;
+	top: -138;
+    left: 60%;
+	padding: 0;
+	opacity: 0;
 }
 @media only screen and (max-width: 900px){
 	#loginPage .container{
@@ -884,18 +916,18 @@ main .ground .sidenav .sidenav-item span{
 	#loading h6{
 		margin-top: 98%;
 	}
-	#signupPage,#successSignUp,#forgotPassword,#privacyPage,#licensePage{
+	#signupPage,#successSignUp,#forgotPassword,#privacyPage,#licensePage,#dpSelectPage{
 		width: 90%;
 		height: calc(100% - 40px);
 		margin: 20px 5%;
 	}
-	#signupPage .head,#forgotPassword .head,#privacyPage .head,#licensePage .head{
+	#signupPage .head,#forgotPassword .head,#privacyPage .head,#licensePage .head,#dpSelectPage .head{
 		height: 15%;
 	}
-	#signupPage .title,#forgotPassword .title,#privacyPage .title,#licensePage .title{
+	#signupPage .title,#forgotPassword .title,#privacyPage .title,#licensePage .title,#dpSelectPage .title{
 		font-size: 28px;
 	}
-	#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component{
+	#signupPage .component,#forgotPassword .component,#privacyPage .component,#licensePage .component,#dpSelectPage .component{
 		height: 75%;
 		max-height: 75%;
 	}
@@ -927,7 +959,7 @@ main .ground .sidenav .sidenav-item span{
 		background: transparent;
 		position: absolute;
 		right: 0;
-		z-index: 99;
+		z-index: 98;
 	}
 	main .ground .sidenav{
 		display: none;
@@ -1003,6 +1035,21 @@ main .ground .sidenav .sidenav-item span{
 		font-size: 14px;
 		letter-spacing: 12px;
 	}
+	main .ground .sidenav .sidenav-item .dropdown-menu{
+		position: absolute;
+		top: -500%;
+    	left: 150;
+	}
+	#dpSelectPage .container .component .form-group .image-flx img{
+		width: calc(100% / 3);
+	}
+	#dpSelectPage .container .component .form-group .image-flx input{
+		width: calc(100% / 3);
+		height: 100px;
+    	position: relative;
+    	top: -98;
+    	left: 67%;
+}
 }
 @media only screen and (min-width: 900px) and (max-width: 1023px){
   body{

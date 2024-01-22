@@ -62,7 +62,7 @@ function Bypass(){
     adminBin = [{
         "userid": "BK-2408-01",
         "password": "@Mitra2003",
-        "dp": "./images/avater-3.png",
+        "dp": "./images/unkown.png",
         "name": "Krish",
         "position": "HOD",
         "email": "krish@gmail.in",
@@ -80,7 +80,7 @@ function Bypass(){
         "email": "pkdv@yahoo.com",
         "year": "2019"
     }];
-    voiceOver("System bypass successful!");
+    // voiceOver("Once again, System bypass successful!");
 }
 function getUserDp(){
     if(currentUser!=0){
@@ -533,6 +533,38 @@ function toggleTheme(id){
         document.getElementById(id).title = "Change into light theme";
     }
     return true;
+}
+function displaySelectedImage(event, elementId){
+    const selectedImage = document.getElementById(elementId);
+    const fileInput = event.target;
+    if(fileInput.files && fileInput.files[0]){
+        if(fileInput.files[0].type.startsWith('image/')){
+            const reader = new FileReader();
+            reader.onload = function(e){
+                selectedImage.src = e.target.result;
+                profilePathDisplay(selectedImage.src);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }else{
+            voiceOver("Sorry, But selected file is not an image.");
+        }
+    }
+}
+function isValidImageLink(id){
+	const imageLinkInput = document.getElementById(id);
+    if(imageLinkInput && imageLinkInput.value.trim() !== ""){
+        const imageLink = imageLinkInput.value;
+        const hostedImageRegex = /^(https?:\/\/).+\.(png|jpg|jpeg|gif|bmp|svg)$/i;
+        const dataImageRegex = /^data:image\/(png|jpg|jpeg|gif|bmp|svg);base64,/;
+        const localImageRegex = /^\.?\/(?:.+\/)*.+\.(png|jpg|jpeg|gif|bmp|svg)$/i;
+        if(hostedImageRegex.test(imageLink) || dataImageRegex.test(imageLink) || localImageRegex.test(imageLink)){
+            return true;
+        }else{
+            voiceOver("Invalid image link");
+            return false;
+        }
+    }
+
 }
 function popEntry(n,target){
 	if(n==0){

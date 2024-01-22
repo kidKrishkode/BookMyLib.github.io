@@ -325,7 +325,8 @@ function toggleCalender(){
 		document.getElementById("CalenderPage").style.display = "block";
 		document.getElementById("calenderBody").innerHTML = getCalender();
 		document.getElementById("calenderHead").innerText = getCalenderTime();
-		unwantedNavOff()
+		unwantedNavOff();
+		dropdownMenu('aboutMenu',1);
 		currentCalen=1;
 	}else{
 		document.getElementById("CalenderPage").style.display = "none";
@@ -342,6 +343,7 @@ function previousMonth(){
 		voiceOver("Sorry, Calender not support this request!");
 	}
 	unwantedNavOff();
+	dropdownMenu('aboutMenu',1);
 }
 function NextMonth(){
 	temp = getNextMonth();
@@ -353,6 +355,7 @@ function NextMonth(){
 		voiceOver("Sorry, Calender not support this request!");
 	}
 	unwantedNavOff();
+	dropdownMenu('aboutMenu',1);
 }
 function unwantedNavOff(){
 	if(nav==1){
@@ -367,7 +370,13 @@ function unwantedCalenOff(){
 function viewPrivateProfile(id){
 	unwantedCalenOff();
 	unwantedNavOff();
-	authRecheck(0,`varlidateViewPrivateProfile('${id}')`);
+	dropdownMenu('aboutMenu',1);
+	if(currentProfileVision==0){
+		authRecheck(0,`varlidateViewPrivateProfile('${id}')`);
+	}else{
+		voiceOver("Request accepted, Private profile is open!");
+		togglePrivateProfile(id);
+	}
 }
 function varlidateViewPrivateProfile(id){
 	if(crossProfileCheck()&&currentUser!=0){
@@ -422,6 +431,9 @@ function profileSetUp(){
 			'prev-profile-roll',
 			'prev-profile-inst',
 			'prev-profile-branch',
+			'prev-profile-address',
+			'prev-profile-contact',
+			'prev-profile-estd'
 		];
 		let j=0;
 		for(const value of Object.values(currentUser)){
@@ -430,16 +442,21 @@ function profileSetUp(){
 			}else if(j==6){
 				document.getElementById(temp[6][0]).value = value[0];
 				document.getElementById(temp[6][1]).value = value[1];
+				document.getElementById(temp[6][0]).style.border = "1px solid #ced4da";
+				document.getElementById(temp[6][1]).style.border = "1px solid #ced4da";
 			}else if(j==10){
 				//History 
 			}else{
 				document.getElementById(temp[j]).value = value;
+				document.getElementById(temp[j]).style.border = "1px solid #ced4da";
 			}
-			// document.getElementById(temp[j]).style.border = "1px solid #ced4da";
 			j++;
 		}
-		document.getElementById(temp[10]).value=instBin[0].name;
-		document.getElementById(temp[11]).value=instBin[0].brunch;
+		j=10;
+		for(const value of Object.values(instBin[0])){
+			document.getElementById(temp[j]).value=value;
+			j++;
+		}
 	}else{
 		voiceOver("Sorry, your details not founded");
 	}
@@ -447,11 +464,8 @@ function profileSetUp(){
 function editProfile(){
 	unwantedCalenOff();
 	unwantedNavOff();
-	if(currentProfileVision==1){
-		varlidateEditProfile();
-	}else{
-		authRecheck(0,'varlidateEditProfile()');
-	}
+	dropdownMenu('aboutMenu',1);
+	authRecheck(0,'varlidateEditProfile()');
 }
 function varlidateEditProfile(){
 	if(crossProfileCheck()&&currentUser!=0){
@@ -460,7 +474,7 @@ function varlidateEditProfile(){
 		togglePrivateProfile('privateProfileBtn');
 		toggleProfileMode(0);
 		document.querySelector(".rec-btn").innerHTML = 
-		`<button class="btn btn-success reset" onclick="voiceOver();" title="Save the profile information" id="editProfileBtn" data-toggle="modal" data-target="#authenticateModal" data-whatever="@"><i class="fa fa-smile-o"></i> Save Change</button>
+		`<button class="btn btn-success reset" onclick="voiceOver();" title="Save the profile information" id="editProfileBtn" data-toggle="modal" data-target="#authenticateModal" data-whatever="@"><i class="fa fa-upload"></i> Save Change</button>
 		<button class="btn btn-danger reset" onclick="discardProfileChange();" id="privateProfileBtn" title="Cancel all changes"><i class="fa fa-times"></i> Discard Changes</button>`;
 	}else{
 		voiceOver("Sorry, But your given details is not matched");
@@ -478,11 +492,18 @@ function toggleProfileMode(data){
 		'prev-profile-color',
 		'prev-profile-inst',
 		'prev-profile-branch',
+		'prev-profile-address',
+		'prev-profile-contact',
+		'prev-profile-estd'
 	];
 	if(data==0){
 		for(let i=0; i<temp.length; i++){
-			if(i>=[temp.length-2]&&currentUser.roll=='Super Admin'){
-				document.getElementById(temp[i]).readOnly=false;
+			if(i>=(temp.length-5)){
+				if(currentUser.roll=='Super Admin'){
+					document.getElementById(temp[i]).readOnly=false;
+				}else{
+					document.getElementById(temp[i]).readOnly=true;
+				}
 			}else{
 				document.getElementById(temp[i]).readOnly=false;
 			}
@@ -523,5 +544,30 @@ function authRecheck(data,fun){
 		document.getElementById('recipient-captcha-out').value = "";
 		document.getElementById('recipient-pass').style.border = " 1px solid #ced4da";
 		document.getElementById('recipient-captcha-out').style.border = " 1px solid #ced4da";
+	}
+}
+function dropdownMenu(id,data){
+	if(data==0){
+		document.getElementById(id).style.display = "block";
+	}else{
+		document.getElementById(id).style.display = "none";
+	}
+}
+function profileChange(id){
+	if(document.getElementById('privateProfileBtn').innerHTML=='<i class="fa fa-times"></i> Discard Changes'){
+		blbg('dpSelectPage',0);
+		profilePathDisplay(currentUser.dp);
+	}
+}
+function profilePathDisplay(path){
+	document.getElementById('dpPath').value = path;
+}
+function dpSelected(id){
+	let m = document.getElementById(id).value;
+	if(isValidImageLink(id)&&m!=""){
+		document.getElementById('prev-profile-img').src = m;
+		blbg('dpSelectPage',1);
+	}else{
+		voiceOver("Please select an image");
 	}
 }
