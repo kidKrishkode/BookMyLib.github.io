@@ -219,7 +219,8 @@
 				<div class="form-group">
 					<lable for="forgot-name">Name</lable>
 					<input type="name" class="form-control" id="forgot-name" placeholder="Enter your name here" aria-describedby="nameHelp-f" style="text-transform: capitalize;" onkeyup="loginNameCheck('forgot-name');"/>
-					<small id="nameHelp-f" class="form-text text-muted">Please enter the full name associated with your account. The name you provide here should match the one you entered during the account creation process, ensuring accuracy in this field helps us validate your identity and proceed with the necessary steps to recover your password.</small>
+					<small id="nameHelp-f" class="form-text text-muted">Please enter the full name associated with your account. The name you provide here should match the one you entered during the account 
+						creation process, ensuring accuracy in this field helps us validate your identity and proceed with the necessary steps to recover your password.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-gender">Gender</lable>
@@ -229,17 +230,22 @@
 						<option>Female</option>
 						<option>Others</option>
 					</select>
-					<small id="genderHelp-f" class="form-text text-muted">Select the gender associated with your account. This information, previously provided during the sign-up process, serves as a crucial identifier, ensuring the accuracy of your gender selection is important for enhancing the security measures in the password recovery process. Kindly choose the gender that corresponds to the details you provided during your account registration.</small>
+					<small id="genderHelp-f" class="form-text text-muted">Select the gender associated with your account. This information, previously provided during the sign-up process, serves as a crucial 
+						identifier, ensuring the accuracy of your gender selection is important for enhancing the security measures in the password recovery process. Kindly choose the gender that corresponds 
+						to the details you provided during your account registration.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-email">UserId/Email</lable>
                     <input type="password" class="form-control" id="forgot-email" placeholder="Enter your userid or email here" aria-describedby="emailHelp-f" onkeyup="userIdEmailCheck('forgot-email');"/>
-                    <small id="emailHelp-f" class="form-text text-muted">Enter the unique User ID associated with your account. This User ID was generated and provided to you during the initial account creation process. Please ensure the accuracy of the User ID entered, as it is essential for initiating the password recovery process and accessing your account securely.</small>
+                    <small id="emailHelp-f" class="form-text text-muted">Enter the unique User ID associated with your account. This User ID was generated and provided to you during the initial account creation 
+						process. Please ensure the accuracy of the User ID entered, as it is essential for initiating the password recovery process and accessing your account securely.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-color">Color</lable>
 					<input type="color" class="form-control" id="forgot-color" aria-describedby="colorHelp-f" onchange="loginColorCheck('forgot-color');"/>
-					<small id="colorHelp-f" class="form-text text-muted">Choose the color associated with your account. This color, selected during the sign-up process, serves as an additional layer of security for account verification. Please select the same color you chose when creating your account, ensuring accuracy in this field helps us validate your identity and proceed with the necessary steps for password recovery.</small>
+					<small id="colorHelp-f" class="form-text text-muted">Choose the color associated with your account. This color, selected during the sign-up process, serves as an additional layer of security 
+						for account verification. Please select the same color you chose when creating your account, ensuring accuracy in this field helps us validate your identity and proceed with the necessary 
+						steps for password recovery.</small>
 				</div>
 				<div class="form-group">
 					<lable for="forgot-agree">Terms and Conditions</lable>
@@ -301,13 +307,13 @@
 			<div class="navbar-buttons flw">
 				<div class="navbar-icons flo">
 					<i class="fa fa-calendar" title="My calender" id="calenderBtn" onclick="toggleCalender();"></i>
-					<i class="fa fa-folder-open-o" title="Backup data" id="backupBtn"></i>
-					<i class="fa fa-bell-o" title="Notification" id="notificationsBtn"></i>
+					<i class="fa fa-folder-open-o" title="Backup data" id="backupBtn" onclick="voiceOver();"></i>
+					<i class="fa fa-bell-o" title="Notification" id="notificationsBtn" onclick="voiceOver();"></i>
 					<i class="fa fa-moon-o" title="Theme changer" id="themeBtn" onclick="ChangeTheme('themeBtn');"></i>
 				</div>
 				<div class="navbar-profile flo">
 					<i class="fa fa-navicon" title="SidNav controler" id="navBtn" onclick="navToggle();"></i>
-					<img src="./images/avater-3.png" alt="dp" id="navUserDp" title="View profile" onclick="pageRoute('profileBtn')"/>
+					<img src="./images/avater-3.png" alt="dp" id="navUserDp" title="View profile" onclick="pageRoute('profileBtn');profileSetUp();"/>
 				</div>
 			</div>
 		</nav>
@@ -326,41 +332,65 @@
 					<span>Profile</span>
 				</div>
 				<h5>Assets</h5>
-				<div class="sidenav-item flo" id="bookBtn" title="Track Books status" onclick="pageRoute('bookBtn')">
+				<div class="sidenav-item flo" id="bookBtn" title="Track Books status" onclick="pageRoute('bookBtn');voiceOver();">
 					<i class="fa fa-book"></i>
 					<span>Books</span>
 				</div>
 				<h5>Users</h5>
-				<div class="sidenav-item flo" id="studentBtn" title="Track Students status" onclick="pageRoute('studentBtn')">
+				<div class="sidenav-item flo" id="studentBtn" title="Track Students status" onclick="pageRoute('studentBtn');voiceOver();">
 					<i class="fa fa-graduation-cap"></i>
 					<span>Students</span>
 				</div>
-				<div class="sidenav-item flo" id="teacherBtn" title="Track Teachers status" onclick="pageRoute('teacherBtn')">
+				<div class="sidenav-item flo" id="teacherBtn" title="Track Teachers status" onclick="pageRoute('teacherBtn');voiceOver();">
 					<i class="fa fa-group"></i>
 					<span>Teachers</span>
 				</div>
-				<div class="sidenav-item flo" id="adminBtn" title="Track Admins status" onclick="pageRoute('adminBtn')">
+				<div class="sidenav-item flo" id="adminBtn" title="Track Admins status" onclick="pageRoute('adminBtn');voiceOver();">
 					<i class="fa fa-user-circle"></i>
 					<span>Admins / Technical stuff</span>
 				</div>
 				<h5>Income</h5>
-				<div class="sidenav-item flo" id="incomeBtn" title="Track Due fees and Payment" onclick="pageRoute('incomeBtn')">
-					<i class="fa fa-money"></i>
+				<div class="sidenav-item flo" id="incomeBtn" title="Track Due fees and Payment" onclick="pageRoute('incomeBtn');voiceOver();">
+					<i class="fa fa-dollar"></i>
 					<span>Payment / Fees</span>
 				</div>
 				<h5>Customize</h5>
-				<div class="sidenav-item flo" id="settingBtn" title="Customize your work station" onclick="pageRoute('settingBtn')">
+				<div class="sidenav-item flo" id="settingBtn" title="Customize your work station" onclick="pageRoute('settingBtn');voiceOver();">
 					<i class="fa fa-gear"></i>
 					<span>Settings</span>
 				</div>
-				<div class="sidenav-item flo" id="reportBtn" title="Conect to us, email us" onclick="pageRoute('reportBtn')">
+				<div class="sidenav-item flo" id="reportBtn" title="Conect to us, email us" onclick="pageRoute('reportBtn');voiceOver();">
 					<i class="fa fa-envelope"></i>
 					<span>Report / FeedBack</span>
 				</div>
 				<h5>Others</h5>
-				<div class="sidenav-item flo" id="aboutBtn" title="Learn about us" onclick="pageRoute('aboutBtn')">
+				<div class="sidenav-item flo" >
 					<i class="fa fa-compass"></i>
-					<span>About {{com.name}}</span>
+					<span class="btn-group">
+						<span title="Lorem ipsum dolor set amet.">More Menu</span>
+						<span class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownMenu('aboutMenu',0);">
+						  <span class="sr-only">Toggle Dropdown</span>
+						</span>
+						<div class="dropdown-menu" id="aboutMenu">
+						  	<a class="dropdown-item sidenav-item flo" title="Learn about our unity" id="aboutBtn" onclick="pageRoute('aboutBtn');voiceOver();dropdownMenu('aboutMenu',1);">
+								<i class="fa fa-file-text-o"></i>
+								<span>About Us</span>
+							</a>
+						  	<a class="dropdown-item sidenav-item flo" title="Learn about this software" onclick="dropdownMenu('aboutMenu',1);">
+								<i class="fa fa-file-pdf-o"></i>
+								<span>Documentation</span>
+							</a>
+						  	<a class="dropdown-item sidenav-item flo" title="Learn your software usage" onclick="dropdownMenu('aboutMenu',1);">
+								<i class="fa fa-file-video-o"></i>
+								<span>Visual Support</span>
+							</a>
+						  	<div class="dropdown-divider"></div>
+						  	<a class="dropdown-item sidenav-item flo" title="This is title" onclick="dropdownMenu('aboutMenu',1);">
+								<i class="fa fa-file-archive-o"></i>
+								<span>New</span>
+							</a>
+						</div>
+					</span>
 				</div>
 				<div class="sidenav-item flo" id="logoutBtn" title="Bye bye, see you soon">
 					<i class="fa fa-sign-out"></i>
@@ -455,15 +485,18 @@
 				  	</div>
 				  	<form class="profile-form">
 						<div class="left">
-					  		<img src="./images/avater-1.png" alt="loading.." id="prev-profile-img" aria-describedby="profileHelp">
+					  		<img src="./images/avater-1.png" alt="loading.." id="prev-profile-img" aria-describedby="profileHelp" onclick="profileChange('prev-profile-img');">
 					  		<label for="profile-img">Profile Picture</label>
-					  		<small id="profileHelp" class="form-text text-muted">Your Dp may appear around {{com.name}} where you contributed</small>
+					  		<small id="profileHelp" class="form-text text-muted">Selected by the user, this image is their public profile picture, adding a personal touch to their profile. Users can modify this 
+								picture at their discretion.</small>
 						</div>
 						<div class="right">
 					  		<div class="form-group">
 								<lable for="profile-name">Name</lable>
 								<input type="name" class="form-control" id="prev-profile-name" value="loading" aria-describedby="nameHelp" readonly="true" onkeyup="loginNameCheck('prev-profile-name');"/>
-								<small id="nameHelp" class="form-text text-muted">Your name may appear around {{com.name}} where you contributed or are mentioned</small>
+								<small id="nameHelp" class="form-text text-muted">The above field serves as a significant element on your profile, showcasing the identity by which you are recognized across 
+									the platform. Adhering to grammatical conventions, this name will be prominently displayed wherever you contribute or are mentioned. Notably, the flexibility of this field 
+									allows for changes, ensuring your profile stays up-to-date with your personal preferences and identity choices.</small>
 					  		</div><br>
 							  <div class="form-group">
 								<lable for="profile-gender">Gender</lable>
@@ -472,12 +505,16 @@
 									<option>Female</option>
 									<option>Others</option>
 								</select>
-								<small id="genderHelp" class="form-text text-muted">Your gender may appear around {{com.name}} where you contributed or are mentioned</small>
+								<small id="genderHelp" class="form-text text-muted">The above field plays a crucial role in displaying the user's chosen gender identity, providing a personalized touch to your profile. 
+									Following established gender grammar, this field ensures accurate representation and respect for diverse gender expressions. Importantly, this field remains flexible, allowing 
+									users the freedom to update and align it with their evolving identity preferences over time.</small>
 							</div><br>
 					  		<div class="form-group">
 								<lable for="profile-email">Email</lable>
 								<input type="email" class="form-control" id="prev-profile-email" value="loading" aria-describedby="emailHelp" readonly="true" onkeyup="userIdEmailCheck('prev-profile-email');"/>
-								<small id="emailHelp" class="form-text text-muted">This email may appear with you profile and help viewers to conect with you</small>
+								<small id="emailHelp" class="form-text text-muted">The above field serves as a prominent feature, showcasing the user's provided email address across the platform. Adhering to 
+									email grammar conventions, this field ensures the accuracy and validity of the email information. Additionally, users have the flexibility to modify this field, facilitating 
+									updates to their contact details and maintaining an up-to-date profile.</small>
 					  		</div><br>
 							<div class="form-group">
 								<lable for="profile-position">Job Position</lable>
@@ -494,7 +531,9 @@
 									<option>Teacher</option>
 									<option>Technical Support</option>
 								</select>
-								<small id="positionHelp" class="form-text text-muted">Your Job position may appear around {{com.name}} where you contributed or are mentioned</small>
+								<small id="positionHelp" class="form-text text-muted">The above field prominently exhibits the user's designated job position, offering insight into their professional role. Users 
+									can modify this field to accurately reflect any changes in their job position, ensuring the displayed information aligns with their current professional standing. This dynamic 
+									feature enables individuals to maintain an updated and relevant portrayal of their occupational status throughout the platform.</small>
 							</div><br>
 							<div class="form-group">
 								<lable for="profile-year">Year of Work</lable>
@@ -502,68 +541,118 @@
 								<span>Joining</span>
 								<input type="date" class="form-control" id="prev-profile-year-end" value="1947-08-15" aria-describedby="yearHelp" readonly="true" onchange="loginEndingCheck('prev-profile-year-start','prev-profile-year-end');"/>
 								<span>Ending</span>
-								<small id="yearHelp" class="form-text text-muted">Specify your work duration by entering both the date of joining and an approximate 
-									ending date. This information is vital for administrators to understand your tenure with precision, helping optimize the runtime 
-									of this web platform. Ensure the provided duration is a positive value and does not exceed 1 to 60 years.</small>
+								<small id="yearHelp" class="form-text text-muted">The above field encapsulates essential details regarding the user's job history. It comprises two segments: "Joining" 
+									signifies the commencement date of the job, while "Ending" indicates an estimated conclusion date. The time duration spans between 1 and 60 years, offering flexibility and 
+									accommodating various professional tenures. Users can seamlessly modify this field to accurately reflect any alterations in their work history, ensuring the presented 
+									information aligns with their evolving career trajectory.</small>
 							</div><br>
 							<div class="form-group">
 								<lable for="profile-roll">Roll/Post</lable>
 								<input type="text" class="form-control" id="prev-profile-roll" value="loading" aria-describedby="rollHelp" readonly="true"/>
-								<small id="rollHelp" class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, eligendi molestiae.</small>
+								<small id="rollHelp" class="form-text text-muted">The above field serves as a visual representation of the user's designated role or post within the web interface, a classification 
+									determined solely by the super admin. This field plays a pivotal role in defining the user's authority and responsibilities within the system. The exclusivity of modifying 
+									this field lies with the super admin, emphasizing their pivotal role in assigning specific privileges and powers to individual users, contributing to a well-organized and secure 
+									operational framework.</small>
 							</div><br>
 							<label>Contribution &amp; Activity</label>
-								<div class="form-check">
+								<div class="form-check form-group">
 									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled" aria-describedby="contributeHelp1" value="" checked="" disabled="">
-									<lable for="flexCheckCheckedDisabled" class="from-check-label">Include products on my profile</lable>
-									<small id="contributeHelp1" class="form-text text-muted">Your all products and Contribution overview will show in your profile</small><br>
+									<lable for="flexCheckCheckedDisabled" class="from-check-label">Profile Changes Reflection</lable>
+									<small id="contributeHelp1" class="form-text text-muted">Opt for this setting to ensure that any modifications made to your profile details are promptly reflected across all 
+										relevant sections. Keep your information up-to-date and consistent.</small><br>
 									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled1" aria-describedby="contributeHelp2" value="" checked="" disabled="">
-									<lable for="flexCheckCheckedDisabled1" class="from-check-label">Others mention me</lable>
-									<small id="contributeHelp2" class="form-text text-muted">Any one on {{com.name}} can @mention your profile</small>
+									<lable for="flexCheckCheckedDisabled1" class="from-check-label">Others Mention Me</lable>
+									<small id="contributeHelp2" class="form-text text-muted">Enable this option to receive notifications when other users mention your profile. Stay informed about relevant 
+										interactions within your network.</small><br>
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled2" aria-describedby="contributeHelp3" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled2" class="from-check-label">Store Login History</lable>
+									<small id="contributeHelp3" class="form-text text-muted">By activating this feature, your login history will be securely stored. This enhances security and allows you to track 
+										your account access for added peace of mind.</small>
 								</div><br>
 							<div class="hiddenProfile">
 								<div class="form-group">
 									<lable for="profile-password">Password</lable>
                     				<input type="text" class="form-control" id="prev-profile-password" value="loading" aria-describedby="passwordHelp" readonly="true"/>
-                    				<small id="passwordHelp" class="form-text text-muted">Your password is generated by the system, ensuring its strength and security. </small>
+                    				<small id="passwordHelp" class="form-text text-muted">The above field serves as a confidential gateway, displaying the user's entered password in a secure and private manner. 
+										Unlike other fields, the contents of this field remain concealed from public view, ensuring heightened privacy and security. Users have the flexibility to modify this field, 
+										allowing them to adapt and strengthen their access credentials over time.</small>
 								</div><br>
 								<div class="form-group">
 									<lable for="profile-userId">User Id</lable>
                     				<input type="text" class="form-control" id="prev-profile-userId" value="loading" aria-describedby="userIdHelp" readonly="true"/>
-                    				<small id="userIdHelp" class="form-text text-muted">Your userId is generated by the system, ensuring its strength and security. </small>
+                    				<small id="userIdHelp" class="form-text text-muted">The "User ID" field showcases the system-generated identification assigned to each user. With an emphasis on privacy, this ID 
+										remains confidential, visible only to super admin for administrative purposes. Unlike other editable fields, the User ID is immutable, providing a constant and unique identifier 
+										linked to each user within the system.</small>
 								</div><br>
 								<div class="form-group">
 									<lable for="profile-color">Color</lable>
                     				<input type="color" class="form-control" id="prev-profile-color" value="#000000" aria-describedby="colorHelp" readonly="true"/>
-                    				<small id="colorHelp" class="form-text text-muted">Your color is generated by the system, ensuring its strength and security. </small>
+                    				<small id="colorHelp" class="form-text text-muted">The above field displays a user-selected color, serving as a distinctive security asset. While users have the flexibility to 
+										modify this field, its private nature ensures that only the user can view and access their chosen color. This personalized touch adds an extra layer of security to the user's 
+										account without compromising privacy.</small>
 								</div><br>
-								<label>Profile settings</label>
-								<div class="form-check">
+								<label>Profile Settings</label>
+								<div class="form-check form-group">
 									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled2" aria-describedby="profilePublickHelp1" value="" checked="" disabled="">
-									<lable for="flexCheckCheckedDisabled2" class="from-check-label">Make my profile publick</lable>
-									<small id="profilePublickHelp1" class="form-text text-muted">Disabling this will hide your profile arround {{com.name}} and where you mentioned in {{com.name}}</small><br>
+									<lable for="flexCheckCheckedDisabled2" class="from-check-label">Make My Profile Public</lable>
+									<small id="profilePublickHelp1" class="form-text text-muted">Opt for profile visibility to make your profile accessible to the public. Share your contributions and activities with 
+										a wider audience.</small><br>
 									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled3" aria-describedby="profilePublickHelp2" value="" checked="" disabled="">
-									<lable for="flexCheckCheckedDisabled3" class="from-check-label">Show joining time</lable>
-									<small id="profilePublickHelp2" class="form-text text-muted">Your joining time appear as IST format in your profile</small><br>
+									<lable for="flexCheckCheckedDisabled3" class="from-check-label">Show My DP with Profile</lable>
+									<small id="profilePublickHelp2" class="form-text text-muted">Enable this option to display your profile picture alongside your profile details. Personalize your profile and make 
+										it easily recognizable to others.</small><br>
 									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled4" aria-describedby="profilePublickHelp3" value="" checked="" disabled="">
-									<lable for="flexCheckCheckedDisabled4" class="from-check-label">Include account type</lable>
-									<small id="profilePublickHelp3" class="form-text text-muted">Your account type mentioned in your profile</small>
+									<lable for="flexCheckCheckedDisabled4" class="from-check-label">Include Account Type/Roll</lable>
+									<small id="profilePublickHelp3" class="form-text text-muted">Choose to showcase your account type or role in your profile. Let others know your position or role within the system 
+										for better identification.</small>
 								</div><br>
-								<label>Danger settings</label>
-								<div class="form-check">
+								<label>Danger Settings</label>
+								<div class="form-check form-group">
 									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled5" aria-describedby="dangerHelp" value="" checked="" disabled="">
 									<lable for="flexCheckCheckedDisabled5" class="from-check-label">Don't show security key</lable>
-									<small id="dangerHelp" class="form-text text-muted">Your userid, password, shirt size, alergy status will never show in your profile</small>
+									<small id="dangerHelp" class="form-text text-muted">Your userid, password, color status will never show in your public profile, only you can see this.</small><br>
+									<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled5" aria-describedby="dangerHelp1" value="" checked="" disabled="">
+									<lable for="flexCheckCheckedDisabled6" class="from-check-label">Settings Data Reflects Every User's Device</lable>
+									<small id="dangerHelp1" class="form-text text-muted">Activate this setting to ensure that changes made to your account settings are reflected uniformly across all devices where your 
+										account is accessed. Maintain a consistent user experience.</small>
 								</div><br>
 							</div>
 							<div class="form-group">
-								<lable for="profile-inst">Institution</lable>
+								<lable for="profile-inst">Institution Name</lable>
 								<input type="text" class="form-control" id="prev-profile-inst" value="loading" aria-describedby="instHelp" readonly="true"/>
-								<small id="instHelp" class="form-text text-muted">Your joining Institution appear in your profile only</small>
+								<small id="instHelp" class="form-text text-muted">The above field reveals the user's affiliated institution, showcasing the workplace details. While this information is 
+									public, offering transparency, it can only be altered by the super admin, ensuring accuracy and reliability in the system.</small>
 							</div><br>
 							<div class="form-group">
-								<lable for="profile-branch">Branch</lable>
+								<lable for="profile-branch">Institution Branch</lable>
 								<input type="text" class="form-control" id="prev-profile-branch" value="loading" aria-describedby="branchHelp" readonly="true"/>
-								<small id="branchHelp" class="form-text text-muted">Your profile appear with default {{com.name}}'s Branch</small>
+								<small id="branchHelp" class="form-text text-muted">The Institute Branch field highlights the specific branch or division within the user's affiliated institution. Providing insight 
+									into the organizational structure, this information is visible to other users. However, to maintain accuracy and consistency, modifications to this field can only be executed by 
+									the super admin, ensuring reliable representation of the institute's branches.</small>
+							</div><br>
+							<div class="form-group">
+								<lable for="profile-address">Institution Address</lable>
+								<input type="text" class="form-control" id="prev-profile-address" value="loading" aria-describedby="addressHelp" readonly="true"/>
+								<small id="addressHelp" class="form-text text-muted">The above field provides insight into the location of the user's workplace. Although this information is visible to other users, 
+									only the super admin has the authority to modify it. This approach maintains the consistency and integrity of the institutional data.</small>
+							</div><br>
+							<div class="form-group">
+								<lable for="profile-contact">Institution Contact</lable>
+								<input type="email" class="form-control" id="prev-profile-contact" value="loading" aria-describedby="contactHelp" readonly="true"/>
+								<small id="contactHelp" class="form-text text-muted">Displaying the user's institute email, this field serves as a contact point. It is publicly accessible, allowing other users to 
+									connect. However, modifications to this field are solely under the control of the super admin, guaranteeing the accuracy and legitimacy of the provided email.</small>
+							</div><br>
+							<div class="form-group">
+								<lable for="profile-estd">Institution Estd. Year</lable>
+								<input type="number" class="form-control" id="prev-profile-estd" value="0" aria-describedby="estdHelp" readonly="true"/>
+								<small id="estdHelp" class="form-text text-muted">The Establishment Year of Institution field discloses the founding year of the user's workplace. While this historical detail is public, 
+									offering context, only the super admin can modify it. This controlled access ensures the reliability of the institution's establishment information.</small>
+							</div><br>
+							<div class="form-check form-group">
+								<input type="checkbox" class="form-check-input" id="flexCheckCheckedDisabled8" aria-describedby="agreeHelp" value="" checked="true" disabled>
+								<lable for="flexCheckCheckedDisabled8" class="from-check-label">Yes, I agree with all terms and conditions</lable>
+								<small id="agreeHelp" class="form-text text-muted">By checking the 'I agree with all terms and conditions' box, you acknowledge 
+									that you have carefully read and understood our privacy terms and conditions.</small>
 							</div><br>
 					  		<small class="form-text text-muted">All of the fields on this page are muted and importent but some of them can be updated at any time, and
 								by filling them out, this all the information provided by you and directly manipulated your public profile. Please see our 
@@ -574,7 +663,7 @@
 				  	</form>
 				</div>
 			</div>
-		</div><br>
+		</div><br><br>
 	</section>
 	<div class="modal fade" id="authenticateModal" tabindex="-1" role="dialog" aria-labelledby="authenticateModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -587,9 +676,10 @@
 			</div>
 			<div class="modal-body">
 			  <form>
-				<div class="form-group">
+				<div class="form-group" style="margin-bottom: 0.2rem!important;">
 				  <label for="message-text" class="col-form-label">Password:</label>
 				  <input type="password" class="form-control" id="recipient-pass" placeholder="Please Enter Your Password"/>
+				  <small class="form-text text-muted flw"><span></span><span style="cursor: pointer;" onclick="authRecheck(1);blbg('forgotPassword',0);">Forgot Password?</span></small>
 				</div>
 				<label for="recipient-name" class="col-form-label">Captcha:</label>
 				<div class="flo">
@@ -624,6 +714,41 @@
 		</div>
 		<div id="calenderBody">
 			&times; Internet die, No data found!
+		</div>
+	</section>
+	<section id="dpSelectPage">
+		<div class="head"></div>
+		<h2 class="title">Select Your DP</h2>
+		<div class="container">
+			<div class="component">
+				<div class="form-group">
+					<small class="form-text text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat accusantium laborum quasi. Laboriosam quaerat mollitia corrupti eligendi nihil ad eveniet.</small>
+				</div>
+				<div class="form-group">
+					<div class="image-flx">
+						<img src="./images/avater-1.png" onclick="profilePathDisplay('./images/avater-1.png');"/>
+						<img src="./images/avater-2.png" onclick="profilePathDisplay('./images/avater-2.png');"/>
+						<img src="./images/avater-3.png" onclick="profilePathDisplay('./images/avater-3.png');"/>
+						<img src="./images/avater-4.png" onclick="profilePathDisplay('./images/avater-4.png');"/>
+						<img src="./images/avater-5.png" onclick="profilePathDisplay('./images/avater-5.png');"/>
+						<img src="./images/avater-6.png" onclick="profilePathDisplay('./images/avater-6.png');"/>
+						<img src="./images/avater-7.png" onclick="profilePathDisplay('./images/avater-7.png');"/>
+						<img src="./images/avater-8.png" onclick="profilePathDisplay('./images/avater-8.png');"/>
+						<img src="./images/browse-img.png" id="selectedAvatar" title="Browse you image from your device"/>
+						<input type="file" class="form-control" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" title="Browse you image from your device"/>
+					</diV>
+				</div>	  
+				<div class="form-group" style="margin-top: -120px;">
+					<lable for="dp-path">File Identity:</lable>
+					<input type="link" class="form-control" id="dpPath" placeholder="Enter the file path of your dp" aria-describedby=""/>
+				</div>
+				<div class="form-group">
+					<div class="flo">
+						<div class="btn btn-danger" title="Close the DP Page and go back" onclick="blbg('dpSelectPage',1);">close</div>
+						<div class="btn btn-success" title="Select this image as my profile picture" onclick="dpSelected('dpPath');">Select</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<div id="loading">
