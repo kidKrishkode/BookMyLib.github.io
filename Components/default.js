@@ -25,7 +25,7 @@ function user(){
 			clearInterval(interval);
 			interval = 0;
 		};
-	},1500);
+	},1000);
 	setTimeout(()=>{
 		if(interval!=0){
 			document.getElementById("loading").style.display = "none";
@@ -33,7 +33,7 @@ function user(){
 			clearInterval(interval);
 		}
 		getCaptch("mainCaptcha");
-	},3000);
+	},2000);
 	setTimeout(() => {
         document.querySelector('.loader').classList.add('restart-animation');
         setTimeout(() => {
