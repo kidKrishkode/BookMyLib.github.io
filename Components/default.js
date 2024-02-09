@@ -76,28 +76,28 @@ function forgotOff(){
 	blbg('forgotPassword',1);
 }
 function login(email,password,captchaIn,captchaOut){
-	enterToMain(captchaIn);
-	// if(adminBin.length!=0){
-	// 	if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
-	// 		if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
-	// 			voiceOver("Your details is right, but i am not intersted to give access to your login");
-	// 		}else{
-	// 			if(!validUser(email,password)){
-	// 				voiceOver("Your given userid and password is not vaild!,please write the correct one");
-	// 			}
-	// 			if(!checkCaptch(captchaIn,captchaOut)){
-	// 				voiceOver("Your given captcha is wrong, write this correctly.");
-	// 			}
-	// 			if(loginError>3){
-	// 				voiceOver("Sorry but you are loged more then one time so i am not trust you.");
-	// 			}
-	// 		}
-	// 	}else{
-	// 		voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
-	// 	}
-	// }else{
-	// 	voiceOver("Please make your account first!,then login");
-	// }
+	//enterToMain(captchaIn);
+	 if(adminBin.length!=0){
+	 	if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
+	 		if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
+	 			voiceOver("Your details is right, but i am not intersted to give access to your login");
+	 		}else{
+	 			if(!validUser(email,password)){
+	 				voiceOver("Your given userid and password is not vaild!,please write the correct one");
+	 			}
+	 			if(!checkCaptch(captchaIn,captchaOut)){
+	 				voiceOver("Your given captcha is wrong, write this correctly.");
+	 			}
+	 			if(loginError>3){
+	 				voiceOver("Sorry but you are loged more then one time so i am not trust you.");
+	 			}
+	 		}
+	 	}else{
+	 		voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
+	 	}
+	 }else{
+	 	voiceOver("Please make your account first!,then login");
+	 }
 }
 function loginNameCheck(id){
 	if(document.getElementById(id).value!=''){
