@@ -18,21 +18,125 @@
   "author": "Krishnendu Mitra",
   "license": "MIT"
 }
+        //Q1. start here ------>
+
+package socketProgram;
+import java.net.*;
+import java.io.*;
+//code by krish 
+public class Server{
+    // initialize socket and input stream
+    private Socket socket = null;
+    private ServerSocket server = null;
+    private DataInputStream in = null;
+
+    // constructor with port
+    public Server(int port){
+        // starts server and waits for a connection
+        try{
+            server = new ServerSocket(port);
+            System.out.println("Server started");
+            System.out.println("Waiting for a client ...");
+            socket = server.accept();
+            System.out.println("Client accepted");
+            // takes input from the client socket
+            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            String line = "";
+            // reads message from client until "Over" is sent
+            while(!line.equals("Over")){
+                try{
+                    line = in.readUTF();
+                    System.out.println(line);
+                } catch(IOException i){
+                    System.out.println(i);
+                }
+            }
+            System.out.println("Closing connection");
+            // close connection
+            socket.close();
+            in.close();
+        } catch(IOException i){
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String args[]){
+        Server server = new Server(5000);
+    }
+}
+
+
 import java.io.*;
 import java.net.*;
+//code by Krish
+public class Client{
+    // initialize socket and input output streams
+    private Socket socket = null;
+    private DataInputStream input = null;
+    private DataOutputStream out = null;
 
-public class Sender {
+    // constructor to put ip address and port
+    public Client(String address, int port){
+        // establish a connection
+        try{
+            socket = new Socket(address, port);
+            System.out.println("Connected");
+            // takes input from terminal
+            input = new DataInputStream(System.in);
+            // sends output to the socket
+            out = new DataOutputStream(socket.getOutputStream());
+        } catch(UnknownHostException u){
+            System.out.println(u);
+            return;
+        } catch(IOException i){
+            System.out.println(i);
+            return;
+        }
+        // string to read message from input
+        String line = "";
+        // keep reading until "Over" is input
+        while(!line.equals("Over")){
+            try{
+                line = input.readLine();
+                out.writeUTF(line);
+            } catch(IOException i){
+                System.out.println(i);
+            }
+        }
+        // close the connection
+        try{
+            input.close();
+            out.close();
+            socket.close();
+        } catch(IOException i){
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String args[]){
+        Client client = new Client("127.0.0.1", 5000);
+    }
+}
+
+
+
+
+//Q2. start here --------->
+import java.io.*;
+import java.net.*;
+//code by krish
+public class Sender{
     Socket sender;
     ObjectOutputStream out;
     ObjectInputStream in;
     String packet, ack, str, msg;
     int n, i = 0, sequence = 0;
 
-    Sender() {
+    Sender(){
     }
 
-    public void run() {
-        try {
+    public void run(){
+        try{
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Waiting for Connection....");
             sender = new Socket("localhost", 2004);
@@ -45,13 +149,13 @@ public class Sender {
             System.out.println("Enter the data to send : ");
             packet = br.readLine();
             n = packet.length();
-            do {
-                try {
-                    if (i < n) {
+            do{
+                try{
+                    if(i < n){
                         msg = String.valueOf(sequence);
                         msg = msg.concat("\t");
                         msg = msg.concat(packet.substring(i, i + 1));
-                    } else if (i == n) {
+                    } else if(i == n){
                         msg = "end";
                         out.writeObject(msg);
                         break;
@@ -64,30 +168,30 @@ public class Sender {
                     System.out.println("data sent> " + msg);
                     ack = (String) in.readObject();
                     System.out.println("waiting for ack.....\n\n");
-                    if (ack.equals(String.valueOf(sequence))) {
+                    if(ack.equals(String.valueOf(sequence))){
                         i++;
                         System.out.println("Receiver > " + " packet received\n\n");
-                    } else {
+                    } else{
                         /* whenever ack lost or wrong ack we change the sequence number */
                         System.out.println("Time out resending data....\n\n");
                         sequence = (sequence == 0) ? 1 : 0;
                     }
-                } catch (Exception e) {
+                } catch(Exception e){
                 }
-            } while (i < n + 1);
+            } while(i < n + 1);
             System.out.println("All data sent. exiting.");
-        } catch (Exception e) {
-        } finally {
-            try {
+        } catch(Exception e){
+        } finally{
+            try{
                 in.close();
                 out.close();
                 sender.close();
-            } catch (Exception e) {
+            } catch(Exception e){
             }
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]){
         Sender s = new Sender();
         s.run();
     }
@@ -95,9 +199,11 @@ public class Sender {
 
 
 
-import java.net.*;
 
-public class Receiver {
+import java.io.*;
+import java.net.*;
+// code by krish 
+public class Receiver{
     ServerSocket receiver;
     Socket connection = null;
     ObjectOutputStream out;
@@ -105,11 +211,11 @@ public class Receiver {
     String packet, ack, data = "";
     int i = 0, sequence = 0;
 
-    Receiver() {
+    Receiver(){
     }
 
-    public void run() {
-        try {
+    public void run(){
+        try{
             receiver = new ServerSocket(2004, 10);
             System.out.println("Waiting for connection...");
             connection = receiver.accept();
@@ -119,45 +225,45 @@ public class Receiver {
             out.flush();
             in = new ObjectInputStream(connection.getInputStream());
             out.writeObject("Connected.");
-            do {
-                try {
+            do{
+                try{
                     packet = (String) in.readObject();
-                    if (Integer.valueOf(packet.substring(0, 1)) == sequence) {
+                    if(Integer.valueOf(packet.substring(0, 1)) == sequence){
                         data += packet.substring(1);
                         sequence = (sequence == 0) ? 1 : 0;
                         System.out.println("\n\nReceiver >" + packet);
-                    } else {
+                    } else{
                         System.out.println("\n\nReceiver >" + packet + " duplicate data");
                     }
                     /* when i==3 then i destroy the ack */
-                    if (i < 3) {
+                    if(i < 3){
                         System.out.print("\t");
                         out.writeObject(String.valueOf(sequence));
                         i++;
-                    } else {
+                    } else{
                         System.out.print("\t");
                         out.writeObject(String.valueOf((sequence + 1) % 2));
                         i = 0;
                     }
-                } catch (Exception e) {
+                } catch(Exception e){
                 }
-            } while (!packet.equals("end"));
+            } while(!packet.equals("end"));
             System.out.println("Data received=" + data);
             out.writeObject("Connection ended.");
-        } catch (Exception e) {
-        } finally {
-            try {
+        } catch(Exception e){
+        } finally{
+            try{
                 in.close();
                 out.close();
                 receiver.close();
-            } catch (Exception e) {
+            } catch(Exception e){
             }
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]){
         Receiver s = new Receiver();
-        while (true) {
+        while(true){
             s.run();
         }
     }
