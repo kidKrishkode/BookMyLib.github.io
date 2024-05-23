@@ -9,6 +9,21 @@ const legalData = [
         using our website and services. This privacy notice will inform you as to how we look after your personal data when you 
         visit our website(regardless of where you visit it from) and tell you about your privacy rights and how the law protects 
         you, only and only when you maintain the given Terms points in that condition.</p>
+        <p>The following privacy policy is being published in accordance with the provisions of the Information Technology Act, 2000 
+        ("IT ACT"), Information Technology (Intermediary Guidelines) Rules, 2011, Information Technology (Reasonable Security 
+         Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011. This Privacy Policy explains the policy of 
+         Organisation's website (hereinafter referred to as "the Website's) and Organisation's mobile application (hereinafter referred to 
+         as "the App"), with respect to the disclosure, collection, storage, usage and protection of your information during the course 
+         your interaction with the Website. Please read this Privacy Policy carefully and in conjunction with the Terms of Use. If you do 
+         not understand this policy or do not accept any part of it, then you should not use the Platform, as the case may be. Your use 
+         and/or continued use of the Platform, as the case may be, amounts to expressed consent to the terms of this Privacy Policy as 
+         well as the Terms of Use. For the purposes of this Policy, accessing of the Website with any resources/feature made available 
+         or uploaded therein or downloaded, embedded therefrom shall collectively be referred to as the "Services". The Website or the 
+         App shall be collectively referred to as "the Platform". This Privacy Policy forms part and parcel of the Terms of Use for the 
+         Organisation Services and shall be read as a whole. Capitalized terms used here, but undefined, shall have the same meaning 
+         as attributed to them in the Terms of Use.</p>
+         <p>Website Name: {{com.name}}<br>
+         Developer Name: {{com.owner}}</p>
         <h5>Information We Collect:</h5>
         <h6>Personal Information:</h6>
         <p>At {{com.name}}, we prioritize the security and privacy of our users by collecting personal information through various 
@@ -36,6 +51,22 @@ const legalData = [
         Furthermore, we gather IP addresses as an additional layer of security and user authentication, leveraging our database to 
         verify user credentials. Rest assured, all collected non-personal information is handled with utmost confidentiality, aligning 
         with our commitment to maintaining a secure and user-friendly online environment.</p>
+        <h6>Information Collected Automatically:</h6>
+        <p>Files: Every time you visit the Platform, Client-side servers automatically receive and log information from your browser 
+        and device used to access the Platform (such as IP address, device ID, details of your network operator and type, your operating 
+        system, browser type, and version, CPU speed, and connection speed). This enables us to validate you as a User, to understand 
+        your usage of the Platform and helps us to make changes and updates most suited to your needs and interests.</p>
+        <p>Mobile Device:  When you register your mobile device or use the mobile device to access the Web, In addition to the aforesaid, 
+        End-user will also collect device information such as mobile device ID, model, and manufacturer details, operating system etc. 
+        for the purpose of improving the web's overall functionality and displaying content according to your preferences.</p>
+        <p>Cookies: Cookies are data files placed on your device, used to keep track of information such as your interaction with social 
+        media websites, the content you click on, download, upload or share and other activity on the Platform etc. in order to improve 
+        your experience of the Platform by personalizing it to your preferences and usage trends.</p>
+        <p>Beacons: Web beacons are transparent graphic images used in our email communication to you, in order to understand 
+        customer behavior and improve the overall quality, functionality, and interactivity of the Platform.</p>
+        <p>Please note that we only use the aforesaid information to communicate with and/or improve the Service and to better 
+        understand our users' operating systems, for system administration and to audit the use of the Service. We do not use any 
+        of the aforesaid data to identify the name, gender, contact or other personal details of any individual.</p>
         <h5>How We Use Your Information:</h5>
         <h6>We use the collected information for the following purposes:</h6>
         <ul>
@@ -340,6 +371,9 @@ const legalData = [
         <p>If you have any questions or concerns regarding this Privacy Policy, please contact us at {{com.email}}. By using our 
         website, you agree to the terms outlined in this Privacy Policy. If you want to see this website license then simply
         <i class="fa fa-eye" onclick="blbg('privacyPage',1);blbg('licensePage',0);"> Click here</i> and see it.</p>
+        <h5>Disclaimer:</h5>
+        <p>Our Website is not affiliated with any Government or the Government entity. Also, we are not providing any government 
+        related information or data (inside our web) to our customer/user.</p>
         <p>If you want to download this statments in text file then <i class="fa fa-download" onclick="download('privacyPage','{{com.name}} Privacy & Terms','txt');"> Click here</i>.</p>
         `
     },
@@ -370,7 +404,7 @@ const legalData = [
     }
 ];
 function legalCall(input){
-    if(validateDepartment(input)){
+    if(mylib.validateDepartment(input)){
         if(input=="Privacy Policy"){
             return legalData[0].data;
         }else if(input=="License"){

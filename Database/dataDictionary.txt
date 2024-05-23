@@ -1,0 +1,188 @@
+Data Table from the Backend part to fatch data
+--------------------------------------------------------------------------------------
+Target                              Details
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+Mylib                               mylib.prototype
+--------------------------------------------------------------------------------------
+StartBackend();                     Not require from Frontend.
+--------------------------------------------------------------------------------------
+getCaptch(id);                      Get new captcha, 'id' is the diratory id where
+                                    the captch is droped. No return.
+--------------------------------------------------------------------------------------
+checkCaptch(id1,id2);               Check the user written captcha is correct or not
+                                    'id1' is where original captcha is show & 'id2'
+                                    is where user write the captcha. Return true if
+                                    captcha is match otherwise false.
+--------------------------------------------------------------------------------------
+validUser(userid,password);         Check the user given details(user id, password)
+                                    is correct or not, if user details is valid then
+                                    return true otherwise return false.
+--------------------------------------------------------------------------------------
+authentication(auth1, auth2);       Check the user is authenticate or not, 'auth1' is 
+                                    return of checkCaptcha(...) and 'auth2' is return
+                                    of validUser(...), and if user is authenticate 
+                                    then return true otherwise return false. If user
+                                    try more then 3 times then return a error message
+                                    "Timeout", which slove when user refresh the web. 
+--------------------------------------------------------------------------------------
+getUserDp();                        Get the current user's dp to set it in header.
+                                    return image src as './images/gender_type.jpg'.
+--------------------------------------------------------------------------------------
+getCalender();                      Get the present month's calender using local 
+                                    times, If calender making is possible then return
+                                    as html <ul>...</ul> element otherwise return 
+                                    null. Current date set as <div class="today">Date
+                                    </div>.
+--------------------------------------------------------------------------------------
+validateUserName(input);            Check the user name is follow the naming grammer.
+                                    this call happen in signup time as onkeyup call,
+                                    'input' is the direct user name. Return true if
+                                    it is follow grammer otherwise return false.
+--------------------------------------------------------------------------------------
+validateUserEmail(email);           Check the user given email id is follow the email
+                                    grammer or not. As same it call as onkeyup calls,
+                                    'email' is the direct user email. Return true if
+                                    it is follow, otherwise return false.
+--------------------------------------------------------------------------------------
+validateDepartment(input);          Check the user given department name is follow 
+                                    naming grammer or not, call as onkeyup, Return 
+                                    true if it is follow, otherwise return false. 
+--------------------------------------------------------------------------------------
+validatePassword(password);         Check the user given password is follow the simple
+                                    password grammer or not. As same it call as 
+                                    onkeyup calls, 'password' is the direct user 
+                                    password. Return true if it is follow, otherwise
+                                    return false. 
+--------------------------------------------------------------------------------------
+checkPassword(id1,id2);             Check the user written password is correct or not
+                                    'id1' is where original password is show & 'id2'
+                                    is is user write confirm password. Return true if
+                                    password is match otherwise false.
+--------------------------------------------------------------------------------------
+validateSelect(select);             Check the user selected option is correct or not,
+                                    'select' is which filed is use by user to choose
+                                    any option. It is return true if user not choose
+                                    default option and return false if it is.
+--------------------------------------------------------------------------------------
+idMaker(n,m);                       Make a valid system genareted id for book,student
+                                    ,teacher,admin. 'n' is the type of id like- 0 for
+                                    book, 1 for student, 2 for teacher, 3 for admins.
+                                    'm' is the type of book, which is describe in the
+                                    'bookType', pass the string only for book, pass 0
+                                    for rest. Return genareted id.
+--------------------------------------------------------------------------------------
+passwordMaker();                    Make a valid system genareted password for admins
+                                    only. This not nessary for all, User make own 
+                                    password also. Return genareted password.
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+Calender                            calender.prototype
+--------------------------------------------------------------------------------------
+getCalenderTime();                  Get the header set of the calender for current 
+                                    month. Return as 'Month_Name, Year_Number'.
+--------------------------------------------------------------------------------------
+getNextMonth();                     Get the next month's calender using local times,
+                                    if calender making is possible then return
+                                    as html <ul>...</ul> element otherwise return 
+                                    null. Depend on getCalender();
+--------------------------------------------------------------------------------------
+getPrevMonth();                     Get the previous month's calender using local 
+                                    times, if calender making is possible then return
+                                    as html <ul>...</ul> element otherwise return 
+                                    null. Depend on getCalender();
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+System                              system.prototype
+--------------------------------------------------------------------------------------
+getTheme();                         To get stored theme colors into display if stored
+                                    theme is present. otherwise display default theme
+                                    and return true, if any error occure then return
+                                    false.
+--------------------------------------------------------------------------------------
+theme == 1;                         Light theme.
+theme == 0;                         Dark theme.
+--------------------------------------------------------------------------------------
+toggleTheme(id);                    Toggle the current theme colors only, change light
+                                    theme to dark or dark to light theme. Not display.
+                                    Return true if possible otherwise return false.
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+Default
+--------------------------------------------------------------------------------------
+getLocalData(id);                   Get local details about company and developer 
+                                    team automaticaly in html body, where 'id' is 
+                                    html body id name, using templetes as follow:
+--------------------------------------------------------------------------------------
+{{com.name}}                        To write company name in web.
+{{com.owner}}                       To write owner name of this web.
+{{com.founder}}                     To write founder name of this web and company.
+{{com.recovery-path}}               To write the recovery path if this web is crash.
+{{com.version}}                     To write the current version of this web.
+{{com.description}}                 To write the followed line of this web's title.
+{{com.facebook}}                    To write the facebook page link.
+{{com.youtube}}                     To write the youtube account link.
+{{com.github}}                      To write the github repository link.
+{{com.linkedin}}                    To write the linkedin account link.
+{{com.instagram}}                   To write the instagram page link.
+{{com.update}}                      To write the last version coming date.
+{{com.email}}                       To write the supporting email of the company.
+--------------------------------------------------------------------------------------
+validateAdminEntry(name,gender,email,position,year,color,password);
+                                    Check the user given details is follow the 
+                                    grammer or not and the person is able to register 
+                                    or not, mean SignUp able or not. 'name','email',
+                                    'gender',...'password' is user written details in
+                                    signup field, Return true if the details is ok and
+                                    data is stored in DB otherwise return false if not
+                                    possible to store or given details is not correct.
+--------------------------------------------------------------------------------------
+validateTeacherEntry(name,position,department,email,gender,year);
+                                    Check the admin given details of a teacher is 
+                                    follow the grammer or not and the teacher is able
+                                    to register or not, mean store able or not. 'name'
+                                    ,'position','department',...,'year' is admin 
+                                    written details in add new teacher filed, Return 
+                                    true if the details is ok and data is stored in DB
+                                    otherwise return false if not possible to store or
+                                    given details is not correct.
+--------------------------------------------------------------------------------------
+validateStudentEntry(name,roll,department,email,classes,gender,year);
+                                    Check the admin given details of a student is 
+                                    follow the grammer or not and the student is able
+                                    to register or not, mean store able or not. 'name'
+                                    ,'roll','department',...,'year' is admin written
+                                    details in add new student filed, Return true if 
+                                    the details is ok and data is stored in DB
+                                    otherwise return false if not possible to store or
+                                    given details is not correct.
+--------------------------------------------------------------------------------------
+validateInstituteEntry(name,brunch,address,email,year);
+                                    Check the admin given details of the institute is 
+                                    follow the grammer or not and the institute is 
+                                    able to register or not, mean store able or not. 
+                                    'name','brunch','address',...,'year' is admin 
+                                    written details in add my institute filed, Return 
+                                    true if the details is ok and data is stored in DB
+                                    otherwise return false if not possible to store or
+                                    given details is not correct.
+--------------------------------------------------------------------------------------
+voiceOver(message);                 To get a system genareted voice commentry via 
+                                    given string. 'message' is the string which want 
+                                    to speck. If 'message' is not given or inligial
+                                    string then speak a defult string automaticaly.
+--------------------------------------------------------------------------------------
+voice == 1;                         Sound or voice is on.
+voice == 0;                         Sound or voice is off.
+--------------------------------------------------------------------------------------
+checkStorage();                     To check the storage limit of new storing, Return
+                                    used space percentage and total space is 100%.
+--------------------------------------------------------------------------------------
+download(id,name,exe);              Make a download system which is auto download a 
+                                    file (txt file) in the device, 'id' is the id of 
+                                    the html element which inner text want to download
+                                    'name' is the in which name want to download, 'exe'
+                                    is the extension of the file (try to use '.txt').
+                                    Return true if download possible otherwise return
+                                    false, file type text/plain.
+--------------------------------------------------------------------------------------
