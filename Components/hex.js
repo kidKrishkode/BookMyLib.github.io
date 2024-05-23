@@ -6,7 +6,26 @@ let Timeline = [0,0,0,0,0];
 let bookBin = [], studentBin = [], teacherBin = [], adminBin = [], instBin = [], settingBin = [];
 let voice=1;
 let theme=1;
-function getCaptch(id){
+let mylib,calender,system;
+function Mylib(port){
+    this.port = port;
+    this.loc = window.location;
+}
+function Calender(date){
+	this.date = date;
+}
+function System(asset){
+    this.asset = asset;
+}
+document.addEventListener("DOMContentLoaded",() =>{
+    mylib = new Mylib(3000);
+    calender = new Calender(new Date().getTime());
+    system = new System(document);
+    if(window.location.protocol!="file:"||window.location.hostname!=""||window.location.protocol=="https:"){
+		mylib.StartBackend();
+	}
+});
+Mylib.prototype.getCaptch = function(id){
     setTimeout(function onn(){
         var cap = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','/','@','&','!','#','*','?','%','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9');
         var i;
@@ -22,7 +41,7 @@ function getCaptch(id){
         document.getElementById(id).value = code;
     },500);
 }
-function checkCaptch(id1,id2){
+Mylib.prototype.checkCaptch = function(id1,id2){
     var string1 = removeSpaces(document.getElementById(id1).value);
     var string2 = removeSpaces(document.getElementById(id2).value);
     if(string1 == string2){
@@ -34,7 +53,7 @@ function checkCaptch(id1,id2){
 function removeSpaces(string){
     return string.split(' ').join('');
 }
-function validUser(userid,password){
+Mylib.prototype.validUser = function(userid,password){
     let id = document.getElementById(userid).value;
     let pass = document.getElementById(password).value;
     for(let j=0; j<adminBin.length; j++){
@@ -45,7 +64,7 @@ function validUser(userid,password){
     }
     return false;
 }
-function authentication(auth1, auth2){
+Mylib.prototype.authentication = function(auth1, auth2){
     if(loginError > 3){
         voiceOver("Sorry, you are try to log more then 3 times, so your try is up, try later");
         return "Timeout";
@@ -57,7 +76,7 @@ function authentication(auth1, auth2){
         return false;
     }
 }
-function Bypass(){
+Mylib.prototype.Bypass = function(){
     loginError = 1;
     adminBin = [{
         "userid": "BK-2408-01",
@@ -82,40 +101,40 @@ function Bypass(){
     }];
     voiceOver("Once again, System bypass successful!");
 }
-function getUserDp(){
+Mylib.prototype.getUserDp = function(){
     if(currentUser!=0){
         return currentUser.dp;
     }else{
         return './images/avater-3.png';
     }
 }
-function getCalender(){
+Mylib.prototype.getCalender = function(){
     let Time = new Date;
 	let date = Time.getDate();
 	let month = Time.getMonth()+1;
 	let year = Time.getFullYear();
 	Timeline = [date,month,year];
-    const result = cal1stdate(date, getTodayDay());
-    let calendar = calendarMaker(result,month,year);
+    const result = calender.cal1stdate(date, calender.getTodayDay());
+    let calendar = mylib.calendarMaker(result,month,year);
     if(calendar!=undefined){
     	return calendar;
     }else{
     	return null;
     }
 }
-function getTodayDay(){
+Calender.prototype.getTodayDay = function(){
     const today = new Date();
     const dayIndex = today.getDay();
     return daysOfWeek[dayIndex];
 }
-function getCalenTime(){
+Calender.prototype.getCalenTime = function(){
 	return `${Timeline[0]<10?'0'+Timeline[0]:Timeline[0]}/${Timeline[1]<10?'0'+Timeline[1]:Timeline[1]}/${Timeline[2]}`;
 }
-function getCalenderTime(){
+Calender.prototype.getCalenderTime = function(){
 	const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 	return `${Month[Timeline[1]-1]}, ${Timeline[2]}`;
 }
-function cal1stdate(date, day){
+Calender.prototype.cal1stdate = function(date, day){
     let days=daysOfWeek.indexOf(day);
     if(date == 1){
   	    return day;
@@ -129,8 +148,8 @@ function cal1stdate(date, day){
     }
     return daysOfWeek[days];
 }
-function calendarMaker(day,month,year){
-    let duration = MonthLength(month,year);
+Mylib.prototype.calendarMaker = function(day,month,year){
+    let duration = calender.MonthLength(month,year);
     let line=[];
     let blank = daysOfWeek.indexOf(day);
     for(let j=0; j<blank; j++){
@@ -171,7 +190,7 @@ function calendarMaker(day,month,year){
     list+='</li>';
     return `<ul>${list}</ul>`;
 }
-function MonthLength(month,year){
+Calender.prototype.MonthLength = function(month,year){
 	let leap=0,duration;
 	if(year % 4 == 0 || year % 400 == 0){
 		leap=1;
@@ -193,7 +212,7 @@ function MonthLength(month,year){
 	}
    return duration;
 }
-function getNextMonth(){
+Calender.prototype.getNextMonth = function(){
     try{
 	    if(Timeline[1]<12){
 		    Timeline[1]=Timeline[1]+1;
@@ -201,14 +220,14 @@ function getNextMonth(){
 		    Timeline[1]=1;
 		    Timeline[2]=Timeline[2]+1;
 	    }
-	    const result = cal1stdate(1, daysOfWeek[Timeline[3]+1]);
-        let calendar = calendarMaker(result,Timeline[1],Timeline[2]);
+	    const result = calender.cal1stdate(1, daysOfWeek[Timeline[3]+1]);
+        let calendar = mylib.calendarMaker(result,Timeline[1],Timeline[2]);
         return calendar;
     }catch(e){
         return null;
     }
 }
-function getPrevMonth(){
+Calender.prototype.getPrevMonth = function(){
 	let n=0;
 	if(Timeline[1]<=1){
 		Timeline[1]=12;
@@ -221,36 +240,36 @@ function getPrevMonth(){
 	}else{
 		n=Timeline[4]-1;
 	}
-	const result = cal1stdate(MonthLength(Timeline[1],Timeline[2]), daysOfWeek[n]);
-    let calendar = calendarMaker(result,Timeline[1],Timeline[2]);
-    return calendar;
+	const result = calender.cal1stdate(calender.MonthLength(Timeline[1],Timeline[2]), daysOfWeek[n]);
+    let calen = mylib.calendarMaker(result,Timeline[1],Timeline[2]);
+    return calen;
 }
-function validateUserName(input){
-  const namePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*(?: [a-zA-Z]+)?$/;
-  if(namePattern.test(input)){
-    if(input.length >= 3 && input.length <= 20){
-      return true;
+Mylib.prototype.validateUserName = function(input){
+    const namePattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*(?: [a-zA-Z]+)?$/;
+    if(namePattern.test(input)){
+        if(input.length >= 3 && input.length <= 20){
+        return true;
+        }
     }
-  }
-  return false;
+    return false;
 }
-function validateUserEmail(email){
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailPattern.test(email);
+Mylib.prototype.validateUserEmail = function(email){
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
 }
-function validateDepartment(input){
-  const deptPattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*(?: [a-zA-Z]+)?$/;
-  if(deptPattern.test(input)){
-    if(input.length >= 2 && input.length <= 30){
-      return true;
+Mylib.prototype.validateDepartment = function(input){
+    const deptPattern = /^[a-zA-Z]+(?: [a-zA-Z]+)*(?: [a-zA-Z]+)?$/;
+    if(deptPattern.test(input)){
+        if(input.length >= 2 && input.length <= 30){
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 }
-function checkPassword(id1,id2){
-	return checkCaptch(id1,id2);
+Mylib.prototype.checkPassword = function(id1,id2){
+	return mylib.checkCaptch(id1,id2);
 }
-function validatePassword(input){
+Mylib.prototype.validatePassword = function(input){
     const requirements = [
 		{regex: /.{8,}/, index: 0},
 		{regex: /[0-9]/, index: 1},
@@ -273,14 +292,14 @@ function validatePassword(input){
         return false;
     }
 }
-function validateSelect(input){
+Mylib.prototype.validateSelect = function(input){
     if(input!='--SELECT AN OPTION--'){
         return true;
     }else{
         return false;
     }
 }
-function validateDate(date){
+Calender.prototype.validateDate = function(date){
     let tuple = [];
     tuple[0] = (date[0]+date[1]+date[2]+date[3])/1;
     tuple[1] = (date[5]+date[6])/1;
@@ -291,7 +310,7 @@ function validateDate(date){
         return false;
     }
 }
-function validateDateEnding(date1,date2){
+Calender.prototype.validateDateEnding = function(date1,date2){
     let tuple = [];
     tuple[0] = (date1[0]+date1[1]+date1[2]+date1[3])/1;
     tuple[1] = (date2[0]+date2[1]+date2[2]+date2[3])/1;
@@ -304,7 +323,7 @@ function validateDateEnding(date1,date2){
         return false;
     }
 }
-function validateUserId(input){
+Mylib.prototype.validateUserId = function(input){
     if(adminBin.length!=0){
         for(let i=0; i<adminBin.length; i++){
             if(adminBin[i].userid==input){
@@ -316,16 +335,16 @@ function validateUserId(input){
         return false;
     }
 }
-function idMaker(n,m){
+Mylib.prototype.idMaker = function(n,m){
 	if(n==0){
-		return bookid(m);
+		return system.bookid(m);
 	}else if(n>0 && n<4){
-		return entityid(n);
+		return system.entityid(n);
 	}else{
 		return false;
 	}
 }
-function bookid(type){
+System.prototype.bookid = function(type){
 	//BK-230212-05-6
 	let id='BK-';
 	id += ((new Date).getFullYear())-2000;
@@ -335,7 +354,7 @@ function bookid(type){
 	id += '-'+(Timeline.length<10?'0'+Timeline.length:Timeline.length);
 	return id;
 }
-function entityid(n){
+System.prototype.entityid = function(n){
 	//LMA-2301-08
 	let id='LMA-';
 	id += ((new Date).getFullYear())-2000;
@@ -351,7 +370,7 @@ function entityid(n){
 	id += m<10?'0'+m:m;
 	return id;
 }
-function passwordMaker(){
+Mylib.prototype.passwordMaker = function(){
 	//@BookMyLib2401
 	var special = new Array('/','@','&','!','#','@','*','?','%','@');
 	let pass = special[Math.floor(Math.random()*special.length)];
@@ -360,13 +379,13 @@ function passwordMaker(){
 	pass += adminBin.length<10?'0'+adminBin.length:adminBin.length;
 	return pass;
 }
-function avaterMaker(gender){
+Mylib.prototype.avaterMaker = function(gender){
     try{
         let avater = Math.floor(Math.random()*avaterLib.length);
         if(gender=="Male"&&avater%2!=0){
-            return avaterMaker(gender);
+            return mylib.avaterMaker(gender);
         }else if(gender=="Female"&&avater%2==0){
-            return avaterMaker(gender);
+            return mylib.avaterMaker(gender);
         }else{
             return avaterLib[avater].src;
         }
@@ -464,7 +483,7 @@ function checkStorage(){
     const roundPercen = Math.round(usedPercen*100)/100;
     return roundPercen; //5MB
 }
-function StartBackend(){
+Mylib.prototype.StartBackend = function(){
     if(fetchDataBase()!=true){
         voiceOver("Sorry to fetch data is not possible to your local database");
     }else{
@@ -478,14 +497,13 @@ function StartBackend(){
 }
 function voiceOver(message){
     if(voice==1){
-        try{
+        if(message==''||message==undefined){
+            message = "This feature is not available in this version, please try another options";
+        }try{
             const speech = new SpeechSynthesisUtterance();
-            if(message==''||message==undefined){
-                message = "This feature is not available in this version, please try another options";
-            }
             speech.lang = "en";
             speech.text = message;
-            window.speechSynthesis.speak(speech);
+            // window.speechSynthesis.speak(speech);
         }catch(e){
             alert(message);
         }
@@ -508,7 +526,7 @@ function download(id,name,exe){
         return false;
     }
 }
-function getTheme(){
+System.prototype.getTheme = function(){
 	try{
         if(settingBin.length!=0){
             theme = settingBin.theme;
@@ -522,7 +540,7 @@ function getTheme(){
         return false;
     }
 }
-function toggleTheme(id){
+System.prototype.toggleTheme = function(id){
     if(theme==0){
         theme=1;
         document.getElementById(id).className = "fa fa-moon-o";
@@ -550,7 +568,7 @@ function displaySelectedImage(event, elementId){
         }
     }
 }
-function isValidImageLink(id){
+System.prototype.isValidImageLink = function(id){
 	const imageLinkInput = document.getElementById(id);
     if(imageLinkInput && imageLinkInput.value.trim() !== ""){
         const imageLink = imageLinkInput.value;
@@ -564,7 +582,28 @@ function isValidImageLink(id){
             return false;
         }
     }
-
+}
+System.prototype.checkAudioSupport = function(){
+    const isAudioSupported = 'HTMLAudioElement' in window;
+    const isWebAudioSupported = 'AudioContext' in window || 'webkitAudioContext' in window;
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        const isAudioPermissionGranted = true;
+        console.log('Audio Supported:', isAudioSupported);
+        console.log('Web Audio Supported:', isWebAudioSupported);
+        console.log('Audio Permission Granted:', isAudioPermissionGranted);
+    }).catch(error => {
+        const isAudioPermissionGranted = false;
+        //console.error('Audio Supported:', isAudioSupported,'Web Audio Supported:', isWebAudioSupported,'Audio Permission Granted:', isAudioPermissionGranted);
+        if(isAudioSupported==false){
+            alert("Your device not support audio, Please use any other device");
+        }
+        if(isWebAudioSupported==false){
+            alert("Your web not support audio, Please use any other web");
+        }
+        if(isAudioPermissionGranted==false){
+            alert("Please give audio permission to us\nGo to Settings -> Audio permission -> Allow.")
+        }
+    });
 }
 function popEntry(n,target){
 	if(n==0){

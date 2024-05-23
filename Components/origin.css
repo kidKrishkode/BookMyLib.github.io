@@ -7,6 +7,29 @@
 	--head-vio: #420040;
 	--ground-cl: #f6f6f6;
 }
+/* @media (prefers-color-scheme: dark){
+	:root{
+		--bg-color: #000000ec;
+      	--main1-cl: #0c8ff0;
+      	--main2-cl: aqua;
+      	--light-gry: #d9d9d9;
+      	--white-cl: #000;
+      	--black-cl: #fff;
+      	--head-vio: #db00d4;
+      	--ground-cl: #151519;
+	}
+}
+@media (prefers-color-scheme: light){
+	:root{
+		--main1-cl: #0c8ff0;
+    	--main2-cl: aqua;
+    	--light-gry: #d9d9d9;
+    	--white-cl: #fff;
+    	--black-cl: #000;
+		--head-vio: #420040;
+		--ground-cl: #f6f6f6;
+	}
+} */
 body{
 	padding: 0;
 	margin: 0;
@@ -562,10 +585,13 @@ main .ground{
 }
 main .ground .sidenav{
 	width: 20%;
-	height: 100vh;
+	/* height: 100vh; */
+	max-height: 100%;
 	background: var(--white-cl);
 	padding-right: 4px;
+	padding-bottom: 4px;
 	font-family: sans-serif;
+	overflow: auto;
 }
 main .ground .field{
 	width: 90%;
@@ -587,12 +613,28 @@ main .ground .sidenav .navEvent span{
 	color: gray;
 	cursor: pointer;
 }
-main .ground .sidenav h5{
+main .ground .sidenav h5,main .ground .sidenav .dropdown .dropdown-toggle{
 	color: var(--main1-cl);
 	text-transform: uppercase;
-	padding: 14px 2px 2px 5px;
+	padding: 5px 2px 2px 5px;
 	font-size: 15px;
 	font-weight: bold;
+	width: 100%;
+    text-align: left;
+	/* box-shadow: none; */
+	outline: none;
+}
+main .ground .sidenav .dropdown .dropdown-menu{
+	width: 100%;
+    position: relative;
+    z-index: 1;
+	background: transparent;
+	border: none;
+	color: var(--black-cl);
+	font-size: 14px;
+	font-weight: bold;
+	margin: 4px 0px;
+	padding: 0px;
 }
 main .ground .sidenav .sidenav-item{
 	width: 95%;
@@ -752,9 +794,10 @@ main .ground .sidenav .sidenav-item .dropdown-menu{
 	margin: auto 0px;
 }
 .field .profile-content{
+	width: 94%;
 	background: var(--white-cl);
 	border-radius: 10px;
-	margin: 20px auto 50px auto;
+	margin: 20px 3% 50px 3%;
 	box-shadow: 8px 8px 15px #bbb;
 	padding: 15px;
 }
@@ -790,7 +833,7 @@ main .ground .sidenav .sidenav-item .dropdown-menu{
 	padding: 20px;
 }
 .field .profile-content .profile-form .left img{
-    width: 60%;
+    width: 230px;
 	height: 230px;
     border-radius: 50%;
     margin: 10px 20%;
@@ -814,6 +857,9 @@ main .ground .sidenav .sidenav-item .dropdown-menu{
     text-align: justify;
 }
 .field .profile-content .hiddenProfile{
+	display: none;
+}
+#authenticateModal{
 	display: none;
 }
 #authenticateModal #recipient-captcha-in{
@@ -964,7 +1010,7 @@ main .ground .sidenav .sidenav-item .dropdown-menu{
 	main .ground .sidenav{
 		display: none;
 		width: 60%;
-		height: 100vh;
+		height: 92%;
 		position: absolute;
 		left: 0;
 		z-index: 99;

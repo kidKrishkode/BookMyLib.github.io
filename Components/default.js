@@ -18,7 +18,7 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 function user(){
-	interval = setInterval(()=>{
+	interval = setInterval(() => {
 		document.getElementById('sideImg').onload = function(){
 			document.getElementById("loading").style.display = "none";
 			document.getElementById("loginPage").style.display = "block";
@@ -26,29 +26,27 @@ function user(){
 			interval = 0;
 		};
 	},1000);
-	setTimeout(()=>{
+	setTimeout(() => {
 		if(interval!=0){
 			document.getElementById("loading").style.display = "none";
 			document.getElementById("loginPage").style.display = "block";
 			clearInterval(interval);
 		}
-		getCaptch("mainCaptcha");
+		mylib.getCaptch("mainCaptcha");
 	},2000);
 	setTimeout(() => {
         document.querySelector('.loader').classList.add('restart-animation');
         setTimeout(() => {
             document.querySelector('.loader').classList.remove('restart-animation');
         }, 500);
-    }, 3000);
+    },3000);
 	document.getElementById("privacyData").innerHTML = legalCall("Privacy Policy");
 	document.getElementById("licenseData").innerHTML = legalCall("License");
-	if(window.location.protocol!="file:"||window.location.hostname!=""||window.location.protocol=="https:"){
-		StartBackend();
-	}
-	Bypass();
+	mylib.Bypass();
+	system.checkAudioSupport();
 }
 function newCaptcha(id1,id2){
-	getCaptch(id1);
+	mylib.getCaptch(id1);
 	let spin = document.getElementById(id2);
 	if(!spin.classList.contains('animatedSpine')){
 		spin.classList.add('animatedSpine');
@@ -76,32 +74,32 @@ function forgotOff(){
 	blbg('forgotPassword',1);
 }
 function login(email,password,captchaIn,captchaOut){
-	//enterToMain(captchaIn);
-	 if(adminBin.length!=0){
-	 	if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
-	 		if(authentication(validUser(email,password), checkCaptch(captchaIn,captchaOut))){
-	 			voiceOver("Your details is right, but i am not intersted to give access to your login");
-	 		}else{
-	 			if(!validUser(email,password)){
-	 				voiceOver("Your given userid and password is not vaild!,please write the correct one");
-	 			}
-	 			if(!checkCaptch(captchaIn,captchaOut)){
-	 				voiceOver("Your given captcha is wrong, write this correctly.");
-	 			}
-	 			if(loginError>3){
-	 				voiceOver("Sorry but you are loged more then one time so i am not trust you.");
-	 			}
-	 		}
-	 	}else{
-	 		voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
-	 	}
-	 }else{
-	 	voiceOver("Please make your account first!,then login");
-	 }
+	enterToMain(captchaIn);
+	// if(adminBin.length!=0){
+	// 	if(document.getElementById(email).value!=''&&document.getElementById(password).value!=''&&document.getElementById(captchaOut).value!=''){
+	// 		if(mylib.authentication(mylib.validUser(email,password), mylib.checkCaptch(captchaIn,captchaOut))){
+	// 			voiceOver("Your details is right, but i am not intersted to give access to your login");
+	// 		}else{
+	// 			if(!mylib.validUser(email,password)){
+	// 				voiceOver("Your given userid and password is not vaild!,please write the correct one");
+	// 			}
+	// 			if(! mylib.checkCaptch(captchaIn,captchaOut)){
+	// 				voiceOver("Your given captcha is wrong, write this correctly.");
+	// 			}
+	// 			if(loginError>3){
+	// 				voiceOver("Sorry but you are loged more then one time so i am not trust you.");
+	// 			}
+	// 		}
+	// 	}else{
+	// 		voiceOver("Sorry, but your filed data in login form is not completed, please check once.")
+	// 	}
+	// }else{
+	// 	voiceOver("Please make your account first!,then login");
+	// }
 }
 function loginNameCheck(id){
 	if(document.getElementById(id).value!=''){
-		if(validateUserName(document.getElementById(id).value)){
+		if(mylib.validateUserName(document.getElementById(id).value)){
 			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id).style.border='3px solid #dc3545';
@@ -112,7 +110,7 @@ function loginNameCheck(id){
 }
 function loginEmailCheck(id){
 	if(document.getElementById(id).value!=''){
-		if(validateUserEmail(document.getElementById(id).value)){
+		if(mylib.validateUserEmail(document.getElementById(id).value)){
 			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id).style.border='3px solid #dc3545';
@@ -123,7 +121,7 @@ function loginEmailCheck(id){
 }
 function loginPasswordCheck(id){
 	if(document.getElementById(id).value!=''){
-		if(validatePassword(document.getElementById(id).value)){
+		if(mylib.validatePassword(document.getElementById(id).value)){
 			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id).style.border='3px solid #dc3545';
@@ -135,7 +133,7 @@ function loginPasswordCheck(id){
 }
 function loginCPasswordCheck(id1,id2){
 	if(document.getElementById(id1).value!=''&&document.getElementById(id2).value!=''){
-		if(checkPassword(id1,id2)){
+		if(mylib.checkPassword(id1,id2)){
 			document.getElementById(id2).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id2).style.border='3px solid #dc3545';
@@ -145,7 +143,7 @@ function loginCPasswordCheck(id1,id2){
 	}
 }
 function loginSelectionCheck(id){
-	if(validateSelect(document.getElementById(id).value)){
+	if(mylib.validateSelect(document.getElementById(id).value)){
 		document.getElementById(id).style.border='3px solid #28a745';
 	}else{
 		document.getElementById(id).style.border='3px solid #dc3545';
@@ -153,7 +151,7 @@ function loginSelectionCheck(id){
 }
 function loginJoinCheck(id){
 	if(document.getElementById(id).value!=''){
-		if(validateDate(document.getElementById(id).value)){
+		if(mylib.validateDate(document.getElementById(id).value)){
 			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id).style.border='3px solid #dc3545';
@@ -164,7 +162,7 @@ function loginJoinCheck(id){
 }
 function loginEndingCheck(id1,id2){
 	if(document.getElementById(id2).value!=''){
-		if(validateDate(document.getElementById(id2).value)&&validateDateEnding(document.getElementById(id1).value,document.getElementById(id2).value)){
+		if(mylib.validateDate(document.getElementById(id2).value)&&mylib.validateDateEnding(document.getElementById(id1).value,document.getElementById(id2).value)){
 			document.getElementById(id2).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id2).style.border='3px solid #dc3545';
@@ -182,16 +180,16 @@ function loginColorCheck(id){
 }
 function submitSignUP(name,gender,email,position,start,end,pass,cpass,color){
 	if(
-		validateUserName(document.getElementById(name).value) &&
-		validateSelect(document.getElementById(gender).value) &&
-		validateUserEmail(document.getElementById(email).value) &&
-		validateSelect(document.getElementById(position).value) &&
-		validateDate(document.getElementById(start).value) &&
-		validateDateEnding(document.getElementById(start).value,document.getElementById(end).value) &&
-		validatePassword(document.getElementById(pass).value) &&
-		checkPassword(pass,cpass)
+		mylib.validateUserName(document.getElementById(name).value) &&
+		mylib.validateSelect(document.getElementById(gender).value) &&
+		mylib.validateUserEmail(document.getElementById(email).value) &&
+		mylib.validateSelect(document.getElementById(position).value) &&
+		calender.validateDate(document.getElementById(start).value) &&
+		calender.validateDateEnding(document.getElementById(start).value,document.getElementById(end).value) &&
+		mylib.validatePassword(document.getElementById(pass).value) &&
+		mylib.checkPassword(pass,cpass)
 	){
-		document.getElementById('submitId').textContent = idMaker(3);
+		document.getElementById('submitId').textContent = mylib.idMaker(3);
 		document.getElementById('submitPassword').textContent = document.getElementById(cpass).value;
 		document.getElementById('submitColor').textContent = document.getElementById(color).value;
 		try{
@@ -239,7 +237,7 @@ function redFiled(list){
 }
 function userIdEmailCheck(id){
 	if(document.getElementById(id).value!=''){
-		if(validateUserEmail(document.getElementById(id).value)||validateUserId(document.getElementById(id).value)){
+		if(mylib.validateUserEmail(document.getElementById(id).value)||mylib.validateUserId(document.getElementById(id).value)){
 			document.getElementById(id).style.border='3px solid #28a745';
 		}else{
 			document.getElementById(id).style.border='3px solid #dc3545';
@@ -251,9 +249,9 @@ function userIdEmailCheck(id){
 function submitForgot(name,gender,email,color){
 	if(adminBin.length!=0){
 		if(	
-			validateUserName(document.getElementById(name).value) &&
-			validateSelect(document.getElementById(gender).value) &&
-			(validateUserEmail(document.getElementById(email).value)||validateUserId(document.getElementById(email).value))
+			mylib.validateUserName(document.getElementById(name).value) &&
+			mylib.validateSelect(document.getElementById(gender).value) &&
+			(mylib.validateUserEmail(document.getElementById(email).value)||mylib.validateUserId(document.getElementById(email).value))
 		){
 			for(let i=0; i<adminBin.length; i++){
 				if((adminBin[i].name==name)&&(adminBin[i].gender==gender)&&((adminBin[i].userid==email)||(adminBin[i].email==email))&&(adminBin[i].color==color)){
@@ -271,14 +269,14 @@ function submitForgot(name,gender,email,color){
 	}
 }
 function defaultPassword(id){
-	document.getElementById(id).value = passwordMaker();
+	document.getElementById(id).value = mylib.passwordMaker();
 	document.getElementById(id).type = "text";
 }
 function enterToMain(data){
 	document.getElementById("loginPage").style.display = "none";
 	document.getElementById("loading").style.display = "block";
 	document.getElementById("eventId").innerText = document.getElementById(data).value;
-	document.getElementById("navUserDp").src=getUserDp();
+	document.getElementById("navUserDp").src=mylib.getUserDp();
 	interval = setInterval(()=>{
 		document.getElementById('navUserDp').onload = function(){
 			document.getElementById("loading").style.display = "none";
@@ -293,6 +291,7 @@ function enterToMain(data){
 			document.getElementById("main").style.display = "block";
 			clearInterval(interval);
 		}
+		toggleAllDropdown(5);
 		pageRoute('homeBtn');
 	},2000);
 }
@@ -313,9 +312,21 @@ function navToggle(){
 		},500);
 	}
 }
+function dropdownToggle(id){
+	if(document.getElementById(id).style.display=="block"){
+		document.getElementById(id).style.display="none";
+	}else{
+		document.getElementById(id).style.display="block";
+	}
+}
+function toggleAllDropdown(n){
+	for(let i=0; i<n; i++){
+		dropdownToggle('dropMenu'+(i+1));
+	}
+}
 function ChangeTheme(id){
-	if(toggleTheme(id)){
-		if(!getTheme()){
+	if(system.toggleTheme(id)){
+		if(!system.getTheme()){
 			voiceOver("Theme change not possible");
 		}
 	}
@@ -323,10 +334,9 @@ function ChangeTheme(id){
 function toggleCalender(){
 	if(currentCalen==0){
 		document.getElementById("CalenderPage").style.display = "block";
-		document.getElementById("calenderBody").innerHTML = getCalender();
-		document.getElementById("calenderHead").innerText = getCalenderTime();
+		document.getElementById("calenderBody").innerHTML = mylib.getCalender();
+		document.getElementById("calenderHead").innerText = calender.getCalenderTime();
 		unwantedNavOff();
-		dropdownMenu('aboutMenu',1);
 		currentCalen=1;
 	}else{
 		document.getElementById("CalenderPage").style.display = "none";
@@ -334,28 +344,26 @@ function toggleCalender(){
 	}
 }
 function previousMonth(){
-	temp = getPrevMonth();
+	temp = calender.getPrevMonth();
 	if(temp!=null){
 		document.getElementById("calenderBody").innerHTML = temp;
-		document.getElementById("calenderHead").innerText = getCalenderTime();
+		document.getElementById("calenderHead").innerText = calender.getCalenderTime();
 	}else{
 		document.getElementById("calenderBody").innerHTML = "&times; No reponse come for this defected request!";
 		voiceOver("Sorry, Calender not support this request!");
 	}
 	unwantedNavOff();
-	dropdownMenu('aboutMenu',1);
 }
 function NextMonth(){
-	temp = getNextMonth();
+	temp = calender.getNextMonth();
 	if(temp!=null){
 		document.getElementById("calenderBody").innerHTML = temp;
-		document.getElementById("calenderHead").innerText = getCalenderTime();
+		document.getElementById("calenderHead").innerText = calender.getCalenderTime();
 	}else{
 		document.getElementById("calenderBody").innerHTML = "&times; No reponse come for this defected request!";
 		voiceOver("Sorry, Calender not support this request!");
 	}
 	unwantedNavOff();
-	dropdownMenu('aboutMenu',1);
 }
 function unwantedNavOff(){
 	if(nav==1){
@@ -369,8 +377,7 @@ function unwantedCalenOff(){
 }
 function viewPrivateProfile(id){
 	unwantedCalenOff();
-	unwantedNavOff();
-	dropdownMenu('aboutMenu',1);
+	unwantedNavOff()
 	if(currentProfileVision==0){
 		authRecheck(0,`varlidateViewPrivateProfile('${id}')`);
 	}else{
@@ -464,7 +471,6 @@ function profileSetUp(){
 function editProfile(){
 	unwantedCalenOff();
 	unwantedNavOff();
-	dropdownMenu('aboutMenu',1);
 	authRecheck(0,'varlidateEditProfile()');
 }
 function varlidateEditProfile(){
@@ -546,13 +552,6 @@ function authRecheck(data,fun){
 		document.getElementById('recipient-captcha-out').style.border = " 1px solid #ced4da";
 	}
 }
-function dropdownMenu(id,data){
-	if(data==0){
-		document.getElementById(id).style.display = "block";
-	}else{
-		document.getElementById(id).style.display = "none";
-	}
-}
 function profileChange(id){
 	if(document.getElementById('privateProfileBtn').innerHTML=='<i class="fa fa-times"></i> Discard Changes'){
 		blbg('dpSelectPage',0);
@@ -564,7 +563,7 @@ function profilePathDisplay(path){
 }
 function dpSelected(id){
 	let m = document.getElementById(id).value;
-	if(isValidImageLink(id)&&m!=""){
+	if(system.isValidImageLink(id)&&m!=""){
 		document.getElementById('prev-profile-img').src = m;
 		blbg('dpSelectPage',1);
 	}else{
