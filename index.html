@@ -322,76 +322,100 @@
 				<div class="navEvent">
 					Event Id: <span id="eventId"></span>
 				</div>
-				<h5>Pages</h5>
-				<div class="sidenav-item flo" id="homeBtn" title="Home page" onclick="pageRoute('homeBtn')">
-					<i class="fa fa-tv"></i>
-					<span>Home</span>
-				</div>
-				<div class="sidenav-item flo" id="profileBtn" title="Profile page" onclick="pageRoute('profileBtn');profileSetUp();">
-					<i class="fa fa-user-o"></i>
-					<span>Profile</span>
-				</div>
-				<h5>Assets</h5>
-				<div class="sidenav-item flo" id="bookBtn" title="Track Books status" onclick="pageRoute('bookBtn');voiceOver();">
-					<i class="fa fa-book"></i>
-					<span>Books</span>
-				</div>
-				<h5>Users</h5>
-				<div class="sidenav-item flo" id="studentBtn" title="Track Students status" onclick="pageRoute('studentBtn');voiceOver();">
-					<i class="fa fa-graduation-cap"></i>
-					<span>Students</span>
-				</div>
-				<div class="sidenav-item flo" id="teacherBtn" title="Track Teachers status" onclick="pageRoute('teacherBtn');voiceOver();">
-					<i class="fa fa-group"></i>
-					<span>Teachers</span>
-				</div>
-				<div class="sidenav-item flo" id="adminBtn" title="Track Admins status" onclick="pageRoute('adminBtn');voiceOver();">
-					<i class="fa fa-user-circle"></i>
-					<span>Admins / Technical stuff</span>
-				</div>
-				<h5>Income</h5>
-				<div class="sidenav-item flo" id="incomeBtn" title="Track Due fees and Payment" onclick="pageRoute('incomeBtn');voiceOver();">
-					<i class="fa fa-dollar"></i>
-					<span>Payment / Fees</span>
-				</div>
-				<h5>Customize</h5>
-				<div class="sidenav-item flo" id="settingBtn" title="Customize your work station" onclick="pageRoute('settingBtn');voiceOver();">
-					<i class="fa fa-gear"></i>
-					<span>Settings</span>
-				</div>
-				<div class="sidenav-item flo" id="reportBtn" title="Conect to us, email us" onclick="pageRoute('reportBtn');voiceOver();">
-					<i class="fa fa-envelope"></i>
-					<span>Report / FeedBack</span>
-				</div>
-				<h5>Others</h5>
-				<div class="sidenav-item flo" >
-					<i class="fa fa-compass"></i>
-					<span class="btn-group">
-						<span title="Lorem ipsum dolor set amet.">More Menu</span>
-						<span class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownMenu('aboutMenu',0);">
-						  <span class="sr-only">Toggle Dropdown</span>
-						</span>
-						<div class="dropdown-menu" id="aboutMenu">
-						  	<a class="dropdown-item sidenav-item flo" title="Learn about our unity" id="aboutBtn" onclick="pageRoute('aboutBtn');voiceOver();dropdownMenu('aboutMenu',1);">
-								<i class="fa fa-file-text-o"></i>
-								<span>About Us</span>
-							</a>
-						  	<a class="dropdown-item sidenav-item flo" title="Learn about this software" onclick="dropdownMenu('aboutMenu',1);">
-								<i class="fa fa-file-pdf-o"></i>
-								<span>Documentation</span>
-							</a>
-						  	<a class="dropdown-item sidenav-item flo" title="Learn your software usage" onclick="dropdownMenu('aboutMenu',1);">
-								<i class="fa fa-file-video-o"></i>
-								<span>Visual Support</span>
-							</a>
-						  	<div class="dropdown-divider"></div>
-						  	<a class="dropdown-item sidenav-item flo" title="This is title" onclick="dropdownMenu('aboutMenu',1);">
-								<i class="fa fa-file-archive-o"></i>
-								<span>New</span>
-							</a>
+				<div class="dropdown">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownToggle('dropMenu1');">
+                    	Pages
+                    </button>
+                    <div class="dropdown-menu" id="dropMenu1">
+                      	<div class="dropdown-item sidenav-item flo" id="homeBtn" title="Home page" onclick="pageRoute('homeBtn');">
+							<i class="fa fa-tv"></i>
+							<span>Home</span>
 						</div>
-					</span>
-				</div>
+                      	<div class="dropdown-item sidenav-item flo" id="profileBtn" title="Profile page" onclick="pageRoute('profileBtn');profileSetUp();">
+							<i class="fa fa-user-o"></i>
+							<span>Profile</span>
+						</div>
+                    </div>
+                </div>
+				<div class="dropdown">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownToggle('dropMenu2');">
+                    	Assets
+                    </button>
+                    <div class="dropdown-menu" id="dropMenu2">
+                      	<div class="dropdown-item sidenav-item flo" id="bookBtn" title="Track Books status" onclick="pageRoute('bookBtn');voiceOver();">
+							<i class="fa fa-book"></i>
+							<span>Books</span>
+						</div>
+                    </div>
+                </div>
+				<div class="dropdown">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownToggle('dropMenu3');">
+                    	Users
+                    </button>
+                    <div class="dropdown-menu" id="dropMenu3">
+                      	<div class="dropdown-item sidenav-item flo" id="studentBtn" title="Track Students status" onclick="pageRoute('studentBtn');voiceOver();">
+							<i class="fa fa-graduation-cap"></i>
+							<span>Students</span>
+						</div>
+						<div class="dropdown-item sidenav-item flo" id="teacherBtn" title="Track Teachers status" onclick="pageRoute('teacherBtn');voiceOver();">
+							<i class="fa fa-group"></i>
+							<span>Teachers</span>
+						</div>
+						<div class="dropdown-item sidenav-item flo" id="adminBtn" title="Track Admins status" onclick="pageRoute('adminBtn');voiceOver();">
+							<i class="fa fa-user-circle"></i>
+							<span>Admins / Technical stuff</span>
+						</div>
+                    </div>
+                </div>
+				<div class="dropdown">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownToggle('dropMenu4');">
+                    	Income
+                    </button>
+                    <div class="dropdown-menu" id="dropMenu4">
+                      	<div class="dropdown-item sidenav-item flo" id="incomeBtn" title="Track Due fees and Payment" onclick="pageRoute('incomeBtn');voiceOver();">
+							<i class="fa fa-dollar"></i>
+							<span>Payment / Fees</span>
+						</div>
+                    </div>
+                </div>
+				<div class="dropdown">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownToggle('dropMenu5');">
+                    	Customize
+                    </button>
+                    <div class="dropdown-menu" id="dropMenu5">
+                      	<div class="dropdown-item sidenav-item flo" id="settingBtn" title="Customize your work station" onclick="pageRoute('settingBtn');voiceOver();">
+							<i class="fa fa-gear"></i>
+							<span>Settings</span>
+						</div>
+						<div class="dropdown-item sidenav-item flo" id="reportBtn" title="Conect to us, email us" onclick="pageRoute('reportBtn');voiceOver();">
+							<i class="fa fa-envelope"></i>
+							<span>Report / FeedBack</span>
+						</div>
+						<div class="dropdown-item sidenav-item flo" title="Visit Privacy statement and license of us" onclick="blbg('forgotPassword',1);blbg('privacyPage',0);">
+							<i class="fa fa-legal"></i>
+							<span>Privacy Policy / License</span>
+						</div>
+                    </div>
+                </div>
+				<div class="dropdown">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="dropdownToggle('dropMenu6');">
+                    	Others
+                    </button>
+                    <div class="dropdown-menu" id="dropMenu6">
+                      	<div class="dropdown-item sidenav-item flo" id="aboutBtn" title="Learn about our unity" id="aboutBtn" onclick="pageRoute('aboutBtn');voiceOver();">
+							<i class="fa fa-file-text-o"></i>
+							<span>About Us</span>
+						</div>
+						<div class="dropdown-item sidenav-item flo" title="Learn about this software" onclick="">
+							<i class="fa fa-file-pdf-o"></i>
+							<span>Documentation</span>
+						</div>
+						<div class="dropdown-item sidenav-item flo" title="Learn your software usage" onclick="">
+							<i class="fa fa-file-video-o"></i>
+							<span>Visual Support</span>
+						</div>
+                    </div>
+                </div>
 				<div class="sidenav-item flo" id="logoutBtn" title="Bye bye, see you soon">
 					<i class="fa fa-sign-out"></i>
 					<span>Log Out</span>
@@ -477,7 +501,8 @@
 				<div class="recent-table" style="margin-bottom: 20px;">
 					<div class="rec-h">
 						<h3>{{com.name}} Profile (Preview)</h3>
-						<small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, dolore?</small>
+						<small class="form-text text-muted">Your profile preview highlights key details for others, offering a glimpse of your identity without revealing everything. The complete profile is yours to 
+                          edit, ensuring privacy and control over your information.</small>
 				  	</div>
 				  	<div class="rec-btn">
 						<button class="btn btn-primary reset" onclick="editProfile();" title="Edit profile information" id="editProfileBtn" data-toggle="modal" data-target="#authenticateModal" data-whatever="@"><i class="fa fa-edit"></i> Edit My Profile</button>
@@ -487,8 +512,8 @@
 						<div class="left">
 					  		<img src="./images/avater-1.png" alt="loading.." id="prev-profile-img" aria-describedby="profileHelp" onclick="profileChange('prev-profile-img');">
 					  		<label for="profile-img">Profile Picture</label>
-					  		<small id="profileHelp" class="form-text text-muted">Selected by the user, this image is their public profile picture, adding a personal touch to their profile. Users can modify this 
-								picture at their discretion.</small>
+					  		<small id="profileHelp" class="form-text text-muted">Chosen by you, this image serves as your public profile picture, adding a personal touch to your profile. Feel free to modify this picture 
+                               at your discretion</small>
 						</div>
 						<div class="right">
 					  		<div class="form-group">
@@ -766,46 +791,12 @@
 	<div id="blbg"></div>
 </body>
 <!--Script inject by backend side-->
+<script src="./Database/assets.min.js"></script>
 <script src="./Database/analysis.min.js"></script>
 <script src="./Database/legalData.js"></script>
-<script src="./Components/assets.js"></script>
 <script src="./Components/hex.js"></script>
 <!--Script inject by frontend side-->
 <script src="./Components/default.js"></script>
 <script>
 </script>
 </html>
-<!--
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticateModal" data-whatever="@mdo">Open modal for @mdo</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticateModal" data-whatever="@fat">Open modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authenticateModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-
-<div class="modal fade" id="authenticateModal" tabindex="-1" role="dialog" aria-labelledby="authenticateModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="authenticateModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
